@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:paddingBottom="@dimen/fragmentMarginBottom">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvMainEvents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/twHeading" />
+
+            <com.technocracy.app.aavartan.animation.TypeWriter
+                android:id="@+id/twHeading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/asyncTextPathView"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:text="@string/s_h_i_e_l_d"
+                android:textColor="@color/colorPrimary"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <yanzhikai.textpath.AsyncTextPathView
+                android:id="@+id/asyncTextPathView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="60dp"
+                app:duration="3500"
+                app:paintStrokeColor="@color/backgroundColor"
+                app:pathStrokeColor="@color/colorPrimary"
+                app:repeat="REVERSE"
+                app:showPainter="true"
+                app:text="AAVARTAN 2k19"
+                app:textInCenter="true"
+                app:textSize="40sp" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <com.nightonke.boommenu.BoomMenuButton
+        android:id="@+id/boomMenuButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        app:bmb_inFragment="true"
+        app:bmb_autoHide="false"
+        app:bmb_backgroundEffect="@bool/default_bmb_background_effect"
+        app:bmb_buttonEnum="textOutsideCircle"
+        app:bmb_buttonPlaceEnum="buttonPlace_sc_6_5"
+        app:bmb_dimColor="@color/boomMenuButtonBackground"
+        app:bmb_frames="60"
+        app:bmb_hideDelay="0"
+        app:bmb_hideDuration="500"
+        app:bmb_normalColor="@color/boomMenuButtonIcon"
+        app:bmb_piecePlaceEnum="piecePlace_dot_6_5"
+        app:bmb_rotateDegree="1080"
+        app:bmb_showDelay="0"
+        app:bmb_showDuration="500"
+        app:bmb_use3DTransformAnimation="true" />
+
+</RelativeLayout>

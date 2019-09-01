@@ -1,0 +1,29 @@
+<resources>
+
+    <string name="app_name">Aavartan</string>
+
+    <!--  Bottom Nav Text  -->
+    <string name="home">Home</string>
+    <string name="events">Events</string>
+    <string name="attraction">Attraction</string>
+    <string name="schedule">Schedule</string>
+    <string name="account">Account</string>
+
+    <!--  Options Text  -->
+    <string name="notifications">Notifications</string>
+    <string name="location">Location</string>
+    <string name="s_h_i_e_l_d">S.H.I.E.L.D.</string>
+
+    <string-array name="boomMenuButtonOptions">
+
+        <item>Gallery</item>
+        <item>Sponsors</item>
+        <item>Contacts</item>
+        <item>App Team</item>
+        <item>About Us</item>
+        <item>Vigyaan</item>
+
+    </string-array>
+
+</resources>
+

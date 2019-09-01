@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.technocracy.app.aavartan.ui.fragments.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/nav_events"
+        android:name="com.technocracy.app.aavartan.ui.fragments.EventsFragment"
+        android:label="@string/events"
+        tools:layout="@layout/fragment_events" />
+    <fragment
+        android:id="@+id/nav_attraction"
+        android:name="com.technocracy.app.aavartan.ui.fragments.AttractionsFragment"
+        android:label="@string/attraction"
+        tools:layout="@layout/fragment_attractions" />
+
+    <fragment
+        android:id="@+id/nav_schedule"
+        android:name="com.technocracy.app.aavartan.ui.fragments.ScheduleFragment"
+        android:label="@string/schedule"
+        tools:layout="@layout/fragment_schedule" />
+
+    <fragment
+        android:id="@+id/nav_account"
+        android:name="com.technocracy.app.aavartan.ui.fragments.AccountFragment"
+        android:label="@string/account"
+        tools:layout="@layout/fragment_account" />
+
+</navigation>

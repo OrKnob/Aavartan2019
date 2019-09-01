@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#D63D41</color>
+    <color name="colorPrimaryDark">#52373B</color>
+    <color name="colorAccent">#EC5633</color>
+    <color name="navigationBarColor">#CC1D1D</color>
+    <color name="statusBarColor">#CC1D1D</color>
+    <color name="backgroundColor">#C5C6D0</color>
+
+    <!--  Basic Colors  -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#00FF00</color>
+    <color name="blue">#0000FF</color>
+
+    <!--  Options Icon Color  -->
+    <color name="optionsIcon">#FFFFFF</color>
+
+    <!--  Bottom Nav Bar  -->
+    <color name="bottomNavIcon">#52373B</color>
+    <color name="bottomNavText">#52373B</color>
+    <color name="bottomNavBackground">#EC5633</color>
+
+    <!--  Boom Menu Button  -->
+    <color name="boomMenuButtonCategories">#FFFFFFFF</color>
+    <color name="boomMenuButtonBackground">#85C5C6D0</color>
+    <color name="boomMenuButtonIcon">#FFB300</color>
+
+    <!--  Debug  -->
+    <color name="color1">#1A1A64</color>
+    <color name="color2">#453AA4</color>
+    <color name="color3">#5C49C6</color>
+    <color name="color4">#8E84E6</color>
+
+</resources>
