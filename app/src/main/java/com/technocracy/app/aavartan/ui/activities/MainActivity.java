@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent;
         switch (item.getItemId()) {
             case R.id.options_notifications:
-                intent = new Intent(MainActivity.this, NotificationsActivity.class);
+                intent = new Intent(MainActivity.this, AuthActivity.class);
                 startActivity(intent);
                 break;
             case R.id.options_location:

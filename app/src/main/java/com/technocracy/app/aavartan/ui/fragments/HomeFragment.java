@@ -22,6 +22,10 @@ import com.technocracy.app.aavartan.ui.activities.GalleryActivity;
 import com.technocracy.app.aavartan.ui.activities.SponsorsActivity;
 import com.technocracy.app.aavartan.ui.activities.VigyaanActivity;
 
+import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import yanzhikai.textpath.AsyncTextPathView;
 
 public class HomeFragment extends Fragment {
@@ -32,14 +36,17 @@ public class HomeFragment extends Fragment {
 
     //    Variables
     private String[] title;
-    private int[] icons = {R.drawable.icon_gallery, R.drawable.icon_sponsors, R.drawable.icon_contacts,
-            R.drawable.icon_app_team, R.drawable.icon_about_us, R.drawable.icon_vigyaan};
+    private int[] icons;
+    private boolean isPaused = false;
+
+    private Timer timerPause;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         initView(view);
         textPathView.startAnimation(0, 1);
+        timerPause.scheduleAtFixedRate(new pauseTask(),2000 ,4000);
         boomMenuButtonClick();
         return view;
     }
@@ -48,7 +55,10 @@ public class HomeFragment extends Fragment {
 
         textPathView = view.findViewById(R.id.asyncTextPathView);
         boomMenuButton = view.findViewById(R.id.boomMenuButton);
+        timerPause = new Timer();
         title = getResources().getStringArray(R.array.boomMenuButtonOptions);
+        icons = new int[]{R.drawable.icon_gallery, R.drawable.icon_sponsors, R.drawable.icon_contacts,
+                R.drawable.icon_app_team, R.drawable.icon_about_us, R.drawable.icon_vigyaan};
     }
 
     private void boomMenuButtonClick() {
@@ -85,10 +95,12 @@ public class HomeFragment extends Fragment {
                         }
                     })
                     .normalImageRes(icons[i])
+                    .normalText(title[i])
                     .rotateImage(true)
                     .imagePadding(new Rect(imagePadding, imagePadding, imagePadding, imagePadding))
                     .textGravity(Gravity.CENTER)
-                    .rippleEffect(true).normalColor(R.color.boomMenuButtonCategories)
+                    .rippleEffect(true)
+                    .normalColor(R.color.boomMenuButtonCategories)
                     .textGravity(Gravity.CENTER)
                     .textSize(textSize).maxLines(1)
                     .textPadding(new Rect(textPadding, textPadding, textPadding, textPadding));
@@ -97,5 +109,23 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    public class pauseTask extends TimerTask{
+
+        @Override
+        public void run() {
+            Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (!isPaused) {
+                        textPathView.pauseAnimation();
+                        isPaused = true;
+                    } else {
+                        textPathView.resumeAnimation();
+                        isPaused = false;
+                    }
+                }
+            });
+        }
+    }
 
 }

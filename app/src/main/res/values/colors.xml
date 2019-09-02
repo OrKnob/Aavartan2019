@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#D63D41</color>
-    <color name="colorPrimaryDark">#52373B</color>
-    <color name="colorAccent">#EC5633</color>
-    <color name="navigationBarColor">#CC1D1D</color>
-    <color name="statusBarColor">#CC1D1D</color>
+    <color name="colorPrimary">#394C64</color>
+    <color name="colorPrimaryDark">#212D3E</color>
+    <color name="colorAccent">#58CABC</color>
+    <color name="navigationBarColor">#000000</color>
+    <color name="statusBarColor">#58CABC</color>
     <color name="backgroundColor">#C5C6D0</color>
+    <color name="authBackground">#10223F</color>
 
     <!--  Basic Colors  -->
     <color name="white">#FFFFFF</color>
@@ -19,9 +20,9 @@
     <color name="optionsIcon">#FFFFFF</color>
 
     <!--  Bottom Nav Bar  -->
-    <color name="bottomNavIcon">#52373B</color>
-    <color name="bottomNavText">#52373B</color>
-    <color name="bottomNavBackground">#EC5633</color>
+    <color name="bottomNavIcon">#58CABC</color>
+    <color name="bottomNavText">#58CABC</color>
+    <color name="bottomNavBackground">#394C64</color>
 
     <!--  Boom Menu Button  -->
     <color name="boomMenuButtonCategories">#FFFFFFFF</color>
@@ -33,5 +34,16 @@
     <color name="color2">#453AA4</color>
     <color name="color3">#5C49C6</color>
     <color name="color4">#8E84E6</color>
+
+    <!--  Auth Screen  -->
+    <color name="authBackgroundStart">#394C64</color>
+    <color name="authBackgroundCenter">#2D3C51</color>
+    <color name="authBackgroundEnd">#212D3E</color>
+    <color name="toggleActive">#60D2C2</color>
+    <color name="toggleInactive">#4C5D72</color>
+    <color name="toggleActiveText">#FFFFFF</color>
+    <color name="toggleInactiveText">#8D98A6</color>
+    <color name="skipText">#8D98A6</color>
+    <color name="skipBackground">#4C5D72</color>
 
 </resources>

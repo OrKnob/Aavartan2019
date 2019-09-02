@@ -1,12 +1,14 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="fragmentMarginBottom">60dp</dimen>
 
     <dimen name="boomMenuTextSize">5sp</dimen>
     <dimen name="boomMenuTextPadding">2dp</dimen>
     <dimen name="boomMenuImagePadding">10dp</dimen>
+
+    <!--  Auth Screen  -->
+    <dimen name="toggleTextSize">16sp</dimen>
+    <dimen name="toggleSwitchWidth">90dp</dimen>
+    <dimen name="toggleCornerRadius">20dp</dimen>
 
 </resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/auth_background"
+    tools:context=".ui.activities.AuthActivity">
+
+    <TextView
+        android:id="@+id/tvSkip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/skip"
+        android:textColor="@color/toggleInactiveText"
+        android:textSize="16sp" />
+
+    <com.test.toggleswitchlibrary.ToggleSwitch
+        android:id="@+id/toggleAuth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:textAlignment="center"
+        android:textSize="@dimen/toggleTextSize"
+        app:activeBgColor="@color/toggleActive"
+        app:activeTextColor="@color/toggleActiveText"
+        app:cornerRadius="@dimen/toggleCornerRadius"
+        app:inactiveBgColor="@color/toggleInactive"
+        app:inactiveTextColor="@color/toggleInactiveText"
+        app:separatorColor="@android:color/transparent"
+        app:textToggleLeft="Sign In"
+        app:textToggleRight="Sign Up"
+        app:toggleWidth="@dimen/toggleSwitchWidth" />
+
+
+</RelativeLayout>

@@ -12,7 +12,10 @@
     <!--  Options Text  -->
     <string name="notifications">Notifications</string>
     <string name="location">Location</string>
+
+
     <string name="s_h_i_e_l_d">S.H.I.E.L.D.</string>
+    <string name="skip"><![CDATA[Skip >]]></string>
 
     <string-array name="boomMenuButtonOptions">
 

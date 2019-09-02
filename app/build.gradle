@@ -63,14 +63,22 @@ dependencies {
 //    Photo View
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 
+//    Custom Toast
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
+
 //    RetroFit
     implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
     implementation "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
     implementation "com.squareup.okhttp3:okhttp:$OKHTTP_VERSION"
     implementation "com.squareup.okhttp3:logging-interceptor:$OKHTTP_VERSION"
 
+    implementation (name:'toggleswitchlibrary-release', ext: 'aar')
+
 }
 
 repositories {
     mavenCentral()
+    flatDir(
+            dirs: 'libs'
+    )
 }
