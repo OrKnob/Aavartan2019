@@ -10,5 +10,8 @@
     <dimen name="toggleTextSize">16sp</dimen>
     <dimen name="toggleSwitchWidth">90dp</dimen>
     <dimen name="toggleCornerRadius">20dp</dimen>
+    <dimen name="toggleMarginTop">20dp</dimen>
+    <dimen name="toggleMarginEnd">20dp</dimen>
+    <dimen name="relativeMarginTop">20dp</dimen>
 
 </resources>

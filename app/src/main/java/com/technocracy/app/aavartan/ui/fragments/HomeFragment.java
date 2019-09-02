@@ -37,16 +37,16 @@ public class HomeFragment extends Fragment {
     //    Variables
     private String[] title;
     private int[] icons;
-    private boolean isPaused = false;
 
-    private Timer timerPause;
+    private Timer timerPause,timerResume;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         initView(view);
         textPathView.startAnimation(0, 1);
-        timerPause.scheduleAtFixedRate(new pauseTask(),2000 ,4000);
+        timerPause.scheduleAtFixedRate(new pauseTask(),2000,4500);
+        timerResume.scheduleAtFixedRate(new resumeTask(),2500,4500);
         boomMenuButtonClick();
         return view;
     }
@@ -56,6 +56,7 @@ public class HomeFragment extends Fragment {
         textPathView = view.findViewById(R.id.asyncTextPathView);
         boomMenuButton = view.findViewById(R.id.boomMenuButton);
         timerPause = new Timer();
+        timerResume = new Timer();
         title = getResources().getStringArray(R.array.boomMenuButtonOptions);
         icons = new int[]{R.drawable.icon_gallery, R.drawable.icon_sponsors, R.drawable.icon_contacts,
                 R.drawable.icon_app_team, R.drawable.icon_about_us, R.drawable.icon_vigyaan};
@@ -116,16 +117,36 @@ public class HomeFragment extends Fragment {
             Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if (!isPaused) {
-                        textPathView.pauseAnimation();
-                        isPaused = true;
-                    } else {
-                        textPathView.resumeAnimation();
-                        isPaused = false;
-                    }
+
+                    textPathView.pauseAnimation();
+
                 }
             });
         }
+    }
+
+    public class resumeTask extends TimerTask{
+
+        @Override
+        public void run() {
+
+            Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    textPathView.resumeAnimation();
+
+                }
+            });
+
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        timerPause.cancel();
+        timerResume.cancel();
     }
 
 }

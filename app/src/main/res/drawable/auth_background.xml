@@ -3,5 +3,5 @@
         android:startColor="@color/authBackgroundStart"
         android:centerColor="@color/authBackgroundCenter"
         android:endColor="@color/authBackgroundEnd"
-        android:angle="270"/>
+        android:angle="90"/>
 </shape>

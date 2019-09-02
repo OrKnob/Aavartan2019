@@ -36,6 +36,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+
 //    Boom Menu Button
     implementation 'com.nightonke:boommenu:2.1.1'
 
@@ -50,6 +51,7 @@ dependencies {
 
 //    ViewPager
     implementation 'androidx.viewpager:viewpager:1.0.0'
+
 //    Maps
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
 
@@ -69,7 +71,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$OKHTTP_VERSION"
 
 //    Toggle Switch
-    implementation(name: 'toggleswitchlibrary-release', ext: 'aar')
+    implementation(name: 'toggleswitch', ext: 'aar')
 
 }
 

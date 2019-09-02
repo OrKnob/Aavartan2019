@@ -7,25 +7,20 @@
     android:background="@drawable/auth_background"
     tools:context=".ui.activities.AuthActivity">
 
-    <TextView
-        android:id="@+id/tvSkip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:text="@string/skip"
-        android:textColor="@color/toggleInactiveText"
-        android:textSize="16sp" />
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toggleAuth"
+        android:layout_marginTop="@dimen/relativeMarginTop"/>
 
     <com.test.toggleswitchlibrary.ToggleSwitch
         android:id="@+id/toggleAuth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="@dimen/toggleMarginTop"
+        android:layout_marginEnd="@dimen/toggleMarginEnd"
         android:textAlignment="center"
         android:textSize="@dimen/toggleTextSize"
         app:activeBgColor="@color/toggleActive"
@@ -33,9 +28,9 @@
         app:cornerRadius="@dimen/toggleCornerRadius"
         app:inactiveBgColor="@color/toggleInactive"
         app:inactiveTextColor="@color/toggleInactiveText"
-        app:separatorColor="@android:color/transparent"
-        app:textToggleLeft="Sign In"
-        app:textToggleRight="Sign Up"
+        app:separatorColor="@color/white"
+        app:textToggleLeft="Login"
+        app:textToggleRight="Signup"
         app:toggleWidth="@dimen/toggleSwitchWidth" />
 
 
