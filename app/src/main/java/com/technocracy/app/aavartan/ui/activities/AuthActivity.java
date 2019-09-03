@@ -1,5 +1,6 @@
 package com.technocracy.app.aavartan.ui.activities;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
@@ -14,7 +15,9 @@ import com.test.toggleswitchlibrary.ToggleSwitch;
 
 public class AuthActivity extends AppCompatActivity {
 
-    ToggleSwitch toggleSwitch;
+    private ToggleSwitch toggleSwitch;
+
+    private boolean isLoginFragment = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +25,13 @@ public class AuthActivity extends AppCompatActivity {
         setContentView(R.layout.activity_auth);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         initView();
+        setListeners();
 
+    }
+
+    private void initView(){
+
+        toggleSwitch =  findViewById(R.id.toggleAuth);
         assert getSupportFragmentManager() != null;
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.container,new LoginFragment());
@@ -30,30 +39,41 @@ public class AuthActivity extends AppCompatActivity {
 
     }
 
-    private void initView(){
-        toggleSwitch =  findViewById(R.id.toggleAuth);
+    private void setListeners(){
+
         toggleSwitch.setOnToggleSwitchChangeListener(new BaseToggleSwitch.OnToggleSwitchChangeListener() {
             @Override
             public void onToggleSwitchChangeListener(int position, boolean isChecked) {
 
                 if (position == 0){
-                    assert getSupportFragmentManager() != null;
-                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.setCustomAnimations(R.anim.push_right_in_no_alpha,R.anim.push_right_out_no_alpha);
-                    fragmentTransaction.replace(R.id.container, new LoginFragment());
-                    fragmentTransaction.commit();
+                    if (!isLoginFragment){
+                        assert getSupportFragmentManager() != null;
+                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.setCustomAnimations(R.anim.push_right_in_no_alpha,R.anim.push_right_out_no_alpha);
+                        fragmentTransaction.replace(R.id.container, new LoginFragment());
+                        fragmentTransaction.commit();
+                        isLoginFragment = true;
+                    }
+                }
+                else if (position == 1){
+                    if (isLoginFragment){
+                        assert getSupportFragmentManager() != null;
+                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.setCustomAnimations(R.anim.push_left_in_no_alpha,R.anim.push_left_out_no_alpha);
+                        fragmentTransaction.replace(R.id.container, new SignupFragment());
+                        fragmentTransaction.commit();
+                        isLoginFragment = false;
+                    }
                 }
                 else {
-                    assert getSupportFragmentManager() != null;
-                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.setCustomAnimations(R.anim.push_left_in_no_alpha,R.anim.push_left_out_no_alpha);
-                    fragmentTransaction.replace(R.id.container, new SignupFragment());
-                    fragmentTransaction.commit();
+                    Intent intent = new Intent(AuthActivity.this,MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
 
             }
         });
-    }
 
+    }
 
 }

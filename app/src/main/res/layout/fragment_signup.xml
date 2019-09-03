@@ -1,10 +1,272 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginStart="@dimen/authFragmentMarginHorizontal"
+    android:layout_marginEnd="@dimen/authFragmentMarginHorizontal"
+    android:gravity="center"
+    android:scrollbarThumbVertical="@null"
     tools:context=".ui.fragments.SignupFragment">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/authLayoutPaddingTop"
+        android:paddingBottom="@dimen/authLayoutPaddingBottom">
 
+        <LinearLayout
+            android:id="@+id/llAuthHead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/authHeadingMarginBottom"
+            android:orientation="horizontal">
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/tvAuthHeadLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="@string/login"
+                android:textColor="@color/toggleInactiveText"
+                android:textSize="@dimen/authHeadingTextSize"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvAuthHeadOr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/authHeadingTextViewMarginEnd"
+                android:fontFamily="@font/roboto"
+                android:text="@string/or"
+                android:textColor="@color/toggleInactiveText"
+                android:textSize="@dimen/authHeadingSmallTextSize" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/authHeadingTextViewMarginEnd"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAuthHeadSignup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/signup"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/authHeadingTextSize"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/authStrokeHeight"
+                    android:layout_marginTop="@dimen/authStrokeMarginTop"
+                    android:background="@color/toggleActive" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilFullName"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/authEditTextHeight"
+            android:layout_below="@+id/llAuthHead"
+            android:layout_marginTop="@dimen/authEditTextMarginTop"
+            android:textColorHint="@color/authEditTextHintColor"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusBottomStart="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusTopEnd="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusTopStart="@dimen/authEditTextCornerRadius"
+            app:boxStrokeColor="@color/authEditTextBoxStrokeColor"
+            app:boxStrokeWidth="@dimen/authEditTextBoxStrokeWidth">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etFullName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/authEditTextMarginStart"
+                android:hint="@string/full_name"
+                android:inputType="text"
+                android:paddingEnd="@dimen/authEditTextPaddingEnd"
+                android:textColor="@color/authEditTextTextColor"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEmail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/authEditTextHeight"
+            android:layout_below="@+id/tilFullName"
+            android:layout_marginTop="@dimen/authEditTextMarginTop"
+            android:textColorHint="@color/authEditTextHintColor"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusBottomStart="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusTopEnd="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusTopStart="@dimen/authEditTextCornerRadius"
+            app:boxStrokeColor="@color/authEditTextBoxStrokeColor"
+            app:boxStrokeWidth="@dimen/authEditTextBoxStrokeWidth">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/authEditTextMarginStart"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:paddingEnd="@dimen/authEditTextPaddingEnd"
+                android:textColor="@color/authEditTextTextColor"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/llMobileNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tilEmail">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilCountryCode"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/authEditTextHeight"
+                android:layout_marginTop="@dimen/authEditTextMarginTop"
+                android:textColorHint="@color/authEditTextHintColor"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="@dimen/authEditTextCornerRadius"
+                app:boxCornerRadiusBottomStart="@dimen/authEditTextCornerRadius"
+                app:boxCornerRadiusTopEnd="@dimen/authEditTextCornerRadius"
+                app:boxCornerRadiusTopStart="@dimen/authEditTextCornerRadius"
+                app:boxStrokeColor="@color/authEditTextBoxStrokeColor"
+                app:boxStrokeWidth="@dimen/authEditTextBoxStrokeWidth">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCountryCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/authEditTextMarginStart"
+                    android:enabled="false"
+                    android:text="@string/_91"
+                    android:maxLength="4"
+                    android:paddingEnd="@dimen/authEditTextPaddingEnd"
+                    android:textColor="@color/authEditTextTextColor"
+                    tools:ignore="RtlSymmetry" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilMobileNumber"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/authEditTextHeight"
+                android:layout_marginTop="@dimen/authEditTextMarginTop"
+                android:textColorHint="@color/authEditTextHintColor"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="@dimen/authEditTextCornerRadius"
+                app:boxCornerRadiusBottomStart="@dimen/authEditTextCornerRadius"
+                app:boxCornerRadiusTopEnd="@dimen/authEditTextCornerRadius"
+                app:boxCornerRadiusTopStart="@dimen/authEditTextCornerRadius"
+                app:boxStrokeColor="@color/authEditTextBoxStrokeColor"
+                app:boxStrokeWidth="@dimen/authEditTextBoxStrokeWidth">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMobileNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/authEditTextMarginStart"
+                    android:hint="@string/mobile_number"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:paddingEnd="@dimen/authEditTextPaddingEnd"
+                    android:textColor="@color/authEditTextTextColor"
+                    tools:ignore="RtlSymmetry" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPassword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/authEditTextHeight"
+            android:layout_below="@+id/llMobileNumber"
+            android:layout_marginTop="@dimen/authEditTextMarginTop"
+            android:textColorHint="@color/authEditTextHintColor"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusBottomStart="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusTopEnd="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusTopStart="@dimen/authEditTextCornerRadius"
+            app:boxStrokeColor="@color/authEditTextBoxStrokeColor"
+            app:boxStrokeWidth="@dimen/authEditTextBoxStrokeWidth"
+            app:passwordToggleDrawable="@drawable/password_hidden_check"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/authPasswordToggleTint">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/authEditTextMarginStart"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:paddingEnd="@dimen/authEditTextPaddingEnd"
+                android:textColor="@color/authEditTextTextColor"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/authEditTextHeight"
+            android:layout_below="@+id/tilPassword"
+            android:layout_marginTop="@dimen/authEditTextMarginTop"
+            android:textColorHint="@color/authEditTextHintColor"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusBottomStart="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusTopEnd="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusTopStart="@dimen/authEditTextCornerRadius"
+            app:boxStrokeColor="@color/authEditTextBoxStrokeColor"
+            app:boxStrokeWidth="@dimen/authEditTextBoxStrokeWidth"
+            app:passwordToggleDrawable="@drawable/password_hidden_check"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/authPasswordToggleTint">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/authEditTextMarginStart"
+                android:hint="@string/confirm_password"
+                android:inputType="textPassword"
+                android:maxLength="16"
+                android:paddingEnd="@dimen/authEditTextPaddingEnd"
+                android:textColor="@color/authEditTextTextColor"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/buSignup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tilConfirmPassword"
+            android:layout_marginTop="@dimen/authButtonMarginTop"
+            android:layout_marginEnd="@dimen/authButtonMarginEnd"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/gotham"
+            android:text="@string/signup"
+            android:textColor="@color/authButtonText"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</ScrollView>

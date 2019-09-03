@@ -67,15 +67,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent intent;
-        switch (item.getItemId()) {
-            case R.id.options_notifications:
-                intent = new Intent(MainActivity.this, AuthActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.options_location:
-                intent = new Intent(MainActivity.this, LocationActivity.class);
-                startActivity(intent);
-                break;
+        if (item.getItemId() == R.id.options_location) {
+            intent = new Intent(MainActivity.this, LocationActivity.class);
+            startActivity(intent);
         }
         return true;
     }

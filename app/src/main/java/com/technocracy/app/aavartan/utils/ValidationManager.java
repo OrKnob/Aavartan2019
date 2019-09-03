@@ -5,7 +5,7 @@ public class ValidationManager {
     private ValidationManager() {
     }
 
-    private static boolean isFieldEmpty(String data) {
+    public static boolean isFieldEmpty(String data) {
         boolean isFieldEmpty = false;
         if (data == null || data.equals("")) {
             isFieldEmpty = true;
@@ -14,7 +14,7 @@ public class ValidationManager {
         return isFieldEmpty;
     }
 
-    private static boolean isEmailValid(String email) {
+    public static boolean isEmailValid(String email) {
 
         String emailRegex = AppConstants.VALID_EMAIL_REGEX;
         boolean isFieldValid = true;
@@ -23,10 +23,10 @@ public class ValidationManager {
             isFieldValid = false;
         }
 
-        return isFieldValid;
+        return !isFieldValid;
     }
 
-    public static boolean isValidPhoneNumber(String mobileNumber) {
+    public static boolean isValidMobileNumber(String mobileNumber) {
 
         boolean isFieldValid = true;
 
@@ -46,7 +46,7 @@ public class ValidationManager {
             isFieldValid = false;
         }
 
-        return isFieldValid;
+        return !isFieldValid;
     }
 
 }

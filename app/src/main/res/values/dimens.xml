@@ -1,17 +1,42 @@
 <resources>
 
-    <dimen name="fragmentMarginBottom">60dp</dimen>
+    <!--  Home Screens  -->
+    <dimen name="homeFragmentMarginBottom">60dp</dimen>
 
+    <!--  Boom Menu  -->
     <dimen name="boomMenuTextSize">5sp</dimen>
     <dimen name="boomMenuTextPadding">2dp</dimen>
     <dimen name="boomMenuImagePadding">10dp</dimen>
 
     <!--  Auth Screen  -->
+    <dimen name="authRelativeMarginTop">20dp</dimen>
+    <dimen name="authFragmentMarginHorizontal">40dp</dimen>
+    <dimen name="authLayoutPaddingTop">80dp</dimen>
+    <dimen name="authLayoutPaddingBottom">40dp</dimen>
+
     <dimen name="toggleTextSize">16sp</dimen>
     <dimen name="toggleSwitchWidth">90dp</dimen>
     <dimen name="toggleCornerRadius">20dp</dimen>
     <dimen name="toggleMarginTop">20dp</dimen>
     <dimen name="toggleMarginEnd">20dp</dimen>
-    <dimen name="relativeMarginTop">20dp</dimen>
+
+    <dimen name="authEditTextCornerRadius">10dp</dimen>
+    <dimen name="authEditTextBoxStrokeWidth">2dp</dimen>
+    <dimen name="authEditTextMarginStart">10dp</dimen>
+    <dimen name="authEditTextHeight">56dp</dimen>
+    <dimen name="authEditTextMarginTop">8dp</dimen>
+    <dimen name="authEditTextPaddingEnd">20dp</dimen>
+
+    <dimen name="authHeadingTextSize">30sp</dimen>
+    <dimen name="authHeadingMarginBottom">30dp</dimen>
+    <dimen name="authHeadingSmallTextSize">20sp</dimen>
+    <dimen name="authHeadingTextViewMarginEnd">20dp</dimen>
+
+    <dimen name="authStrokeHeight">2dp</dimen>
+    <dimen name="authStrokeMarginTop">5dp</dimen>
+
+    <dimen name="authButtonMarginTop">16dp</dimen>
+    <dimen name="authButtonMarginEnd">8dp</dimen>
+    <dimen name="authPasswordDrawableMarginRight">30dp</dimen>
 
 </resources>

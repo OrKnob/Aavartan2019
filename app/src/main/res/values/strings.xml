@@ -22,6 +22,10 @@
     <string name="signup">Signup</string>
     <string name="login">Login</string>
     <string name="background">Background</string>
+    <string name="or">or</string>
+    <string name="full_name">Full Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="_91">+91</string>
 
     <string-array name="boomMenuButtonOptions">
 

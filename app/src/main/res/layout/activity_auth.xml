@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toggleAuth"
-        android:layout_marginTop="@dimen/relativeMarginTop"/>
+        android:layout_marginTop="@dimen/authRelativeMarginTop"/>
 
     <com.test.toggleswitchlibrary.ToggleSwitch
         android:id="@+id/toggleAuth"
@@ -30,7 +30,8 @@
         app:inactiveTextColor="@color/toggleInactiveText"
         app:separatorColor="@color/white"
         app:textToggleLeft="Login"
-        app:textToggleRight="Signup"
+        app:textToggleCenter="Signup"
+        app:textToggleRight="Skip >"
         app:toggleWidth="@dimen/toggleSwitchWidth" />
 
 

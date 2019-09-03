@@ -7,13 +7,6 @@
     tools:context="com.technocracy.app.aavartan.ui.activities.MainActivity">
 
     <item
-        android:id="@+id/options_notifications"
-        android:orderInCategory="1"
-        android:icon="@drawable/options_notifications"
-        app:showAsAction="ifRoom"
-        android:title="@string/notifications" />
-
-    <item
         android:id="@+id/options_location"
         android:orderInCategory="1"
         android:icon="@drawable/options_location"
