@@ -69,39 +69,75 @@
 
         </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilFullName"
+        <LinearLayout
+            android:id="@+id/llUsername"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/authEditTextHeight"
-            android:layout_below="@+id/llAuthHead"
-            android:layout_marginTop="@dimen/authEditTextMarginTop"
-            android:textColorHint="@color/authEditTextHintColor"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusBottomEnd="@dimen/authEditTextCornerRadius"
-            app:boxCornerRadiusBottomStart="@dimen/authEditTextCornerRadius"
-            app:boxCornerRadiusTopEnd="@dimen/authEditTextCornerRadius"
-            app:boxCornerRadiusTopStart="@dimen/authEditTextCornerRadius"
-            app:boxStrokeColor="@color/authEditTextBoxStrokeColor"
-            app:boxStrokeWidth="@dimen/authEditTextBoxStrokeWidth">
+            android:layout_height="wrap_content"
+            android:layout_below="@id/llAuthHead">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etFullName"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilCountryCode"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/authEditTextHeight"
+                android:layout_marginTop="@dimen/authEditTextMarginTop"
+                android:textColorHint="@color/authEditTextHintColor"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="@dimen/authEditTextCornerRadius"
+                app:boxCornerRadiusBottomStart="@dimen/authEditTextCornerRadius"
+                app:boxCornerRadiusTopEnd="@dimen/authEditTextCornerRadius"
+                app:boxCornerRadiusTopStart="@dimen/authEditTextCornerRadius"
+                app:boxStrokeColor="@color/authEditTextBoxStrokeColor"
+                app:boxStrokeWidth="@dimen/authEditTextBoxStrokeWidth">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCountryCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/authEditTextMarginStart"
+                    android:enabled="false"
+                    android:text="@string/_91"
+                    android:maxLength="4"
+                    android:paddingEnd="@dimen/authEditTextPaddingEnd"
+                    android:textColor="@color/authEditTextTextColor"
+                    tools:ignore="RtlSymmetry" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilUsername"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/authEditTextMarginStart"
-                android:hint="@string/full_name"
-                android:inputType="text"
-                android:paddingEnd="@dimen/authEditTextPaddingEnd"
-                android:textColor="@color/authEditTextTextColor"
-                tools:ignore="RtlSymmetry" />
+                android:layout_height="@dimen/authEditTextHeight"
+                android:layout_marginTop="@dimen/authEditTextMarginTop"
+                android:textColorHint="@color/authEditTextHintColor"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="@dimen/authEditTextCornerRadius"
+                app:boxCornerRadiusBottomStart="@dimen/authEditTextCornerRadius"
+                app:boxCornerRadiusTopEnd="@dimen/authEditTextCornerRadius"
+                app:boxCornerRadiusTopStart="@dimen/authEditTextCornerRadius"
+                app:boxStrokeColor="@color/authEditTextBoxStrokeColor"
+                app:boxStrokeWidth="@dimen/authEditTextBoxStrokeWidth">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/authEditTextMarginStart"
+                    android:hint="@string/mobile_number"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:paddingEnd="@dimen/authEditTextPaddingEnd"
+                    android:textColor="@color/authEditTextTextColor"
+                    tools:ignore="RtlSymmetry" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilEmail"
             android:layout_width="match_parent"
             android:layout_height="@dimen/authEditTextHeight"
-            android:layout_below="@+id/tilFullName"
+            android:layout_below="@+id/llUsername"
             android:layout_marginTop="@dimen/authEditTextMarginTop"
             android:textColorHint="@color/authEditTextHintColor"
             app:boxBackgroundMode="outline"

@@ -1,23 +1,33 @@
 package com.technocracy.app.aavartan.ui.fragments;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.technocracy.app.aavartan.R;
+import com.technocracy.app.aavartan.api.APIServices;
+import com.technocracy.app.aavartan.api.AppClient;
+import com.technocracy.app.aavartan.api.data_models.LoginData;
 import com.technocracy.app.aavartan.ui.activities.MainActivity;
+import com.technocracy.app.aavartan.utils.UserPreferences;
 import com.technocracy.app.aavartan.utils.ValidationManager;
 
 import java.util.Objects;
+
+import es.dmoral.toasty.Toasty;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,9 +35,10 @@ import java.util.Objects;
 public class LoginFragment extends Fragment {
 
     private Button buLogin;
-    private TextInputEditText etFullName,etEmail,etPassword;
+    private TextInputEditText etUsername, etEmail, etPassword;
 
-    private boolean isValidFullName = false,isValidEmail = false, isValidPassword = false;
+    private boolean isValidUserName = false, isValidEmail = false, isValidPassword = false;
+    private UserPreferences userPreferences;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -45,16 +56,17 @@ public class LoginFragment extends Fragment {
 
     private void initView(View view) {
 
-        etFullName = view.findViewById(R.id.etFullName);
+        etUsername = view.findViewById(R.id.etUsername);
         etEmail = view.findViewById(R.id.etEmail);
         etPassword = view.findViewById(R.id.etPassword);
         buLogin = view.findViewById(R.id.buLogin);
+        userPreferences = new UserPreferences(getActivity());
 
     }
 
-    private void setListeners(){
+    private void setListeners() {
 
-        etFullName.addTextChangedListener(new TextWatcher() {
+        etUsername.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -67,13 +79,13 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (ValidationManager.isFieldEmpty(Objects.requireNonNull(etFullName.getText()).toString())) {
-                    etFullName.setError("Field Cannot be Empty");
-                    isValidFullName = false;
-                }
-                else {
-                    isValidFullName = true;
-                }
+                if (ValidationManager.isFieldEmpty(Objects.requireNonNull(etUsername.getText()).toString())) {
+                    etUsername.setError("Field Cannot be Empty");
+                    isValidUserName = false;
+                } else if (!ValidationManager.isValidMobileNumber(etUsername.getText().toString())) {
+                    etUsername.setError("Enter Valid Mobile Number");
+                    isValidUserName = false;
+                } else isValidUserName = true;
             }
         });
 
@@ -97,8 +109,7 @@ public class LoginFragment extends Fragment {
                     etEmail.setError("Field Cannot be Empty");
                 } else if (ValidationManager.isEmailValid(etEmail.getText().toString())) {
                     etEmail.setError("Enter Valid Email");
-                }
-                else isValidEmail = true;
+                } else isValidEmail = true;
             }
         });
 
@@ -119,21 +130,86 @@ public class LoginFragment extends Fragment {
                 isValidPassword = false;
                 if (ValidationManager.isFieldEmpty(Objects.requireNonNull(etPassword.getText()).toString())) {
                     etPassword.setError("Field Cannot be Empty");
-                } else if (ValidationManager.isValidPassword(etPassword.getText().toString())) {
-                    etPassword.setError("Password must contain a letter and a number with length between 8-16 characters");
-                }
-                else isValidPassword = true;
+                } else isValidPassword = true;
             }
         });
 
         buLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isValidFullName && isValidEmail && isValidPassword){
-                    Intent intent = new Intent(getContext(), MainActivity.class);
+                if (isValidUserName && isValidEmail && isValidPassword) {
+                    apiCall();
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
                     startActivity(intent);
                     Objects.requireNonNull(getActivity()).finish();
+                } else {
+                    Toasty.error(Objects.requireNonNull(getActivity()), "One or more Fields are Incorrect", Toasty.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+    }
+
+    private void apiCall() {
+
+        /*String jsonString = signupData.toJsonString();
+
+        Log.d("Json String",jsonString);
+        *//*APIServices apiServices = AppClient.getInstance().createService(APIServices.class);
+        Call<JSONObject> call = apiServices.createUser(jsonString);*//*
+
+        JSONObject jsonObject = signupData.toJSONList();
+
+        Log.d("Json Object",jsonObject.toString());
+
+        APIServices apiServices = AppClient.getInstance().createService(APIServices.class);
+        Call<JSONObject> call = apiServices.createUser(jsonObject);
+
+        call.enqueue(new Callback<JSONObject>() {
+            @Override
+            public void onResponse(@NonNull Call<JSONObject> call, @NonNull Response<JSONObject> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+
+                        Toasty.success(Objects.requireNonNull(getContext()),"User Created",Toasty.LENGTH_LONG).show();
+
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<JSONObject> call, @NonNull Throwable t) {
+
+            }
+        });*/
+        APIServices apiServices = AppClient.getInstance().createService(APIServices.class);
+        final String mobileNumber = "+91" + etUsername.getText();
+        final String password = String.valueOf(etPassword.getText());
+        final String email = String.valueOf(etEmail.getText());
+        Call<LoginData> call = apiServices.getLogin(mobileNumber, email, password);
+        call.enqueue(new Callback<LoginData>() {
+            @Override
+            public void onResponse(@NonNull Call<LoginData> call, @NonNull Response<LoginData> response) {
+                if (response.isSuccessful()) {
+                    assert response.body() != null;
+                    if (!String.valueOf(response.body().getKey()).equals("")) {
+                        Log.d("Login :", response.body().toJSONString());
+                        userPreferences.setUsername(mobileNumber);
+                        userPreferences.setPassword(password);
+                        userPreferences.setEmail(email);
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        startActivity(intent);
+                        Objects.requireNonNull(getActivity()).finish();
+                        Log.d("Login : ", "Username: " + userPreferences.getUsername() + ",Email: " + userPreferences.getEmail());
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<LoginData> call, @NonNull Throwable t) {
+                Log.d("Login :", t.toString());
+
             }
         });
 

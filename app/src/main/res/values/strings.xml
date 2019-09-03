@@ -26,6 +26,11 @@
     <string name="full_name">Full Name</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="_91">+91</string>
+    <string name="college">College</string>
+    <string name="branch">Branch</string>
+    <string name="course">Course</string>
+    <string name="semester">Semester</string>
+    <string name="city">City</string>
 
     <string-array name="boomMenuButtonOptions">
 
