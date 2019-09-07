@@ -1,13 +1,26 @@
 package com.technocracy.app.aavartan.api.data_models;
 
-import android.net.Uri;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
 public class EventsData implements Serializable {
+
+    public EventsData(){
+
+    }
+
+    public EventsData(String title, String venue, String poster_img, String  thumbnail_img, Integer n_rounds, String description, String rules, String instructions) {
+        this.title = title;
+        this.venue = venue;
+        this.poster_img = poster_img;
+        this.thumbnail_img = thumbnail_img;
+        this.n_rounds = n_rounds;
+        this.description = description;
+        this.rules = rules;
+        this.instructions = instructions;
+    }
 
     @SerializedName("title")
     @Expose
@@ -19,11 +32,11 @@ public class EventsData implements Serializable {
 
     @SerializedName("poster_img")
     @Expose
-    private Uri poster_img;
+    private String poster_img;
 
     @SerializedName("thumbnail_img")
     @Expose
-    private Uri thumbnail_img;
+    private String thumbnail_img;
 
     @SerializedName("n_rounds")
     @Expose
@@ -57,19 +70,19 @@ public class EventsData implements Serializable {
         this.venue = venue;
     }
 
-    public Uri getPoster_img() {
+    public String getPoster_img() {
         return poster_img;
     }
 
-    public void setPoster_img(Uri poster_img) {
+    public void setPoster_img(String poster_img) {
         this.poster_img = poster_img;
     }
 
-    public Uri getThumbnail_img() {
+    public String getThumbnail_img() {
         return thumbnail_img;
     }
 
-    public void setThumbnail_img(Uri thumbnail_img) {
+    public void setThumbnail_img(String thumbnail_img) {
         this.thumbnail_img = thumbnail_img;
     }
 

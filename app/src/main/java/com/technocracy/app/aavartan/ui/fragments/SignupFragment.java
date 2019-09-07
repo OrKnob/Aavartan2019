@@ -219,7 +219,7 @@ public class SignupFragment extends Fragment {
                 if (response.isSuccessful()) {
                     assert response.body() != null;
                     if (!String.valueOf(response.body().getKey()).equals("")) {
-                        Log.d("Signup :", response.body().toJSONString());
+                        Log.d("LOG Signup :", response.body().toJSONString());
                         Intent intent = new Intent(getActivity(), MainActivity.class);
                         startActivity(intent);
                         Objects.requireNonNull(getActivity()).finish();
@@ -230,7 +230,7 @@ public class SignupFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<SignupData> call, @NonNull Throwable t) {
-                Log.d("Signup :", t.toString());
+                Log.d("LOG Signup :", t.toString());
 
             }
         });

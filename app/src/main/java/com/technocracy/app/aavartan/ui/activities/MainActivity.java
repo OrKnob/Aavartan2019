@@ -24,13 +24,27 @@ import com.technocracy.app.aavartan.ui.fragments.ScheduleFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    MorphBottomNavigationView morphBottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        initView();
+        setListeners();
         loadFragment(new HomeFragment());
-        MorphBottomNavigationView morphBottomNavigationView = findViewById(R.id.nav_view);
+
+    }
+
+    private void initView(){
+
+        morphBottomNavigationView = findViewById(R.id.nav_view);
+
+    }
+
+    private void setListeners(){
+
         morphBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -54,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
     }
 
     @Override

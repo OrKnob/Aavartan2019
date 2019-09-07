@@ -1,6 +1,7 @@
 package com.technocracy.app.aavartan.api;
 
 import com.technocracy.app.aavartan.BuildConfig;
+import com.technocracy.app.aavartan.utils.AppConstants;
 
 import java.util.concurrent.TimeUnit;
 
@@ -25,7 +26,7 @@ public class AppClient {
         OkHttpClient.Builder httpClient = getOKHttpClient();
         OkHttpClient client = httpClient.build();
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://aajain1301.pythonanywhere.com/").client(client).addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(AppConstants.BASE_URL).client(client).addConverterFactory(GsonConverterFactory.create()).build();
 
         return retrofit.create(serviceClass);
     }

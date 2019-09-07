@@ -59,7 +59,7 @@ public class SignupData implements Serializable {
     @Expose
     private String key;
 
-    public String getPassword() {
+    private String getPassword() {
         return password;
     }
 
@@ -75,7 +75,7 @@ public class SignupData implements Serializable {
         this.name = name;
     }
 
-    public String getEmail() {
+    private String getEmail() {
         return email;
     }
 
@@ -83,7 +83,7 @@ public class SignupData implements Serializable {
         this.email = email;
     }
 
-    public String getContact() {
+    private String getContact() {
         return contact;
     }
 
@@ -91,7 +91,7 @@ public class SignupData implements Serializable {
         this.contact = contact;
     }
 
-    public String getCollege() {
+    private String getCollege() {
         return college;
     }
 
@@ -99,7 +99,7 @@ public class SignupData implements Serializable {
         this.college = college;
     }
 
-    public String getBranch() {
+    private String getBranch() {
         return branch;
     }
 
@@ -107,7 +107,7 @@ public class SignupData implements Serializable {
         this.branch = branch;
     }
 
-    public String getCourse() {
+    private String getCourse() {
         return course;
     }
 
@@ -115,7 +115,7 @@ public class SignupData implements Serializable {
         this.course = course;
     }
 
-    public int getSem() {
+    private int getSem() {
         return sem;
     }
 
@@ -123,7 +123,7 @@ public class SignupData implements Serializable {
         this.sem = sem;
     }
 
-    public String getCity() {
+    private String getCity() {
         return city;
     }
 
@@ -138,72 +138,6 @@ public class SignupData implements Serializable {
     public void setKey(String key) {
         this.key = key;
     }
-
-    /*public JSONObject toJSONList(){
-
-        JSONObject jsonObject= new JSONObject();
-        try {
-            jsonObject.put("password", getPassword());
-            jsonObject.put("name",getName());
-            jsonObject.put("email", getEmail());
-            jsonObject.put("contact", getContact());
-            jsonObject.put("college", getCollege());
-            jsonObject.put("branch", getBranch());
-            jsonObject.put("course", getCourse());
-            jsonObject.put("sem", getSem());
-            jsonObject.put("city", getCity());
-
-            return jsonObject;
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return new JSONObject();
-        }
-        List<JSONObject> jsonObjectList = new ArrayList<>();
-        JSONObject jsonObject = new JSONObject();
-        try {
-
-            jsonObject.put("password", getPassword());
-            jsonObjectList.add(jsonObject);
-            jsonObject.remove("password");
-
-            jsonObject.put("name", getName());
-            jsonObjectList.add(jsonObject);
-            jsonObject.remove("name");
-
-            jsonObject.put("email", getEmail());
-            jsonObjectList.add(jsonObject);
-            jsonObject.remove("email");
-
-            jsonObject.put("contact", getContact());
-            jsonObjectList.add(jsonObject);
-            jsonObject.remove("contact");
-
-            jsonObject.put("college", getCollege());
-            jsonObjectList.add(jsonObject);
-            jsonObject.remove("college");
-
-            jsonObject.put("branch", getBranch());
-            jsonObjectList.add(jsonObject);
-            jsonObject.remove("branch");
-
-            jsonObject.put("course", getCourse());
-            jsonObjectList.add(jsonObject);
-            jsonObject.remove("course");
-
-            jsonObject.put("sem", getSem());
-            jsonObjectList.add(jsonObject);
-            jsonObject.remove("sem");
-
-            jsonObject.put("city", getCity());
-            jsonObjectList.add(jsonObject);
-            jsonObject.remove("city");
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return jsonObjectList;
-
-    }*/
 
     public String toJSONString(){
 

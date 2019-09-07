@@ -7,10 +7,11 @@ import java.io.Serializable;
 
 public class LoginData implements Serializable {
 
-    public LoginData(String username, String email, String password) {
+    public LoginData(String username, String email, String password, String userToken) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.userToken = userToken;
     }
 
     @SerializedName("username")
@@ -27,7 +28,7 @@ public class LoginData implements Serializable {
 
     @SerializedName("key")
     @Expose
-    private String key;
+    private String userToken;
 
     public String getUsername() {
         return username;
@@ -53,19 +54,19 @@ public class LoginData implements Serializable {
         this.password = password;
     }
 
-    public String getKey() {
-        return key;
+    public String getUserToken() {
+        return userToken;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setUserToken(String userToken) {
+        this.userToken = userToken;
     }
 
     public String toJSONString() {
-        return "toJSON{" +
-                "username='" + username + '\'' +
-                ",email'" + email + '\'' +
-                ",password" + password +
-                '}';
+        return "{" +
+                "\"username\" : \" " + username + '\"' +
+                ", \"email \" : \" " + email + '\"' +
+                ", \"password\" : \"" + password +
+                "\"}";
     }
 }

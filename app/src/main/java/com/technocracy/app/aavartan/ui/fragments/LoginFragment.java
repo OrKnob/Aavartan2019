@@ -19,7 +19,7 @@ import com.technocracy.app.aavartan.api.APIServices;
 import com.technocracy.app.aavartan.api.AppClient;
 import com.technocracy.app.aavartan.api.data_models.LoginData;
 import com.technocracy.app.aavartan.ui.activities.MainActivity;
-import com.technocracy.app.aavartan.utils.UserPreferences;
+import com.technocracy.app.aavartan.utils.SessionManager;
 import com.technocracy.app.aavartan.utils.ValidationManager;
 
 import java.util.Objects;
@@ -38,7 +38,7 @@ public class LoginFragment extends Fragment {
     private TextInputEditText etUsername, etEmail, etPassword;
 
     private boolean isValidUserName = false, isValidEmail = false, isValidPassword = false;
-    private UserPreferences userPreferences;
+    private String email, password, username;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -60,7 +60,6 @@ public class LoginFragment extends Fragment {
         etEmail = view.findViewById(R.id.etEmail);
         etPassword = view.findViewById(R.id.etPassword);
         buLogin = view.findViewById(R.id.buLogin);
-        userPreferences = new UserPreferences(getActivity());
 
     }
 
@@ -138,10 +137,10 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (isValidUserName && isValidEmail && isValidPassword) {
+                    username = String.valueOf(etUsername.getText());
+                    email = String.valueOf(etEmail.getText());
+                    password = String.valueOf(etPassword.getText());
                     apiCall();
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    startActivity(intent);
-                    Objects.requireNonNull(getActivity()).finish();
                 } else {
                     Toasty.error(Objects.requireNonNull(getActivity()), "One or more Fields are Incorrect", Toasty.LENGTH_SHORT).show();
                 }
@@ -152,64 +151,28 @@ public class LoginFragment extends Fragment {
 
     private void apiCall() {
 
-        /*String jsonString = signupData.toJsonString();
-
-        Log.d("Json String",jsonString);
-        *//*APIServices apiServices = AppClient.getInstance().createService(APIServices.class);
-        Call<JSONObject> call = apiServices.createUser(jsonString);*//*
-
-        JSONObject jsonObject = signupData.toJSONList();
-
-        Log.d("Json Object",jsonObject.toString());
-
         APIServices apiServices = AppClient.getInstance().createService(APIServices.class);
-        Call<JSONObject> call = apiServices.createUser(jsonObject);
+        Call<LoginData> call = apiServices.getLogin(username, email, password);
 
-        call.enqueue(new Callback<JSONObject>() {
-            @Override
-            public void onResponse(@NonNull Call<JSONObject> call, @NonNull Response<JSONObject> response) {
-                if (response.isSuccessful()) {
-                    if (response.body() != null) {
-
-                        Toasty.success(Objects.requireNonNull(getContext()),"User Created",Toasty.LENGTH_LONG).show();
-
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<JSONObject> call, @NonNull Throwable t) {
-
-            }
-        });*/
-        APIServices apiServices = AppClient.getInstance().createService(APIServices.class);
-        final String mobileNumber = "+91" + etUsername.getText();
-        final String password = String.valueOf(etPassword.getText());
-        final String email = String.valueOf(etEmail.getText());
-        Call<LoginData> call = apiServices.getLogin(mobileNumber, email, password);
         call.enqueue(new Callback<LoginData>() {
             @Override
             public void onResponse(@NonNull Call<LoginData> call, @NonNull Response<LoginData> response) {
                 if (response.isSuccessful()) {
-                    assert response.body() != null;
-                    if (!String.valueOf(response.body().getKey()).equals("")) {
-                        Log.d("Login :", response.body().toJSONString());
-                        userPreferences.setUsername(mobileNumber);
-                        userPreferences.setPassword(password);
-                        userPreferences.setEmail(email);
-                        Intent intent = new Intent(getActivity(), MainActivity.class);
-                        startActivity(intent);
-                        Objects.requireNonNull(getActivity()).finish();
-                        Log.d("Login : ", "Username: " + userPreferences.getUsername() + ",Email: " + userPreferences.getEmail());
+                    if (response.body() != null) {
+                        if (!response.body().getUserToken().equals("")) {
+                            Log.d("LOG Login Key",response.body().getUserToken());
+                            SessionManager.setUserToken(response.body().getUserToken());
+                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                            startActivity(intent);
+                            Objects.requireNonNull(getActivity()).finish();
+                        }
                     }
                 }
-
             }
 
             @Override
             public void onFailure(@NonNull Call<LoginData> call, @NonNull Throwable t) {
-                Log.d("Login :", t.toString());
-
+                Log.d("LOG Login :", t.toString());
             }
         });
 
