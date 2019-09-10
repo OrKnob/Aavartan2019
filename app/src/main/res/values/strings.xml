@@ -32,6 +32,9 @@
     <string name="semester">Semester</string>
     <string name="city">City</string>
     <string name="event_poster">Event Poster</string>
+    <string name="verify_otp">Verify OTP</string>
+
+    <string name="enter_otp">Enter OTP</string>
 
     <string-array name="boomMenuButtonOptions">
 

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/auth_background"
+    tools:context=".ui.activities.OTPVerifyActivity">
+
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toggleOTP"
+        android:layout_marginTop="@dimen/authRelativeMarginTop"/>
+
+    <com.test.toggleswitchlibrary.ToggleSwitch
+        android:id="@+id/toggleOTP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/toggleMarginTop"
+        android:layout_marginEnd="@dimen/toggleMarginEnd"
+        android:textAlignment="center"
+        android:textSize="@dimen/toggleTextSize"
+        app:activeBgColor="@color/toggleActive"
+        app:activeTextColor="@color/toggleActiveText"
+        app:cornerRadius="@dimen/toggleCornerRadius"
+        app:inactiveBgColor="@color/toggleInactive"
+        app:inactiveTextColor="@color/toggleInactiveText"
+        app:separatorColor="@color/white"
+        app:textToggleLeft="Verify Number"
+        app:textToggleRight="Do it later"
+        app:toggleWidth="@dimen/toggleOTPSwitchWidth" />
+
+
+</RelativeLayout>

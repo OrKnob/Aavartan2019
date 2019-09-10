@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/authLayoutPaddingTop"
+    android:paddingBottom="@dimen/authLayoutPaddingBottom"
+    tools:context=".ui.fragments.OTPVerifyFragment">
+
+    <Button
+        android:id="@+id/buVerify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llOTPVerify"
+        android:layout_marginTop="@dimen/authButtonMarginTop"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/gotham"
+        android:text="@string/verify_otp"
+        android:textColor="@color/authButtonText"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/llOTPVerify"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/authLinearLayoutHeight"
+        android:layout_below="@id/tvHeading"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilOTPVerify1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/authEditTextHeight"
+            android:layout_marginStart="@dimen/authOTPEditTextMarginStart"
+            android:layout_marginTop="@dimen/authEditTextMarginTop"
+            android:layout_marginEnd="@dimen/authOTPEditTextMarginEnd"
+            android:layout_weight="1"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusBottomStart="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusTopEnd="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusTopStart="@dimen/authEditTextCornerRadius"
+            app:boxStrokeColor="@color/authEditTextBoxStrokeColor"
+            app:boxStrokeWidth="@dimen/authEditTextBoxStrokeWidth">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etOTPVerify1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textAlignment="center"
+                android:textColor="@color/authEditTextTextColor"
+                android:textIsSelectable="false" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilOTPVerify2"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/authEditTextHeight"
+            android:layout_marginStart="@dimen/authOTPEditTextMarginStart"
+            android:layout_marginTop="@dimen/authEditTextMarginTop"
+            android:layout_marginEnd="@dimen/authOTPEditTextMarginEnd"
+            android:layout_weight="1"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusBottomStart="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusTopEnd="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusTopStart="@dimen/authEditTextCornerRadius"
+            app:boxStrokeColor="@color/authEditTextBoxStrokeColor"
+            app:boxStrokeWidth="@dimen/authEditTextBoxStrokeWidth">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etOTPVerify2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textAlignment="center"
+                android:textColor="@color/authEditTextTextColor"
+                android:textIsSelectable="false" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilOTPVerify3"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/authEditTextHeight"
+            android:layout_marginStart="@dimen/authOTPEditTextMarginStart"
+            android:layout_marginTop="@dimen/authEditTextMarginTop"
+            android:layout_marginEnd="@dimen/authOTPEditTextMarginEnd"
+            android:layout_weight="1"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusBottomStart="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusTopEnd="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusTopStart="@dimen/authEditTextCornerRadius"
+            app:boxStrokeColor="@color/authEditTextBoxStrokeColor"
+            app:boxStrokeWidth="@dimen/authEditTextBoxStrokeWidth">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etOTPVerify3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textAlignment="center"
+                android:textColor="@color/authEditTextTextColor"
+                android:textIsSelectable="false" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilOTPVerify4"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/authEditTextHeight"
+            android:layout_marginStart="@dimen/authOTPEditTextMarginStart"
+            android:layout_marginTop="@dimen/authEditTextMarginTop"
+            android:layout_marginEnd="@dimen/authOTPEditTextMarginEnd"
+            android:layout_weight="1"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusBottomStart="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusTopEnd="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusTopStart="@dimen/authEditTextCornerRadius"
+            app:boxStrokeColor="@color/authEditTextBoxStrokeColor"
+            app:boxStrokeWidth="@dimen/authEditTextBoxStrokeWidth">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etOTPVerify4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textAlignment="center"
+                android:textColor="@color/authEditTextTextColor"
+                android:textIsSelectable="false" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilOTPVerify5"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/authEditTextHeight"
+            android:layout_marginStart="@dimen/authOTPEditTextMarginStart"
+            android:layout_marginTop="@dimen/authEditTextMarginTop"
+            android:layout_marginEnd="@dimen/authOTPEditTextMarginEnd"
+            android:layout_weight="1"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusBottomStart="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusTopEnd="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusTopStart="@dimen/authEditTextCornerRadius"
+            app:boxStrokeColor="@color/authEditTextBoxStrokeColor"
+            app:boxStrokeWidth="@dimen/authEditTextBoxStrokeWidth">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etOTPVerify5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textAlignment="center"
+                android:textColor="@color/authEditTextTextColor"
+                android:textIsSelectable="false" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilOTPVerify6"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/authEditTextHeight"
+            android:layout_marginStart="@dimen/authOTPEditTextMarginStart"
+            android:layout_marginTop="@dimen/authEditTextMarginTop"
+            android:layout_marginEnd="@dimen/authOTPEditTextMarginEnd"
+            android:layout_weight="1"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusBottomStart="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusTopEnd="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusTopStart="@dimen/authEditTextCornerRadius"
+            app:boxStrokeColor="@color/authEditTextBoxStrokeColor"
+            app:boxStrokeWidth="@dimen/authEditTextBoxStrokeWidth">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etOTPVerify6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textAlignment="center"
+                android:textColor="@color/authEditTextTextColor"
+                android:textIsSelectable="false" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gotham"
+        android:text="@string/enter_otp"
+        android:textColor="@color/toggleActiveText"
+        android:textSize="@dimen/authHeadingTextSize"
+        android:textStyle="bold" />
+
+</RelativeLayout>

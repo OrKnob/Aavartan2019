@@ -29,44 +29,39 @@ public class AuthActivity extends AppCompatActivity {
 
     }
 
-    private void initView(){
+    private void initView() {
 
-        toggleSwitch =  findViewById(R.id.toggleAuth);
-        assert getSupportFragmentManager() != null;
+        toggleSwitch = findViewById(R.id.toggleAuth);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.container,new LoginFragment());
+        fragmentTransaction.add(R.id.container, new LoginFragment());
         fragmentTransaction.commit();
 
     }
 
-    private void setListeners(){
+    private void setListeners() {
 
         toggleSwitch.setOnToggleSwitchChangeListener(new BaseToggleSwitch.OnToggleSwitchChangeListener() {
             @Override
             public void onToggleSwitchChangeListener(int position, boolean isChecked) {
 
-                if (position == 0){
-                    if (!isLoginFragment){
-                        assert getSupportFragmentManager() != null;
+                if (position == 0) {
+                    if (!isLoginFragment) {
                         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.setCustomAnimations(R.anim.push_right_in_no_alpha,R.anim.push_right_out_no_alpha);
+                        fragmentTransaction.setCustomAnimations(R.anim.push_right_in_no_alpha, R.anim.push_right_out_no_alpha);
                         fragmentTransaction.replace(R.id.container, new LoginFragment());
                         fragmentTransaction.commit();
                         isLoginFragment = true;
                     }
-                }
-                else if (position == 1){
-                    if (isLoginFragment){
-                        assert getSupportFragmentManager() != null;
+                } else if (position == 1) {
+                    if (isLoginFragment) {
                         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.setCustomAnimations(R.anim.push_left_in_no_alpha,R.anim.push_left_out_no_alpha);
+                        fragmentTransaction.setCustomAnimations(R.anim.push_left_in_no_alpha, R.anim.push_left_out_no_alpha);
                         fragmentTransaction.replace(R.id.container, new SignupFragment());
                         fragmentTransaction.commit();
                         isLoginFragment = false;
                     }
-                }
-                else {
-                    Intent intent = new Intent(AuthActivity.this,MainActivity.class);
+                } else {
+                    Intent intent = new Intent(AuthActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                 }
