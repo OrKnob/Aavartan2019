@@ -35,6 +35,16 @@
     <string name="verify_otp">Verify OTP</string>
 
     <string name="enter_otp">Enter OTP</string>
+    <string name="register">Register</string>
+    <string name="description">Description</string>
+    <string name="venue">Venue</string>
+    <string name="rounds">Number of Rounds</string>
+    <string name="rules">Rules</string>
+    <string name="instructions">Instructions</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="forgot_password_text">"Forgot Password?
+Set a new one!"</string>
 
     <string-array name="boomMenuButtonOptions">
 

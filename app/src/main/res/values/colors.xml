@@ -4,9 +4,9 @@
     <color name="colorPrimary">#111D6B</color>
     <color name="colorPrimaryDark">#0B1449</color>
     <color name="colorAccent">#1F38CC</color>
-    <color name="navigationBarColor">#000000</color>
-    <color name="statusBarColor">#080E33</color>
-    <color name="backgroundColor">#C5C6D0</color>
+    <color name="navigationBar">#000000</color>
+    <color name="statusBar">#080E33</color>
+    <color name="background">#C5C6D0</color>
     <color name="errorColor">#FF002D</color>
 
     <!--  Basic Colors  -->
@@ -45,20 +45,23 @@
     <color name="skipBackground">#4C5D72</color>
 
     <!--  Auth Edit Text  -->
-    <color name="authEditTextHintColor">#8D98A6</color>
-    <color name="authEditTextBoxStrokeColor">#FFFFFF</color>
+    <color name="authEditTextHint">#8D98A6</color>
+    <color name="authEditTextBoxStroke">#FFFFFF</color>
     <color name="authPasswordToggleTint">#FFFFFF</color>
-    <color name="authEditTextTextColor">#FFFFFF</color>
+    <color name="authEditTextText">#FFFFFF</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#8D98A6</color>
+
+    <color name="authForgotPasswordText">#FFFFFF</color>
 
     <!--  Auth Button  -->
     <color name="authButton">#1F71ED</color>
     <color name="authButtonText">#FFFFFF</color>
 
-    <!--  Debug  -->
-    <color name="color1">#1A1A64</color>
-    <color name="color2">#453AA4</color>
-    <color name="color3">#5C49C6</color>
-    <color name="color4">#8E84E6</color>
+    <!--  Event Details Screen  -->
+    <color name="eventDetailsTitle">#000000</color>
+    <color name="eventDetailsRegisterButton">#1F71ED</color>
+    <color name="eventDetailsHeaders">#000000</color>
+    <color name="eventDetailsContent">#424242</color>
+    <color name="eventDetailsRegisterButtonText">#FFFFFF</color>
 
 </resources>

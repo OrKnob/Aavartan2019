@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -18,7 +19,9 @@ import com.technocracy.app.aavartan.R;
 import com.technocracy.app.aavartan.api.APIServices;
 import com.technocracy.app.aavartan.api.AppClient;
 import com.technocracy.app.aavartan.api.data_models.LoginData;
+import com.technocracy.app.aavartan.ui.activities.ForgotPasswordActivity;
 import com.technocracy.app.aavartan.ui.activities.MainActivity;
+import com.technocracy.app.aavartan.utils.AppConstants;
 import com.technocracy.app.aavartan.utils.SessionManager;
 import com.technocracy.app.aavartan.utils.ValidationManager;
 
@@ -36,6 +39,7 @@ public class LoginFragment extends Fragment {
 
     private Button buLogin;
     private TextInputEditText etUsername, etEmail, etPassword;
+    private TextView tvForgotPassword;
 
     private boolean isValidUserName = false, isValidEmail = false, isValidPassword = false;
     private String email, password, username;
@@ -59,6 +63,7 @@ public class LoginFragment extends Fragment {
         etUsername = view.findViewById(R.id.etUsername);
         etEmail = view.findViewById(R.id.etEmail);
         etPassword = view.findViewById(R.id.etPassword);
+        tvForgotPassword = view.findViewById(R.id.tvForgotPassword);
         buLogin = view.findViewById(R.id.buLogin);
 
     }
@@ -133,6 +138,17 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        tvForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ForgotPasswordActivity.class);
+                if (isValidEmail) {
+                    intent.putExtra(AppConstants.FORGOT_PASSWORD_INTENT_EXTRA, etEmail.getText());
+                }
+                startActivity(intent);
+            }
+        });
+
         buLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -160,7 +176,7 @@ public class LoginFragment extends Fragment {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
                         if (!response.body().getUserToken().equals("")) {
-                            Log.d("LOG Login Key",response.body().getUserToken());
+                            Log.d("LOG Login Key", response.body().getUserToken());
                             SessionManager.setUserToken(response.body().getUserToken());
                             Intent intent = new Intent(getActivity(), MainActivity.class);
                             startActivity(intent);

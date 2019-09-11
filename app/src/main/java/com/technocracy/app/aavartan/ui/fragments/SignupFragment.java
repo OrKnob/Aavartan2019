@@ -18,12 +18,15 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.technocracy.app.aavartan.R;
 import com.technocracy.app.aavartan.api.APIServices;
 import com.technocracy.app.aavartan.api.AppClient;
+import com.technocracy.app.aavartan.api.data_models.ResponseAPI;
 import com.technocracy.app.aavartan.api.data_models.SignupData;
 import com.technocracy.app.aavartan.ui.activities.OTPVerifyActivity;
+import com.technocracy.app.aavartan.utils.AppConstants;
 import com.technocracy.app.aavartan.utils.ValidationManager;
 
 import java.util.Objects;
 
+import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -190,7 +193,7 @@ public class SignupFragment extends Fragment {
         buSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*if (isValidFullName && isValidEmail && isValidMobileNumber && isValidPassword && passwordsMatch) {
+                if (isValidFullName && isValidEmail && isValidMobileNumber && isValidPassword && passwordsMatch) {
                     password = Objects.requireNonNull(etPassword.getText()).toString();
                     email = Objects.requireNonNull(etEmail.getText()).toString();
                     name = Objects.requireNonNull(etFullName.getText()).toString();
@@ -200,13 +203,15 @@ public class SignupFragment extends Fragment {
                     course = Objects.requireNonNull(etCourse.getText()).toString();
                     semester = Integer.valueOf(Objects.requireNonNull(etSemester.getText()).toString());
                     city = Objects.requireNonNull(etCity.getText()).toString();
-                    apiCall();
+//                    apiCall();
+                    SignupData signupData = new SignupData(password,name,email,mobileNumber,college,branch,course,semester,city);
+                    Intent intent = new Intent(getActivity(), OTPVerifyActivity.class);
+                    intent.putExtra(AppConstants.OTP_INTENT_EXTRA,signupData);
+                    startActivity(intent);
+                    Objects.requireNonNull(getActivity()).finish();
                 } else {
                     Toasty.error(Objects.requireNonNull(getContext()), "One or More Fields are Incorrect", Toasty.LENGTH_SHORT).show();
-                }*/
-                Intent intent = new Intent(getActivity(), OTPVerifyActivity.class);
-                startActivity(intent);
-                Objects.requireNonNull(getActivity()).finish();
+                }
             }
         });
 
@@ -214,7 +219,7 @@ public class SignupFragment extends Fragment {
 
     private void apiCall() {
         APIServices apiServices = AppClient.getInstance().createService(APIServices.class);
-        Call<SignupData> call = apiServices.createUser(password, name, email, mobileNumber, college, branch, course, semester, city);
+        /*Call<SignupData> call = apiServices.createUser(password, name, email, mobileNumber, college, branch, course, semester, city);
         call.enqueue(new Callback<SignupData>() {
             @Override
             public void onResponse(@NonNull Call<SignupData> call, @NonNull Response<SignupData> response) {
@@ -235,7 +240,31 @@ public class SignupFragment extends Fragment {
                 Log.d("LOG Signup :", t.toString());
 
             }
+        });*/
+
+        Call<ResponseAPI> call = apiServices.sendOTP(mobileNumber,password);
+
+        call.enqueue(new Callback<ResponseAPI>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseAPI> call, @NonNull Response<ResponseAPI> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    SignupData signupData = new SignupData(password,name,email,mobileNumber,college,branch,course,semester,city);
+                    Intent intent = new Intent(getActivity(), OTPVerifyActivity.class);
+                    intent.putExtra(AppConstants.OTP_INTENT_EXTRA,signupData);
+                    startActivity(intent);
+                    Objects.requireNonNull(getActivity()).finish();
+                    Log.d("LOG Send OTP Response",response.body().getMessage());
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseAPI> call, @NonNull Throwable t) {
+                Log.d("LOG Send OTP Fail :", t.toString());
+
+            }
         });
+
     }
 
 }

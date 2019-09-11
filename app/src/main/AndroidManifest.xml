@@ -36,7 +36,12 @@
         <activity android:name=".ui.activities.ContactsActivity" />
         <activity android:name=".ui.activities.GalleryActivity" />
         <activity android:name=".ui.activities.MainActivity" />
-        <activity android:name=".ui.activities.OTPVerifyActivity"/>
+        <activity
+            android:name=".ui.activities.OTPVerifyActivity"
+            android:theme="@style/AuthTheme" />
+        <activity
+            android:name=".ui.activities.ForgotPasswordActivity"
+            android:theme="@style/AuthTheme"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

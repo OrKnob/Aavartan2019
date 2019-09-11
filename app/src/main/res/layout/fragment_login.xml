@@ -80,13 +80,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/authEditTextHeight"
                 android:layout_marginTop="@dimen/authEditTextMarginTop"
-                android:textColorHint="@color/authEditTextHintColor"
+                android:textColorHint="@color/authEditTextHint"
                 app:boxBackgroundMode="outline"
                 app:boxCornerRadiusBottomEnd="@dimen/authEditTextCornerRadius"
                 app:boxCornerRadiusBottomStart="@dimen/authEditTextCornerRadius"
                 app:boxCornerRadiusTopEnd="@dimen/authEditTextCornerRadius"
                 app:boxCornerRadiusTopStart="@dimen/authEditTextCornerRadius"
-                app:boxStrokeColor="@color/authEditTextBoxStrokeColor"
+                app:boxStrokeColor="@color/authEditTextBoxStroke"
                 app:boxStrokeWidth="@dimen/authEditTextBoxStrokeWidth">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -99,7 +99,7 @@
                     android:maxLength="4"
                     android:paddingEnd="@dimen/authEditTextPaddingEnd"
                     android:text="@string/_91"
-                    android:textColor="@color/authEditTextTextColor"
+                    android:textColor="@color/authEditTextText"
                     tools:ignore="RtlSymmetry" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -109,13 +109,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/authEditTextHeight"
                 android:layout_marginTop="@dimen/authEditTextMarginTop"
-                android:textColorHint="@color/authEditTextHintColor"
+                android:textColorHint="@color/authEditTextHint"
                 app:boxBackgroundMode="outline"
                 app:boxCornerRadiusBottomEnd="@dimen/authEditTextCornerRadius"
                 app:boxCornerRadiusBottomStart="@dimen/authEditTextCornerRadius"
                 app:boxCornerRadiusTopEnd="@dimen/authEditTextCornerRadius"
                 app:boxCornerRadiusTopStart="@dimen/authEditTextCornerRadius"
-                app:boxStrokeColor="@color/authEditTextBoxStrokeColor"
+                app:boxStrokeColor="@color/authEditTextBoxStroke"
                 app:boxStrokeWidth="@dimen/authEditTextBoxStrokeWidth">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -127,7 +127,7 @@
                     android:inputType="number"
                     android:maxLength="10"
                     android:paddingEnd="@dimen/authEditTextPaddingEnd"
-                    android:textColor="@color/authEditTextTextColor"
+                    android:textColor="@color/authEditTextText"
                     tools:ignore="RtlSymmetry" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -140,13 +140,13 @@
             android:layout_height="@dimen/authEditTextHeight"
             android:layout_below="@+id/llUsername"
             android:layout_marginTop="@dimen/authEditTextMarginTop"
-            android:textColorHint="@color/authEditTextHintColor"
+            android:textColorHint="@color/authEditTextHint"
             app:boxBackgroundMode="outline"
             app:boxCornerRadiusBottomEnd="@dimen/authEditTextCornerRadius"
             app:boxCornerRadiusBottomStart="@dimen/authEditTextCornerRadius"
             app:boxCornerRadiusTopEnd="@dimen/authEditTextCornerRadius"
             app:boxCornerRadiusTopStart="@dimen/authEditTextCornerRadius"
-            app:boxStrokeColor="@color/authEditTextBoxStrokeColor"
+            app:boxStrokeColor="@color/authEditTextBoxStroke"
             app:boxStrokeWidth="@dimen/authEditTextBoxStrokeWidth">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -157,7 +157,7 @@
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:paddingEnd="@dimen/authEditTextPaddingEnd"
-                android:textColor="@color/authEditTextTextColor"
+                android:textColor="@color/authEditTextText"
                 tools:ignore="RtlSymmetry" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -174,13 +174,13 @@
                 android:id="@+id/tilPassword"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/authEditTextHeight"
-                android:textColorHint="@color/authEditTextHintColor"
+                android:textColorHint="@color/authEditTextHint"
                 app:boxBackgroundMode="outline"
                 app:boxCornerRadiusBottomEnd="@dimen/authEditTextCornerRadius"
                 app:boxCornerRadiusBottomStart="@dimen/authEditTextCornerRadius"
                 app:boxCornerRadiusTopEnd="@dimen/authEditTextCornerRadius"
                 app:boxCornerRadiusTopStart="@dimen/authEditTextCornerRadius"
-                app:boxStrokeColor="@color/authEditTextBoxStrokeColor"
+                app:boxStrokeColor="@color/authEditTextBoxStroke"
                 app:boxStrokeWidth="@dimen/authEditTextBoxStrokeWidth"
                 app:passwordToggleDrawable="@drawable/password_hidden_check"
                 app:passwordToggleEnabled="true"
@@ -195,25 +195,38 @@
                     android:inputType="textPassword"
                     android:maxLength="16"
                     android:paddingEnd="@dimen/authEditTextPaddingEnd"
-                    android:textColor="@color/authEditTextTextColor"
+                    android:textColor="@color/authEditTextText"
                     tools:ignore="RtlSymmetry" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tvForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/llPassword"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/authForgotPasswordMarginEnd"
+            android:layout_marginTop="@dimen/authForgotPasswordMarginTop"
+            android:fontFamily="@font/roboto"
+            android:text="@string/forgot_password"
+            android:textColor="@color/authForgotPasswordText"
+            android:textSize="@dimen/authForgotPasswordTextSize" />
+
         <Button
             android:id="@+id/buLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/llPassword"
+            android:layout_below="@+id/tvForgotPassword"
             android:layout_marginTop="@dimen/authButtonMarginTop"
             android:layout_marginEnd="@dimen/authButtonMarginEnd"
             android:background="@drawable/button_background"
             android:fontFamily="@font/gotham"
             android:text="@string/login"
             android:textColor="@color/authButtonText"
-            android:textSize="16sp"
+            android:textSize="@dimen/authButtonTextSize"
             android:textStyle="bold" />
 
     </RelativeLayout>

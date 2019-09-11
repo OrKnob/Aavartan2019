@@ -59,7 +59,7 @@ public class SignupData implements Serializable {
     @Expose
     private String key;
 
-    private String getPassword() {
+    public String getPassword() {
         return password;
     }
 
@@ -75,7 +75,7 @@ public class SignupData implements Serializable {
         this.name = name;
     }
 
-    private String getEmail() {
+    public String getEmail() {
         return email;
     }
 
@@ -83,7 +83,7 @@ public class SignupData implements Serializable {
         this.email = email;
     }
 
-    private String getContact() {
+    public String getContact() {
         return contact;
     }
 
@@ -91,7 +91,7 @@ public class SignupData implements Serializable {
         this.contact = contact;
     }
 
-    private String getCollege() {
+    public String getCollege() {
         return college;
     }
 
@@ -99,7 +99,7 @@ public class SignupData implements Serializable {
         this.college = college;
     }
 
-    private String getBranch() {
+    public String getBranch() {
         return branch;
     }
 
@@ -107,7 +107,7 @@ public class SignupData implements Serializable {
         this.branch = branch;
     }
 
-    private String getCourse() {
+    public String getCourse() {
         return course;
     }
 
@@ -115,7 +115,7 @@ public class SignupData implements Serializable {
         this.course = course;
     }
 
-    private int getSem() {
+    public int getSem() {
         return sem;
     }
 
@@ -123,7 +123,7 @@ public class SignupData implements Serializable {
         this.sem = sem;
     }
 
-    private String getCity() {
+    public String getCity() {
         return city;
     }
 

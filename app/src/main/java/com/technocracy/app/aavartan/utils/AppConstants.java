@@ -7,5 +7,8 @@ public class AppConstants {
     static final String VALID_PASSWORD_REGEX = "((?=.*\\d)(?=.*[A-Za-z]).{8,16})";
     static final String APP_SHARED_PREFERENCES = "AppSharedPreferences";
     static final String USER_TOKEN = "user_token";
-    public static final String EVENT_EXTRA = "event";
+
+    public static final String EVENT_INTENT_EXTRA = "event";
+    public static final String OTP_INTENT_EXTRA = "signupData";
+    public static final String FORGOT_PASSWORD_INTENT_EXTRA = "email";
 }

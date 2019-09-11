@@ -15,6 +15,7 @@ import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomButtons.TextOutsideCircleButton;
 import com.nightonke.boommenu.BoomMenuButton;
 import com.technocracy.app.aavartan.R;
+import com.technocracy.app.aavartan.animation.TypeWriter;
 import com.technocracy.app.aavartan.ui.activities.AboutUsActivity;
 import com.technocracy.app.aavartan.ui.activities.AppTeamActivity;
 import com.technocracy.app.aavartan.ui.activities.ContactsActivity;
@@ -33,12 +34,13 @@ public class HomeFragment extends Fragment {
     //    Views
     private AsyncTextPathView textPathView;
     private BoomMenuButton boomMenuButton;
+    private TypeWriter twHeading;
 
     //    Variables
     private String[] title;
     private int[] icons;
 
-    private Timer timerPause,timerResume;
+    private Timer timerPause,timerResume,timerTypewriter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -47,6 +49,7 @@ public class HomeFragment extends Fragment {
         textPathView.startAnimation(0, 1);
         timerPause.scheduleAtFixedRate(new pauseTask(),2000,4500);
         timerResume.scheduleAtFixedRate(new resumeTask(),2500,4500);
+        timerTypewriter.scheduleAtFixedRate(new typewriterTask(),0,2500);
         boomMenuButtonClick();
         return view;
     }
@@ -55,8 +58,10 @@ public class HomeFragment extends Fragment {
 
         textPathView = view.findViewById(R.id.asyncTextPathView);
         boomMenuButton = view.findViewById(R.id.boomMenuButton);
+        twHeading = view.findViewById(R.id.twHeading);
         timerPause = new Timer();
         timerResume = new Timer();
+        timerTypewriter = new Timer();
         title = getResources().getStringArray(R.array.boomMenuButtonOptions);
         icons = new int[]{R.drawable.icon_gallery, R.drawable.icon_sponsors, R.drawable.icon_contacts,
                 R.drawable.icon_app_team, R.drawable.icon_about_us, R.drawable.icon_vigyaan};
@@ -142,11 +147,30 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    public class typewriterTask extends TimerTask{
+
+        @Override
+        public void run() {
+
+            Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                twHeading.animateText(getString(R.string.s_h_i_e_l_d));
+                twHeading.setCharacterDelay(150);
+
+                }
+            });
+
+        }
+    }
+
     @Override
     public void onPause() {
         super.onPause();
         timerPause.cancel();
         timerResume.cancel();
+        timerTypewriter.cancel();
     }
 
 }

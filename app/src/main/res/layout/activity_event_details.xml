@@ -3,18 +3,143 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.EventDetailsActivity"
-    android:layout_marginStart="20dp"
-    android:layout_marginEnd="20dp">
+    tools:context=".ui.activities.EventDetailsActivity">
 
-    <TextView
-        android:id="@+id/tvTitle"
+    <Button
+        android:id="@+id/buEventRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto"
-        android:layout_marginTop="20dp"
-        android:textSize="40sp"
-        android:textColor="@color/black"
-        android:text="TEXT"/>
+        android:layout_alignParentBottom="true"
+        android:background="@color/eventDetailsRegisterButton"
+        android:fontFamily="@font/gotham"
+        android:text="@string/register"
+        android:textColor="@color/eventDetailsRegisterButtonText"
+        android:textSize="@dimen/eventDetailsButtonTextSize"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/ivPoster"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/buEventRegister"
+        android:alpha="0.5"
+        android:contentDescription="@string/event_poster"
+        android:scaleType="centerCrop" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/buEventRegister"
+        android:paddingBottom="@dimen/eventDetailsScrollViewPaddingBottom">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eventDetailsMarginHorizontal"
+            android:layout_marginEnd="@dimen/eventDetailsMarginHorizontal">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/eventDetailsTitleMarginTop"
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/eventDetailsTitle"
+                android:textSize="@dimen/eventDetailsTitleTextSize"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvDescriptionHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvTitle"
+                android:layout_marginTop="@dimen/eventDetailsTextViewMarginTop"
+                android:text="@string/description"
+                android:textColor="@color/eventDetailsHeaders"
+                android:textSize="@dimen/eventDetailsHeadersTextSize" />
+
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvDescriptionHeader"
+                android:layout_marginTop="@dimen/eventDetailsTextViewMarginTop"
+                android:textColor="@color/eventDetailsContent" />
+
+            <TextView
+                android:id="@+id/tvVenueHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvDescription"
+                android:layout_marginTop="@dimen/eventDetailsTextViewMarginTop"
+                android:text="@string/venue"
+                android:textColor="@color/eventDetailsHeaders"
+                android:textSize="@dimen/eventDetailsHeadersTextSize" />
+
+            <TextView
+                android:id="@+id/tvVenue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvVenueHeader"
+                android:layout_marginTop="@dimen/eventDetailsTextViewMarginTop"
+                android:textColor="@color/eventDetailsContent" />
+
+            <TextView
+                android:id="@+id/tvRoundsHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvVenue"
+                android:layout_marginTop="@dimen/eventDetailsTextViewMarginTop"
+                android:text="@string/rounds"
+                android:textColor="@color/eventDetailsHeaders"
+                android:textSize="@dimen/eventDetailsHeadersTextSize" />
+
+            <TextView
+                android:id="@+id/tvRounds"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvRoundsHeader"
+                android:layout_marginTop="@dimen/eventDetailsTextViewMarginTop"
+                android:textColor="@color/eventDetailsContent" />
+
+            <TextView
+                android:id="@+id/tvRulesHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvRounds"
+                android:layout_marginTop="@dimen/eventDetailsTextViewMarginTop"
+                android:text="@string/rules"
+                android:textColor="@color/eventDetailsHeaders"
+                android:textSize="@dimen/eventDetailsHeadersTextSize" />
+
+            <TextView
+                android:id="@+id/tvRules"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvRulesHeader"
+                android:layout_marginTop="@dimen/eventDetailsTextViewMarginTop"
+                android:textColor="@color/eventDetailsContent" />
+
+            <TextView
+                android:id="@+id/tvInstructionsHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvRules"
+                android:layout_marginTop="@dimen/eventDetailsTextViewMarginTop"
+                android:text="@string/instructions"
+                android:textColor="@color/eventDetailsHeaders"
+                android:textSize="@dimen/eventDetailsHeadersTextSize" />
+
+            <TextView
+                android:id="@+id/tvInstructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvInstructionsHeader"
+                android:layout_marginTop="@dimen/eventDetailsTextViewMarginTop"
+                android:textColor="@color/eventDetailsContent" />
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

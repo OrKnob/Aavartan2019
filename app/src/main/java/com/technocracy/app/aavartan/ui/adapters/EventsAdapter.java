@@ -60,7 +60,7 @@ public class EventsAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, EventDetailsActivity.class);
-                intent.putExtra(AppConstants.EVENT_EXTRA,eventsData.get(position));
+                intent.putExtra(AppConstants.EVENT_INTENT_EXTRA,eventsData.get(position));
                 context.startActivity(intent);
             }
         });

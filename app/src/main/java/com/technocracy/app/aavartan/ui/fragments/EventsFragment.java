@@ -51,7 +51,7 @@ public class EventsFragment extends Fragment {
 
     private void setUpViewPager() {
 
-        Log.d("LOG ViewPager",eventsDataList.toString());
+//        Log.d("LOG ViewPager",eventsDataList.toString());
         EventsAdapter eventsAdapter = new EventsAdapter(eventsDataList, this.getActivity());
         viewPager.setAdapter(eventsAdapter);
 
@@ -66,6 +66,11 @@ public class EventsFragment extends Fragment {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
                         eventsDataList = response.body();
+                        for (int i=0;i<response.body().size();i++){
+                            String category = response.body().get(i).getThumbnail_img().substring(35,response.body().get(i).getThumbnail_img().lastIndexOf('/'));
+//                            Log.d("LOG Category" , response.body().get(i).getTitle() + "  " + category);
+                            eventsDataList.get(i).setCategory(category);
+                        }
                         setUpViewPager();
                     }
                 }

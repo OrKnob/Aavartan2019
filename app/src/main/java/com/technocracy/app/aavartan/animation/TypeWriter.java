@@ -6,11 +6,10 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatTextView;
 
-
 public class TypeWriter extends AppCompatTextView {
     private CharSequence mText;
     private int mIndex;
-    private long mDelay = 500; //Default 500ms delay
+    private long mDelay = 200; //Default 200ms delay
     private Handler mHandler = new Handler();
     private Runnable characterAdder = new Runnable() {
         @Override

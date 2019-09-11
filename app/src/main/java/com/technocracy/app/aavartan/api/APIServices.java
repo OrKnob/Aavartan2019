@@ -2,6 +2,7 @@ package com.technocracy.app.aavartan.api;
 
 import com.technocracy.app.aavartan.api.data_models.EventsData;
 import com.technocracy.app.aavartan.api.data_models.LoginData;
+import com.technocracy.app.aavartan.api.data_models.ResponseAPI;
 import com.technocracy.app.aavartan.api.data_models.SignupData;
 
 import java.util.List;
@@ -34,6 +35,20 @@ public interface APIServices {
     Call<LoginData> getLogin(@Field("username") String username,
                              @Field("email") String email,
                              @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("user/list/")
+    Call<ResponseAPI> sendOTP(@Field("username") String username,
+                              @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("user/x/")
+    Call<ResponseAPI> verifyOTP(@Field("username") String username,
+                                @Field("otp") String otp);
+
+    @FormUrlEncoded
+    @POST("user/rest-auth/password/reset/")
+    Call<ResponseAPI> resetPassword(@Field("email") String email);
 
 }
 

@@ -13,20 +13,7 @@
         android:clipToPadding="false"
         android:foregroundGravity="center"
         android:overScrollMode="never"
-        android:paddingStart="100dp"
-        android:paddingEnd="100dp" />
-
-    <!--<Button
-        android:id="@+id/buSchedule"
-        android:text="@string/schedule"
-        android:textColor="#fff"
-        android:background="@drawable/corners_rounded"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="60dp"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />-->
+        android:paddingStart="@dimen/eventsPaddingHorizontal"
+        android:paddingEnd="@dimen/eventsPaddingHorizontal" />
 
 </RelativeLayout>

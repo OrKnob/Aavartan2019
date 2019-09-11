@@ -30,6 +30,11 @@
     <dimen name="authLinearLayoutHeight">72dp</dimen>
     <dimen name="authEditTextMarginTop">8dp</dimen>
     <dimen name="authEditTextPaddingEnd">20dp</dimen>
+    <dimen name="authButtonTextSize">16sp</dimen>
+    <dimen name="authForgotPasswordTextSize">14sp</dimen>
+    <dimen name="authForgotPasswordMarginTop">8dp</dimen>
+    <dimen name="authHeadingLineSpacing">7dp</dimen>
+    <dimen name="authForgotPasswordMarginEnd">16dp</dimen>
 
     <dimen name="authHeadingTextSize">30sp</dimen>
     <dimen name="authHeadingMarginBottom">30dp</dimen>
@@ -42,5 +47,15 @@
     <dimen name="authButtonMarginTop">16dp</dimen>
     <dimen name="authButtonMarginEnd">8dp</dimen>
     <dimen name="authPasswordDrawableMarginRight">30dp</dimen>
+
+    <!--  Event Details Screen  -->
+    <dimen name="eventDetailsTitleTextSize">32sp</dimen>
+    <dimen name="eventDetailsTitleMarginTop">20dp</dimen>
+    <dimen name="eventDetailsMarginHorizontal">20dp</dimen>
+    <dimen name="eventDetailsTextViewMarginTop">8dp</dimen>
+    <dimen name="eventDetailsButtonTextSize">16sp</dimen>
+    <dimen name="eventsPaddingHorizontal">50dp</dimen>
+    <dimen name="eventDetailsHeadersTextSize">16sp</dimen>
+    <dimen name="eventDetailsScrollViewPaddingBottom">20dp</dimen>
 
 </resources>

@@ -7,10 +7,6 @@ import java.io.Serializable;
 
 public class EventsData implements Serializable {
 
-    public EventsData(){
-
-    }
-
     public EventsData(String title, String venue, String poster_img, String  thumbnail_img, Integer n_rounds, String description, String rules, String instructions) {
         this.title = title;
         this.venue = venue;
@@ -53,6 +49,8 @@ public class EventsData implements Serializable {
     @SerializedName("instructions")
     @Expose
     private String instructions;
+
+    private String category;
 
     public String getTitle() {
         return title;
@@ -116,5 +114,13 @@ public class EventsData implements Serializable {
 
     public void setInstructions(String instructions) {
         this.instructions = instructions;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
