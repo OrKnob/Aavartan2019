@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvAccountHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/accountHeadingMarginTop"
+        android:fontFamily="@font/roboto"
+        android:text="@string/no_user_logged_in"
+        android:textColor="@color/accountError"
+        android:textSize="@dimen/accountHeadingTextSize"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/buLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/accountButtonMarginTop"
+        android:layout_marginEnd="@dimen/accountButtonMarginEnd"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/gotham"
+        android:text="@string/login"
+        android:textColor="@color/accountButtonText"
+        android:textSize="@dimen/accountButtonTextSize"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvAccountOr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/accountOrMarginVertical"
+        android:layout_marginBottom="@dimen/accountOrMarginVertical"
+        android:fontFamily="@font/roboto"
+        android:text="@string/or"
+        android:textColor="@color/toggleInactiveText"
+        android:textSize="@dimen/accountOrTextSize" />
+
+    <Button
+        android:id="@+id/buSignup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/accountButtonMarginEnd"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/gotham"
+        android:text="@string/signup"
+        android:textColor="@color/accountButtonText"
+        android:textSize="@dimen/accountButtonTextSize"
+        android:textStyle="bold"/>
+
+</LinearLayout>

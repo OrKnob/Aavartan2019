@@ -6,10 +6,13 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.technocracy.app.aavartan.R;
 import com.technocracy.app.aavartan.api.APIServices;
@@ -28,9 +31,11 @@ import retrofit2.Response;
 public class ForgotPasswordActivity extends AppCompatActivity {
 
     private Button buReset;
+    private LinearLayout forgotPasswordLayout;
     private TextInputEditText etEmail;
+    private TextView tvEmailSent;
 
-    private String email;
+    private String email = "";
     private boolean isValidEmail = false;
 
     @Override
@@ -40,16 +45,21 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         initView();
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            email = "" + bundle.get(AppConstants.FORGOT_PASSWORD_INTENT_EXTRA);
-            etEmail.setText(email);
+            email += bundle.getString(AppConstants.FORGOT_PASSWORD_INTENT_EXTRA);
+            if (ValidationManager.isEmailValid(email)) {
+                isValidEmail = true;
+                etEmail.setText(email);
+            }
         }
         setListeners();
     }
 
     private void initView() {
 
+        forgotPasswordLayout = findViewById(R.id.forgotPasswordLayout);
         etEmail = findViewById(R.id.etEmail);
         buReset = findViewById(R.id.buReset);
+        tvEmailSent = findViewById(R.id.tvEmailSent);
 
     }
 
@@ -83,6 +93,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (isValidEmail) {
                     email = Objects.requireNonNull(etEmail.getText()).toString();
+                    tvEmailSent.setVisibility(View.VISIBLE);
                     apiCall();
                 } else {
                     Toasty.error(ForgotPasswordActivity.this, "Email is Not Valid", Toasty.LENGTH_SHORT).show();
@@ -101,14 +112,20 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<ResponseAPI> call, @NonNull Response<ResponseAPI> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Toasty.success(ForgotPasswordActivity.this,"E-mail sent",Toasty.LENGTH_LONG).show();
 //                    Log.d("LOG Forgot Password :", response.body().getDetail());
+                    Snackbar.make(forgotPasswordLayout, "Email sent!", Snackbar.LENGTH_SHORT)
+                            .setAction("RESEND", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    apiCall();
+                                }
+                            }).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<ResponseAPI> call, @NonNull Throwable t) {
-                Toasty.error(ForgotPasswordActivity.this,"E-mail not sent",Toasty.LENGTH_SHORT).show();
+                Toasty.error(ForgotPasswordActivity.this, "E-mail not sent", Toasty.LENGTH_SHORT).show();
                 Log.d("LOG Forgot Fail :", t.toString());
             }
         });

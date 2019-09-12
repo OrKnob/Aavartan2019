@@ -40,16 +40,16 @@ public class HomeFragment extends Fragment {
     private String[] title;
     private int[] icons;
 
-    private Timer timerPause,timerResume,timerTypewriter;
+    private Timer timerPause, timerResume, timerTypewriter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         initView(view);
         textPathView.startAnimation(0, 1);
-        timerPause.scheduleAtFixedRate(new pauseTask(),2000,4500);
-        timerResume.scheduleAtFixedRate(new resumeTask(),2500,4500);
-        timerTypewriter.scheduleAtFixedRate(new typewriterTask(),0,2500);
+        timerPause.scheduleAtFixedRate(new pauseTask(), 2000, 4500);
+        timerResume.scheduleAtFixedRate(new resumeTask(), 2500, 4500);
+        timerTypewriter.scheduleAtFixedRate(new typewriterTask(), 0, 2500);
         boomMenuButtonClick();
         return view;
     }
@@ -115,7 +115,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    public class pauseTask extends TimerTask{
+    public class pauseTask extends TimerTask {
 
         @Override
         public void run() {
@@ -130,7 +130,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    public class resumeTask extends TimerTask{
+    public class resumeTask extends TimerTask {
 
         @Override
         public void run() {
@@ -147,7 +147,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    public class typewriterTask extends TimerTask{
+    public class typewriterTask extends TimerTask {
 
         @Override
         public void run() {
@@ -156,8 +156,8 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void run() {
 
-                twHeading.animateText(getString(R.string.s_h_i_e_l_d));
-                twHeading.setCharacterDelay(150);
+                    twHeading.animateText(getString(R.string.s_h_i_e_l_d));
+                    twHeading.setCharacterDelay(150);
 
                 }
             });

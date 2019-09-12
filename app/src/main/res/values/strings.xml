@@ -46,6 +46,16 @@
     <string name="forgot_password_text">"Forgot Password?
 Set a new one!"</string>
 
+    <string name="personal_info">Personal Info</string>
+    <string name="edit">Edit</string>
+    <string name="verify_mobile_number">Click Here to Verify Mobile Number</string>
+    <string name="otp_verified_status">OTP Verified Status</string>
+    <string name="no_user_logged_in">No User Logged In</string>
+    <string name="logout">Logout</string>
+    <string name="password_reset_sent_text">We\'ve emailed you instructions for setting your password, if an account exists with the email you entered. You should receive them shortly. If you don\'t receive an email, please make sure you\'ve entered the address you registered with, and check your spam folder.</string>
+    <string name="loading_details_please_wait">Loading Details! Please Wait ……</string>
+
+
     <string-array name="boomMenuButtonOptions">
 
         <item>Gallery</item>

@@ -10,11 +10,26 @@
         <item name="android:statusBarColor">@color/statusBar</item>
     </style>
 
+    <style name="SplashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="android:statusBarColor">@color/black</item>
+    </style>
+
     <style name="AuthTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/white</item>
         <item name="android:statusBarColor">@color/statusBar</item>
+    </style>
+
+    <style name="AccountTIL" parent="@android:style/TextAppearance">
+        <item name="colorControlNormal">@color/accountColorControlNormal</item>
+        <item name="android:textColorHint">@color/accountTextColorHint</item>
+        <item name="android:textColor">@color/accountTextColor</item>
+        <item name="colorControlActivated">@color/accountColorControlActivated</item>
+        <item name="android:fontFamily">@font/gotham</item>
     </style>
 
 </resources>

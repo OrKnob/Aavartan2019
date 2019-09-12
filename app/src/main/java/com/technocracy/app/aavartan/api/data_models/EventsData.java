@@ -18,6 +18,12 @@ public class EventsData implements Serializable {
         this.instructions = instructions;
     }
 
+    private String category;
+
+    @SerializedName("id")
+    @Expose
+    private int id;
+
     @SerializedName("title")
     @Expose
     private String title;
@@ -50,7 +56,21 @@ public class EventsData implements Serializable {
     @Expose
     private String instructions;
 
-    private String category;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public String getTitle() {
         return title;
@@ -114,13 +134,5 @@ public class EventsData implements Serializable {
 
     public void setInstructions(String instructions) {
         this.instructions = instructions;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 }

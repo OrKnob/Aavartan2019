@@ -18,10 +18,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.technocracy.app.aavartan.R;
 import com.technocracy.app.aavartan.api.APIServices;
 import com.technocracy.app.aavartan.api.AppClient;
-import com.technocracy.app.aavartan.api.data_models.ResponseAPI;
 import com.technocracy.app.aavartan.api.data_models.SignupData;
 import com.technocracy.app.aavartan.ui.activities.OTPVerifyActivity;
-import com.technocracy.app.aavartan.utils.AppConstants;
 import com.technocracy.app.aavartan.utils.ValidationManager;
 
 import java.util.Objects;
@@ -40,7 +38,8 @@ public class SignupFragment extends Fragment {
     private Button buSignup;
     private TextInputEditText etFullName, etEmail, etMobileNumber, etPassword, etConfirmPassword, etCollege, etBranch, etCourse, etSemester, etCity;
 
-    private boolean isValidFullName = false, isValidEmail = false, isValidMobileNumber = false, isValidPassword = false, passwordsMatch = false;
+    private boolean isValidFullName = false, isValidEmail = false, isValidMobileNumber = false, isValidPassword = false, passwordsMatch = false,
+            isValidCollege = false, isValidBranch = false, isValidCourse = false, isValidSemester = false, isValidCity = false;
     private int semester;
     private String password, name, email, mobileNumber, college, branch, course, city;
 
@@ -94,9 +93,7 @@ public class SignupFragment extends Fragment {
                 if (ValidationManager.isFieldEmpty(Objects.requireNonNull(etFullName.getText()).toString())) {
                     etFullName.setError("Field Cannot be Empty");
                     isValidFullName = false;
-                } else {
-                    isValidFullName = true;
-                }
+                } else isValidFullName = true;
             }
         });
 
@@ -113,8 +110,6 @@ public class SignupFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-
-
                 isValidEmail = false;
                 if (ValidationManager.isFieldEmpty(Objects.requireNonNull(etEmail.getText()).toString())) {
                     etEmail.setError("Field Cannot be Empty");
@@ -140,10 +135,9 @@ public class SignupFragment extends Fragment {
                 isValidMobileNumber = false;
                 if (ValidationManager.isFieldEmpty(Objects.requireNonNull(etMobileNumber.getText()).toString())) {
                     etMobileNumber.setError("Field Cannot be Empty");
-                } else if (!ValidationManager.isValidMobileNumber(etMobileNumber.getText().toString())) {
+                } else if (ValidationManager.isValidMobileNumber(etMobileNumber.getText().toString())) {
                     etMobileNumber.setError("Enter Valid Mobile Number");
                 } else isValidMobileNumber = true;
-
             }
         });
 
@@ -160,7 +154,6 @@ public class SignupFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-
                 isValidPassword = false;
                 if (ValidationManager.isFieldEmpty(Objects.requireNonNull(etPassword.getText()).toString())) {
                     etPassword.setError("Field Cannot be Empty");
@@ -190,10 +183,114 @@ public class SignupFragment extends Fragment {
             }
         });
 
+        etCollege.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                isValidCollege = false;
+                if (ValidationManager.isFieldEmpty(Objects.requireNonNull(etCollege.getText()).toString())) {
+                    etCollege.setError("Field Cannot be Empty");
+                } else isValidCollege = true;
+            }
+        });
+
+        etBranch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                isValidBranch = false;
+                if (ValidationManager.isFieldEmpty(Objects.requireNonNull(etBranch.getText()).toString())) {
+                    etBranch.setError("Field Cannot be Empty");
+                } else isValidBranch = true;
+            }
+        });
+
+        etCourse.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                isValidCourse = false;
+                if (ValidationManager.isFieldEmpty(Objects.requireNonNull(etCourse.getText()).toString())) {
+                    etCourse.setError("Field Cannot be Empty");
+                } else isValidCourse = true;
+            }
+        });
+
+        etSemester.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                isValidSemester = false;
+                isValidPassword = false;
+                if (ValidationManager.isFieldEmpty(Objects.requireNonNull(etSemester.getText()).toString())) {
+                    etPassword.setError("Field Cannot be Empty");
+                } else if (ValidationManager.isValidSemester(etSemester.getText().toString())) {
+                    etPassword.setError("Semester must be a number between 1 - 10");
+                } else isValidPassword = true;
+            }
+        });
+
+        etCity.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                isValidCity = false;
+                if (ValidationManager.isFieldEmpty(Objects.requireNonNull(etCity.getText()).toString())) {
+                    etCity.setError("Field Cannot be Empty");
+                } else isValidCity = true;
+            }
+        });
+
         buSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isValidFullName && isValidEmail && isValidMobileNumber && isValidPassword && passwordsMatch) {
+                if (isValidFullName && isValidEmail && isValidMobileNumber && isValidPassword && passwordsMatch &&
+                        isValidCollege && isValidBranch && isValidCourse && isValidSemester && isValidCity) {
                     password = Objects.requireNonNull(etPassword.getText()).toString();
                     email = Objects.requireNonNull(etEmail.getText()).toString();
                     name = Objects.requireNonNull(etFullName.getText()).toString();
@@ -203,12 +300,7 @@ public class SignupFragment extends Fragment {
                     course = Objects.requireNonNull(etCourse.getText()).toString();
                     semester = Integer.valueOf(Objects.requireNonNull(etSemester.getText()).toString());
                     city = Objects.requireNonNull(etCity.getText()).toString();
-//                    apiCall();
-                    SignupData signupData = new SignupData(password,name,email,mobileNumber,college,branch,course,semester,city);
-                    Intent intent = new Intent(getActivity(), OTPVerifyActivity.class);
-                    intent.putExtra(AppConstants.OTP_INTENT_EXTRA,signupData);
-                    startActivity(intent);
-                    Objects.requireNonNull(getActivity()).finish();
+                    apiCall();
                 } else {
                     Toasty.error(Objects.requireNonNull(getContext()), "One or More Fields are Incorrect", Toasty.LENGTH_SHORT).show();
                 }
@@ -219,15 +311,19 @@ public class SignupFragment extends Fragment {
 
     private void apiCall() {
         APIServices apiServices = AppClient.getInstance().createService(APIServices.class);
-        /*Call<SignupData> call = apiServices.createUser(password, name, email, mobileNumber, college, branch, course, semester, city);
-        call.enqueue(new Callback<SignupData>() {
+        Call<SignupData> callCreateUser = apiServices.createUser(password, name, email, mobileNumber, college, branch, course, semester, city);
+
+        callCreateUser.enqueue(new Callback<SignupData>() {
             @Override
             public void onResponse(@NonNull Call<SignupData> call, @NonNull Response<SignupData> response) {
                 if (response.isSuccessful()) {
                     assert response.body() != null;
                     if (!String.valueOf(response.body().getKey()).equals("")) {
-                        Log.d("LOG Signup :", response.body().toJSONString());
+                        Log.d("LOG Signup ", response.body().toString());
+//                        Log.d("LOG Signup Key ", response.body().getKey());
+//                        SignupData signupData = new SignupData(password, name, email, mobileNumber, college, branch, course, semester, city);
                         Intent intent = new Intent(getActivity(), OTPVerifyActivity.class);
+//                        intent.putExtra(AppConstants.OTP_INTENT_EXTRA, signupData);
                         startActivity(intent);
                         Objects.requireNonNull(getActivity()).finish();
                     }
@@ -237,31 +333,7 @@ public class SignupFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<SignupData> call, @NonNull Throwable t) {
-                Log.d("LOG Signup :", t.toString());
-
-            }
-        });*/
-
-        Call<ResponseAPI> call = apiServices.sendOTP(mobileNumber,password);
-
-        call.enqueue(new Callback<ResponseAPI>() {
-            @Override
-            public void onResponse(@NonNull Call<ResponseAPI> call, @NonNull Response<ResponseAPI> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    SignupData signupData = new SignupData(password,name,email,mobileNumber,college,branch,course,semester,city);
-                    Intent intent = new Intent(getActivity(), OTPVerifyActivity.class);
-                    intent.putExtra(AppConstants.OTP_INTENT_EXTRA,signupData);
-                    startActivity(intent);
-                    Objects.requireNonNull(getActivity()).finish();
-                    Log.d("LOG Send OTP Response",response.body().getMessage());
-                }
-
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<ResponseAPI> call, @NonNull Throwable t) {
-                Log.d("LOG Send OTP Fail :", t.toString());
-
+                Log.d("LOG Signup Fail ", t.toString());
             }
         });
 

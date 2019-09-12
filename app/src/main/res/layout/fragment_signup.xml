@@ -282,7 +282,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilBranch"
+            android:id="@+id/tilCity"
             android:layout_width="match_parent"
             android:layout_height="@dimen/authEditTextHeight"
             android:layout_below="@+id/tilCollege"
@@ -297,11 +297,11 @@
             app:boxStrokeWidth="@dimen/authEditTextBoxStrokeWidth">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etBranch"
+                android:id="@+id/etCity"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/authEditTextMarginStart"
-                android:hint="@string/branch"
+                android:hint="@string/city"
                 android:inputType="text"
                 android:paddingEnd="@dimen/authEditTextPaddingEnd"
                 android:textColor="@color/authEditTextText"
@@ -313,7 +313,7 @@
             android:id="@+id/tilCourse"
             android:layout_width="match_parent"
             android:layout_height="@dimen/authEditTextHeight"
-            android:layout_below="@+id/tilBranch"
+            android:layout_below="@+id/tilCity"
             android:layout_marginTop="@dimen/authEditTextMarginTop"
             android:textColorHint="@color/authEditTextHint"
             app:boxBackgroundMode="outline"
@@ -338,10 +338,38 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilSemester"
+            android:id="@+id/tilBranch"
             android:layout_width="match_parent"
             android:layout_height="@dimen/authEditTextHeight"
             android:layout_below="@+id/tilCourse"
+            android:layout_marginTop="@dimen/authEditTextMarginTop"
+            android:textColorHint="@color/authEditTextHint"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusBottomStart="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusTopEnd="@dimen/authEditTextCornerRadius"
+            app:boxCornerRadiusTopStart="@dimen/authEditTextCornerRadius"
+            app:boxStrokeColor="@color/authEditTextBoxStroke"
+            app:boxStrokeWidth="@dimen/authEditTextBoxStrokeWidth">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etBranch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/authEditTextMarginStart"
+                android:hint="@string/branch"
+                android:inputType="text"
+                android:paddingEnd="@dimen/authEditTextPaddingEnd"
+                android:textColor="@color/authEditTextText"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilSemester"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/authEditTextHeight"
+            android:layout_below="@+id/tilBranch"
             android:layout_marginTop="@dimen/authEditTextMarginTop"
             android:textColorHint="@color/authEditTextHint"
             app:boxBackgroundMode="outline"
@@ -366,39 +394,11 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilCity"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/authEditTextHeight"
-            android:layout_below="@+id/tilSemester"
-            android:layout_marginTop="@dimen/authEditTextMarginTop"
-            android:textColorHint="@color/authEditTextHint"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusBottomEnd="@dimen/authEditTextCornerRadius"
-            app:boxCornerRadiusBottomStart="@dimen/authEditTextCornerRadius"
-            app:boxCornerRadiusTopEnd="@dimen/authEditTextCornerRadius"
-            app:boxCornerRadiusTopStart="@dimen/authEditTextCornerRadius"
-            app:boxStrokeColor="@color/authEditTextBoxStroke"
-            app:boxStrokeWidth="@dimen/authEditTextBoxStrokeWidth">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etCity"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/authEditTextMarginStart"
-                android:hint="@string/city"
-                android:inputType="text"
-                android:paddingEnd="@dimen/authEditTextPaddingEnd"
-                android:textColor="@color/authEditTextText"
-                tools:ignore="RtlSymmetry" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
         <Button
             android:id="@+id/buSignup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tilCity"
+            android:layout_below="@+id/tilSemester"
             android:layout_marginTop="@dimen/authButtonMarginTop"
             android:layout_marginEnd="@dimen/authButtonMarginEnd"
             android:background="@drawable/button_background"

@@ -34,7 +34,7 @@ public class ValidationManager {
             isFieldValid = false;
         }
 
-        return isFieldValid;
+        return !isFieldValid;
     }
 
     public static boolean isValidPassword(String password){
@@ -47,6 +47,18 @@ public class ValidationManager {
         }
 
         return !isFieldValid;
+    }
+
+    public static boolean isValidSemester(String semester){
+
+        boolean isFieldValid = false;
+
+        if (!semester.isEmpty() && !(Integer.valueOf(semester)>0 && Integer.valueOf(semester)<11)) {
+            isFieldValid = true;
+        }
+
+        return isFieldValid;
+
     }
 
 }

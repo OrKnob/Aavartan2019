@@ -64,4 +64,23 @@
     <color name="eventDetailsContent">#424242</color>
     <color name="eventDetailsRegisterButtonText">#FFFFFF</color>
 
+    <!--  Main Screens  -->
+    <color name="accountEditTextHint">#8D98A6</color>
+    <color name="accountEditTextBoxStroke">#FFFFFF</color>
+    <color name="mainText">#1F38CC</color>
+
+    <!--  Account Fragment  -->
+    <color name="accountColorControlNormal">#EEEEEE</color>
+    <color name="accountTextColorHint">#99000000</color>
+    <color name="accountTextColor">#CC000000</color>
+    <color name="accountColorControlActivated">#7E7E7E</color>
+    <color name="accountError">#EB5757</color>
+    <color name="accountSuccess">#59AF00</color>
+
+    <color name="accountUserDetailsBackground">#F5F5F5</color>
+
+    <color name="accountButton">#1F71ED</color>
+    <color name="accountButtonText">#FFFFFF</color>
+    <color name="accountHeadingText">#8D98A6</color>
+
 </resources>

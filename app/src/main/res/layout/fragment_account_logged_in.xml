@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/accountLayoutPaddingBottom">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/gotham"
+            android:gravity="center"
+            android:text="@string/personal_info"
+            android:textColor="@color/mainText" />
+
+        <!--<TextView
+            android:id="@+id/tvEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/bottom_line_selected"
+            android:fontFamily="@font/gotham"
+            android:gravity="center"
+            android:text="@string/edit"
+            android:textColor="@color/mainText"
+            tools:ignore="RelativeOverlap" />-->
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/accountEditTextPaddingVertical"
+        android:paddingBottom="@dimen/accountEditTextPaddingVertical">
+
+        <LinearLayout
+            android:id="@+id/llUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/accountEditTextMarginTop">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilCountryCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/accountEditTextHint"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="@dimen/accountEditTextCornerRadius"
+                app:boxCornerRadiusBottomStart="@dimen/accountEditTextCornerRadius"
+                app:boxCornerRadiusTopEnd="@dimen/accountEditTextCornerRadius"
+                app:boxCornerRadiusTopStart="@dimen/accountEditTextCornerRadius"
+                app:boxStrokeColor="@color/accountEditTextBoxStroke"
+                app:boxStrokeWidth="@dimen/accountEditTextBoxStrokeWidth">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCountryCode"
+                    style="@style/AccountTIL"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/accountEditTextMarginStart"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:maxLength="4"
+                    android:paddingEnd="@dimen/accountEditTextPaddingEnd"
+                    android:text="@string/_91"
+                    android:textSize="@dimen/accountEditTextTextSize"
+                    tools:ignore="RtlSymmetry" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilUsername"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/accountEditTextHint"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="@dimen/accountEditTextCornerRadius"
+                app:boxCornerRadiusBottomStart="@dimen/accountEditTextCornerRadius"
+                app:boxCornerRadiusTopEnd="@dimen/accountEditTextCornerRadius"
+                app:boxCornerRadiusTopStart="@dimen/accountEditTextCornerRadius"
+                app:boxStrokeColor="@color/accountEditTextBoxStroke"
+                app:boxStrokeWidth="@dimen/accountEditTextBoxStrokeWidth">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etUsername"
+                    style="@style/AccountTIL"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/accountEditTextMarginStart"
+                    android:enabled="false"
+                    android:hint="@string/mobile_number"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:paddingEnd="@dimen/accountEditTextPaddingEnd"
+                    android:textSize="@dimen/accountEditTextTextSize"
+                    tools:ignore="RtlSymmetry" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/ivIsNumberVerified"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/account_number_not_verified"
+                android:contentDescription="@string/otp_verified_status"
+                android:layout_gravity="center_vertical"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvIsNumberVerified"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="@string/verify_mobile_number"
+            android:textColor="@color/accountError"
+            android:textSize="10sp"
+            tools:ignore="SmallSp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilFullName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/accountEditTextMarginTop"
+            android:textColorHint="@color/accountEditTextHint"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="@dimen/accountEditTextCornerRadius"
+            app:boxCornerRadiusBottomStart="@dimen/accountEditTextCornerRadius"
+            app:boxCornerRadiusTopEnd="@dimen/accountEditTextCornerRadius"
+            app:boxCornerRadiusTopStart="@dimen/accountEditTextCornerRadius"
+            app:boxStrokeColor="@color/accountEditTextBoxStroke"
+            app:boxStrokeWidth="@dimen/accountEditTextBoxStrokeWidth">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etFullName"
+                style="@style/AccountTIL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/accountEditTextMarginStart"
+                android:enabled="false"
+                android:hint="@string/full_name"
+                android:inputType="text"
+                android:paddingEnd="@dimen/accountEditTextPaddingEnd"
+                android:textSize="@dimen/accountEditTextTextSize"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/accountEditTextMarginTop"
+            android:textColorHint="@color/accountEditTextHint"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="@dimen/accountEditTextCornerRadius"
+            app:boxCornerRadiusBottomStart="@dimen/accountEditTextCornerRadius"
+            app:boxCornerRadiusTopEnd="@dimen/accountEditTextCornerRadius"
+            app:boxCornerRadiusTopStart="@dimen/accountEditTextCornerRadius"
+            app:boxStrokeColor="@color/accountEditTextBoxStroke"
+            app:boxStrokeWidth="@dimen/accountEditTextBoxStrokeWidth">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmail"
+                style="@style/AccountTIL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/accountEditTextMarginStart"
+                android:enabled="false"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:paddingEnd="@dimen/accountEditTextPaddingEnd"
+                android:textSize="@dimen/accountEditTextTextSize"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilCollege"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/accountEditTextMarginTop"
+            android:textColorHint="@color/accountEditTextHint"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="@dimen/accountEditTextCornerRadius"
+            app:boxCornerRadiusBottomStart="@dimen/accountEditTextCornerRadius"
+            app:boxCornerRadiusTopEnd="@dimen/accountEditTextCornerRadius"
+            app:boxCornerRadiusTopStart="@dimen/accountEditTextCornerRadius"
+            app:boxStrokeColor="@color/accountEditTextBoxStroke"
+            app:boxStrokeWidth="@dimen/accountEditTextBoxStrokeWidth">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCollege"
+                style="@style/AccountTIL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/accountEditTextMarginStart"
+                android:enabled="false"
+                android:hint="@string/college"
+                android:inputType="text"
+                android:paddingEnd="@dimen/accountEditTextPaddingEnd"
+                android:textSize="@dimen/accountEditTextTextSize"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/accountEditTextMarginTop"
+            android:textColorHint="@color/accountEditTextHint"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="@dimen/accountEditTextCornerRadius"
+            app:boxCornerRadiusBottomStart="@dimen/accountEditTextCornerRadius"
+            app:boxCornerRadiusTopEnd="@dimen/accountEditTextCornerRadius"
+            app:boxCornerRadiusTopStart="@dimen/accountEditTextCornerRadius"
+            app:boxStrokeColor="@color/accountEditTextBoxStroke"
+            app:boxStrokeWidth="@dimen/accountEditTextBoxStrokeWidth">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCity"
+                style="@style/AccountTIL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/accountEditTextMarginStart"
+                android:enabled="false"
+                android:hint="@string/city"
+                android:inputType="text"
+                android:paddingEnd="@dimen/accountEditTextPaddingEnd"
+                android:textSize="@dimen/accountEditTextTextSize"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilCourse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/accountEditTextMarginTop"
+            android:textColorHint="@color/accountEditTextHint"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="@dimen/accountEditTextCornerRadius"
+            app:boxCornerRadiusBottomStart="@dimen/accountEditTextCornerRadius"
+            app:boxCornerRadiusTopEnd="@dimen/accountEditTextCornerRadius"
+            app:boxCornerRadiusTopStart="@dimen/accountEditTextCornerRadius"
+            app:boxStrokeColor="@color/accountEditTextBoxStroke"
+            app:boxStrokeWidth="@dimen/accountEditTextBoxStrokeWidth">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCourse"
+                style="@style/AccountTIL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/accountEditTextMarginStart"
+                android:enabled="false"
+                android:hint="@string/course"
+                android:inputType="text"
+                android:paddingEnd="@dimen/accountEditTextPaddingEnd"
+                android:textSize="@dimen/accountEditTextTextSize"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilBranch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/accountEditTextMarginTop"
+            android:textColorHint="@color/accountEditTextHint"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="@dimen/accountEditTextCornerRadius"
+            app:boxCornerRadiusBottomStart="@dimen/accountEditTextCornerRadius"
+            app:boxCornerRadiusTopEnd="@dimen/accountEditTextCornerRadius"
+            app:boxCornerRadiusTopStart="@dimen/accountEditTextCornerRadius"
+            app:boxStrokeColor="@color/accountEditTextBoxStroke"
+            app:boxStrokeWidth="@dimen/accountEditTextBoxStrokeWidth">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etBranch"
+                style="@style/AccountTIL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/accountEditTextMarginStart"
+                android:enabled="false"
+                android:hint="@string/branch"
+                android:inputType="text"
+                android:paddingEnd="@dimen/accountEditTextPaddingEnd"
+                android:textSize="@dimen/accountEditTextTextSize"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilSemester"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/accountEditTextMarginTop"
+            android:textColorHint="@color/accountEditTextHint"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="@dimen/accountEditTextCornerRadius"
+            app:boxCornerRadiusBottomStart="@dimen/accountEditTextCornerRadius"
+            app:boxCornerRadiusTopEnd="@dimen/accountEditTextCornerRadius"
+            app:boxCornerRadiusTopStart="@dimen/accountEditTextCornerRadius"
+            app:boxStrokeColor="@color/accountEditTextBoxStroke"
+            app:boxStrokeWidth="@dimen/accountEditTextBoxStrokeWidth">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSemester"
+                style="@style/AccountTIL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/accountEditTextMarginStart"
+                android:enabled="false"
+                android:hint="@string/semester"
+                android:inputType="number"
+                android:maxLength="2"
+                android:paddingEnd="@dimen/accountEditTextPaddingEnd"
+                android:textSize="@dimen/accountEditTextTextSize"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/buLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/accountButtonMarginTop"
+            android:layout_marginEnd="@dimen/accountButtonMarginEnd"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/gotham"
+            android:text="@string/logout"
+            android:textColor="@color/accountButtonText"
+            android:textSize="@dimen/accountButtonTextSize"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>

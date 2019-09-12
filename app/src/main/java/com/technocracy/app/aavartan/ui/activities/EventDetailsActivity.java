@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.technocracy.app.aavartan.R;
 import com.technocracy.app.aavartan.api.data_models.EventsData;
 import com.technocracy.app.aavartan.utils.AppConstants;
+import com.technocracy.app.aavartan.utils.SessionManager;
 
 import es.dmoral.toasty.Toasty;
 
@@ -67,7 +68,11 @@ public class EventDetailsActivity extends AppCompatActivity {
         buEventRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toasty.success(EventDetailsActivity.this,"Registered",Toasty.LENGTH_LONG).show();
+                if (SessionManager.getIsNumberVerified())
+                    Toasty.success(EventDetailsActivity.this,"Registered",Toasty.LENGTH_LONG).show();
+                else {
+                    Toasty.error(EventDetailsActivity.this,"Verify Mobile Number First",Toasty.LENGTH_SHORT).show();
+                }
             }
         });
 

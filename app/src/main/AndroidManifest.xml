@@ -17,9 +17,9 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         tools:targetApi="m">
         <activity
-            android:name=".ui.activities.AuthActivity"
+            android:name=".ui.activities.SplashScreenActivity"
             android:label="@string/app_name"
-            android:theme="@style/AuthTheme">
+            android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,11 +37,15 @@
         <activity android:name=".ui.activities.GalleryActivity" />
         <activity android:name=".ui.activities.MainActivity" />
         <activity
+            android:name=".ui.activities.AuthActivity"
+            android:theme="@style/AuthTheme">
+        </activity>
+        <activity
             android:name=".ui.activities.OTPVerifyActivity"
             android:theme="@style/AuthTheme" />
         <activity
             android:name=".ui.activities.ForgotPasswordActivity"
-            android:theme="@style/AuthTheme"/>
+            android:theme="@style/AuthTheme" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

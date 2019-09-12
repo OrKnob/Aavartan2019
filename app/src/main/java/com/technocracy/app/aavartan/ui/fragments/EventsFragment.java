@@ -51,7 +51,6 @@ public class EventsFragment extends Fragment {
 
     private void setUpViewPager() {
 
-//        Log.d("LOG ViewPager",eventsDataList.toString());
         EventsAdapter eventsAdapter = new EventsAdapter(eventsDataList, this.getActivity());
         viewPager.setAdapter(eventsAdapter);
 
@@ -63,22 +62,21 @@ public class EventsFragment extends Fragment {
         call.enqueue(new Callback<List<EventsData>>() {
             @Override
             public void onResponse(@NonNull Call<List<EventsData>> call, @NonNull Response<List<EventsData>> response) {
-                if (response.isSuccessful()) {
-                    if (response.body() != null) {
-                        eventsDataList = response.body();
-                        for (int i=0;i<response.body().size();i++){
-                            String category = response.body().get(i).getThumbnail_img().substring(35,response.body().get(i).getThumbnail_img().lastIndexOf('/'));
-//                            Log.d("LOG Category" , response.body().get(i).getTitle() + "  " + category);
-                            eventsDataList.get(i).setCategory(category);
-                        }
-                        setUpViewPager();
+                if (response.isSuccessful() && response.body() != null) {
+                    Log.d("LOG Events",response.body().toString());
+                    eventsDataList = response.body();
+                    for (int i=0;i<response.body().size();i++){
+                        String category = response.body().get(i).getThumbnail_img().substring(35,response.body().get(i).getThumbnail_img().lastIndexOf('/'));
+                        eventsDataList.get(i).setCategory(category);
                     }
+                    setUpViewPager();
+
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<List<EventsData>> call, @NonNull Throwable t) {
-                Log.d("LOG APICall ",t.toString());
+                Log.d("LOG Events Fail ",t.toString());
             }
         });
     }

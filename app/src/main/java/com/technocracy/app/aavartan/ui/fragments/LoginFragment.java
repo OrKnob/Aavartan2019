@@ -86,7 +86,7 @@ public class LoginFragment extends Fragment {
                 if (ValidationManager.isFieldEmpty(Objects.requireNonNull(etUsername.getText()).toString())) {
                     etUsername.setError("Field Cannot be Empty");
                     isValidUserName = false;
-                } else if (!ValidationManager.isValidMobileNumber(etUsername.getText().toString())) {
+                } else if (ValidationManager.isValidMobileNumber(etUsername.getText().toString())) {
                     etUsername.setError("Enter Valid Mobile Number");
                     isValidUserName = false;
                 } else isValidUserName = true;
@@ -143,7 +143,7 @@ public class LoginFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ForgotPasswordActivity.class);
                 if (isValidEmail) {
-                    intent.putExtra(AppConstants.FORGOT_PASSWORD_INTENT_EXTRA, etEmail.getText());
+                    intent.putExtra(AppConstants.FORGOT_PASSWORD_INTENT_EXTRA, Objects.requireNonNull(etEmail.getText()).toString());
                 }
                 startActivity(intent);
             }
@@ -156,6 +156,7 @@ public class LoginFragment extends Fragment {
                     username = String.valueOf(etUsername.getText());
                     email = String.valueOf(etEmail.getText());
                     password = String.valueOf(etPassword.getText());
+                    SessionManager.setIsLoggedIn(true);
                     apiCall();
                 } else {
                     Toasty.error(Objects.requireNonNull(getActivity()), "One or more Fields are Incorrect", Toasty.LENGTH_SHORT).show();
@@ -168,30 +169,28 @@ public class LoginFragment extends Fragment {
     private void apiCall() {
 
         APIServices apiServices = AppClient.getInstance().createService(APIServices.class);
-        Call<LoginData> call = apiServices.getLogin(username, email, password);
+        Call<LoginData> call = apiServices.getLoginToken(username, email, password);
 
         call.enqueue(new Callback<LoginData>() {
             @Override
             public void onResponse(@NonNull Call<LoginData> call, @NonNull Response<LoginData> response) {
-                if (response.isSuccessful()) {
-                    if (response.body() != null) {
-                        if (!response.body().getUserToken().equals("")) {
+                if (response.isSuccessful() && response.body() != null) {
+                    if (!response.body().getUserToken().equals("")) {
                             Log.d("LOG Login Key", response.body().getUserToken());
-                            SessionManager.setUserToken(response.body().getUserToken());
-                            Intent intent = new Intent(getActivity(), MainActivity.class);
-                            startActivity(intent);
-                            Objects.requireNonNull(getActivity()).finish();
-                        }
+                        SessionManager.setIsLoggedIn(true);
+                        SessionManager.setUserToken(response.body().getUserToken());
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        startActivity(intent);
+                        Objects.requireNonNull(getActivity()).finish();
                     }
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<LoginData> call, @NonNull Throwable t) {
-                Log.d("LOG Login :", t.toString());
+                Log.d("LOG Login Fail", t.toString());
             }
         });
-
     }
 
 }

@@ -1,5 +1,6 @@
 package com.technocracy.app.aavartan.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,12 +16,14 @@ import com.technocracy.app.aavartan.R;
 import com.technocracy.app.aavartan.api.APIServices;
 import com.technocracy.app.aavartan.api.AppClient;
 import com.technocracy.app.aavartan.api.data_models.ResponseAPI;
-import com.technocracy.app.aavartan.api.data_models.SignupData;
+import com.technocracy.app.aavartan.ui.activities.MainActivity;
 import com.technocracy.app.aavartan.utils.AppConstants;
 import com.technocracy.app.aavartan.utils.OTPTextWatcher;
+import com.technocracy.app.aavartan.utils.SessionManager;
 
 import java.util.Objects;
 
+import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,8 +36,6 @@ public class OTPVerifyFragment extends Fragment {
     private Button buVerify;
     private EditText etOTPVerify1, etOTPVerify2, etOTPVerify3, etOTPVerify4, etOTPVerify5, etOTPVerify6;
 
-    private SignupData signupData;
-
     public OTPVerifyFragment() {
         // Required empty public constructor
     }
@@ -46,9 +47,6 @@ public class OTPVerifyFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_otp_verify, container, false);
         initView(view);
-        Bundle bundle = Objects.requireNonNull(getActivity()).getIntent().getExtras();
-        assert bundle != null;
-        signupData = (SignupData) bundle.get(AppConstants.OTP_INTENT_EXTRA);
         setListeners(view);
         return view;
     }
@@ -82,11 +80,7 @@ public class OTPVerifyFragment extends Fragment {
                         etOTPVerify4.getText().toString() +
                         etOTPVerify5.getText().toString() +
                         etOTPVerify6.getText().toString();
-                Log.d("LOG OTP", OTP);
                 apiCall(OTP);
-                /*Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-                Objects.requireNonNull(getActivity()).finish();*/
             }
         });
 
@@ -95,14 +89,18 @@ public class OTPVerifyFragment extends Fragment {
     private void apiCall(String OTP) {
 
         APIServices apiServices = AppClient.getInstance().createService(APIServices.class);
-        Call<ResponseAPI> call = apiServices.verifyOTP(signupData.getContact(), OTP);
+        Call<ResponseAPI> call = apiServices.verifyOTP(OTP, "Token " + SessionManager.getUserToken());
 
         call.enqueue(new Callback<ResponseAPI>() {
             @Override
             public void onResponse(@NonNull Call<ResponseAPI> call, @NonNull Response<ResponseAPI> response) {
-                if (response.isSuccessful()) {
-                    if (response.body() != null) {
-                        Log.d("LOG OTP Verify : ", response.body().getMessage());
+                if (response.isSuccessful() && response.body() != null) {
+                    Log.d("LOG OTP Verify ", response.body().getMessage());
+                    if (response.body().getMessage().equals(AppConstants.OTP_VERIFY_SUCCESS)) {
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        startActivity(intent);
+                        Toasty.success(Objects.requireNonNull(getActivity()), "OTP Verification Successful", Toasty.LENGTH_SHORT).show();
+                        getActivity().finish();
                     }
                 }
             }

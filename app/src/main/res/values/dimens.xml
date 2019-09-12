@@ -21,21 +21,25 @@
     <dimen name="toggleMarginTop">20dp</dimen>
     <dimen name="toggleMarginEnd">20dp</dimen>
 
+    <dimen name="authLinearLayoutHeight">72dp</dimen>
+
     <dimen name="authEditTextCornerRadius">10dp</dimen>
     <dimen name="authEditTextBoxStrokeWidth">2dp</dimen>
     <dimen name="authEditTextMarginStart">10dp</dimen>
-    <dimen name="authOTPEditTextMarginStart">8dp</dimen>
-    <dimen name="authOTPEditTextMarginEnd">8dp</dimen>
     <dimen name="authEditTextHeight">56dp</dimen>
-    <dimen name="authLinearLayoutHeight">72dp</dimen>
     <dimen name="authEditTextMarginTop">8dp</dimen>
     <dimen name="authEditTextPaddingEnd">20dp</dimen>
-    <dimen name="authButtonTextSize">16sp</dimen>
+
+    <dimen name="authOTPEditTextMarginStart">8dp</dimen>
+    <dimen name="authOTPEditTextMarginEnd">8dp</dimen>
+
+    <dimen name="authPasswordDrawableMarginRight">30dp</dimen>
+
     <dimen name="authForgotPasswordTextSize">14sp</dimen>
     <dimen name="authForgotPasswordMarginTop">8dp</dimen>
-    <dimen name="authHeadingLineSpacing">7dp</dimen>
     <dimen name="authForgotPasswordMarginEnd">16dp</dimen>
 
+    <dimen name="authHeadingLineSpacing">7dp</dimen>
     <dimen name="authHeadingTextSize">30sp</dimen>
     <dimen name="authHeadingMarginBottom">30dp</dimen>
     <dimen name="authHeadingSmallTextSize">20sp</dimen>
@@ -44,9 +48,9 @@
     <dimen name="authStrokeHeight">2dp</dimen>
     <dimen name="authStrokeMarginTop">5dp</dimen>
 
+    <dimen name="authButtonTextSize">16sp</dimen>
     <dimen name="authButtonMarginTop">16dp</dimen>
     <dimen name="authButtonMarginEnd">8dp</dimen>
-    <dimen name="authPasswordDrawableMarginRight">30dp</dimen>
 
     <!--  Event Details Screen  -->
     <dimen name="eventDetailsTitleTextSize">32sp</dimen>
@@ -57,5 +61,27 @@
     <dimen name="eventsPaddingHorizontal">50dp</dimen>
     <dimen name="eventDetailsHeadersTextSize">16sp</dimen>
     <dimen name="eventDetailsScrollViewPaddingBottom">20dp</dimen>
+
+    <!--  Account Fragment  -->
+    <dimen name="accountLayoutMarginTop">15dp</dimen>
+    <dimen name="accountLayoutPaddingBottom">7dp</dimen>
+    <dimen name="accountLayoutMarginHorizontal">20dp</dimen>
+
+    <dimen name="accountEditTextPaddingVertical">15dp</dimen>
+    <dimen name="accountEditTextTextSize">12sp</dimen>
+    <dimen name="accountEditTextCornerRadius">10dp</dimen>
+    <dimen name="accountEditTextBoxStrokeWidth">2dp</dimen>
+    <dimen name="accountEditTextMarginStart">10dp</dimen>
+    <dimen name="accountEditTextHeight">56dp</dimen>
+    <dimen name="accountEditTextMarginTop">8dp</dimen>
+    <dimen name="accountEditTextPaddingEnd">20dp</dimen>
+
+    <dimen name="accountButtonTextSize">16sp</dimen>
+    <dimen name="accountButtonMarginTop">16dp</dimen>
+    <dimen name="accountButtonMarginEnd">8dp</dimen>
+    <dimen name="accountOrTextSize">30sp</dimen>
+    <dimen name="accountOrMarginVertical">10dp</dimen>
+    <dimen name="accountHeadingTextSize">30sp</dimen>
+    <dimen name="accountHeadingMarginTop">50dp</dimen>
 
 </resources>

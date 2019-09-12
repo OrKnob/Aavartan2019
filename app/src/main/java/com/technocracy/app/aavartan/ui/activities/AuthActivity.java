@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.technocracy.app.aavartan.R;
 import com.technocracy.app.aavartan.ui.fragments.LoginFragment;
 import com.technocracy.app.aavartan.ui.fragments.SignupFragment;
+import com.technocracy.app.aavartan.utils.AppConstants;
 import com.test.toggleswitchlibrary.BaseToggleSwitch;
 import com.test.toggleswitchlibrary.ToggleSwitch;
 
@@ -18,12 +19,17 @@ public class AuthActivity extends AppCompatActivity {
     private ToggleSwitch toggleSwitch;
 
     private boolean isLoginFragment = true;
+    private String intentExtra = AppConstants.AUTH_INTENT_LOGIN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            intentExtra = bundle.getString(AppConstants.AUTH_INTENT_EXTRA);
+        }
         initView();
         setListeners();
 
@@ -33,7 +39,12 @@ public class AuthActivity extends AppCompatActivity {
 
         toggleSwitch = findViewById(R.id.toggleAuth);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.container, new LoginFragment());
+        if (intentExtra.equals(AppConstants.AUTH_INTENT_SIGNUP)) {
+            toggleSwitch.setCheckedTogglePosition(1);
+            isLoginFragment = false;
+            fragmentTransaction.add(R.id.container, new SignupFragment());
+        } else
+            fragmentTransaction.add(R.id.container, new LoginFragment());
         fragmentTransaction.commit();
 
     }
