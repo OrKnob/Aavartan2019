@@ -3,7 +3,6 @@ package com.technocracy.app.aavartan.ui.fragments;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.technocracy.app.aavartan.R;
 import com.technocracy.app.aavartan.api.APIServices;
@@ -47,7 +47,6 @@ public class AccountFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
         initView(view);
-        apiCallIsNumberVerified();
         setListeners();
         if (SessionManager.getIsLoggedIn()) {
             setProgressDialog();
@@ -56,8 +55,6 @@ public class AccountFragment extends Fragment {
             loggedIn.setVisibility(View.GONE);
             loggedOut.setVisibility(View.VISIBLE);
         }
-
-
         return view;
     }
 
@@ -138,12 +135,21 @@ public class AccountFragment extends Fragment {
                     GetUserData getUserData = new GetUserData(response.body().getUserID(), response.body().getUsername());
                     SessionManager.setUserID(getUserData.getUserID());
                     apiCallUserDetails();
+                } else {
+                    Toasty.error(Objects.requireNonNull(getActivity()), "Cannot Fetch Data", Toasty.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<GetUserData> call, @NonNull Throwable t) {
-                Log.d("LOG User ID Fail", t.toString());
+//                Log.d("LOG User ID Fail", t.toString());
+                progressDialog.dismiss();
+                Snackbar.make(loggedIn, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        apiCallUserID();
+                    }
+                }).show();
             }
         });
 
@@ -162,18 +168,27 @@ public class AccountFragment extends Fragment {
 //                    Log.d("LOG User by ID", response.body().toString());
                     SignupData signupData = response.body();
                     setUserData(signupData);
+                } else {
+                    Toasty.error(Objects.requireNonNull(getActivity()), "Cannot Fetch Data", Toasty.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<SignupData> call, @NonNull Throwable t) {
-                Log.d("LOG User by ID Fail", t.toString());
+//                Log.d("LOG User by ID Fail", t.toString());
+                progressDialog.dismiss();
+                Snackbar.make(loggedIn, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        apiCallUserDetails();
+                    }
+                }).show();
             }
         });
 
     }
 
-    private void apiCallIsNumberVerified(){
+    private void apiCallIsNumberVerified() {
 
         APIServices apiServices = AppClient.getInstance().createService(APIServices.class);
         Call<ResponseAPI> call = apiServices.eventRegister(32, "Token " + SessionManager.getUserToken());
@@ -183,17 +198,27 @@ public class AccountFragment extends Fragment {
             public void onResponse(@NonNull Call<ResponseAPI> call, @NonNull Response<ResponseAPI> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     if (response.body().getMessage().equals(AppConstants.EVENT_REGISTER_SUCCESS) ||
-                            response.body().getMessage().equals(AppConstants.EVENT_ALREADY_REGISTERED)){
+                            response.body().getMessage().equals(AppConstants.EVENT_ALREADY_REGISTERED)) {
                         SessionManager.setIsNumberVerified(true);
                         ivIsNumberVerified.setImageDrawable(getResources().getDrawable(R.drawable.acccount_number_verified));
                         tvIsNumberVerified.setVisibility(View.GONE);
+                        progressDialog.dismiss();
+                    } else {
+                        Toasty.error(Objects.requireNonNull(getActivity()), "Cannot Fetch Data", Toasty.LENGTH_LONG).show();
                     }
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<ResponseAPI> call, @NonNull Throwable t) {
-                Log.d("LOG Register Fail", t.toString());
+//                Log.d("LOG Register Fail", t.toString());
+                progressDialog.dismiss();
+                Snackbar.make(loggedIn, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        apiCallIsNumberVerified();
+                    }
+                }).show();
             }
         });
 
@@ -209,18 +234,7 @@ public class AccountFragment extends Fragment {
         etCourse.setText(signupData.getCourse());
         etBranch.setText(signupData.getBranch());
         etSemester.setText(String.valueOf(signupData.getSem()));
-        progressDialog.dismiss();
-    }
-
-    private void setVerified(boolean isNumberVerified) {
-        if (isNumberVerified){
-            ivIsNumberVerified.setImageDrawable(getResources().getDrawable(R.drawable.acccount_number_verified));
-            tvIsNumberVerified.setVisibility(View.GONE);
-        }
-        else {
-            ivIsNumberVerified.setImageDrawable(getResources().getDrawable(R.drawable.account_number_not_verified));
-            tvIsNumberVerified.setVisibility(View.VISIBLE);
-        }
+        apiCallIsNumberVerified();
     }
 
     private void setProgressDialog() {
@@ -228,5 +242,6 @@ public class AccountFragment extends Fragment {
         progressDialog.setContentView(R.layout.dialog_progress_bar);
         progressDialog.show();
     }
+
 
 }

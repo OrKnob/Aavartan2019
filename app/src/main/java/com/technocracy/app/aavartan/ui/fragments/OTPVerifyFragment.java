@@ -2,16 +2,17 @@ package com.technocracy.app.aavartan.ui.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.technocracy.app.aavartan.R;
 import com.technocracy.app.aavartan.api.APIServices;
 import com.technocracy.app.aavartan.api.AppClient;
@@ -35,6 +36,7 @@ public class OTPVerifyFragment extends Fragment {
 
     private Button buVerify;
     private EditText etOTPVerify1, etOTPVerify2, etOTPVerify3, etOTPVerify4, etOTPVerify5, etOTPVerify6;
+    private RelativeLayout layout;
 
     public OTPVerifyFragment() {
         // Required empty public constructor
@@ -53,6 +55,7 @@ public class OTPVerifyFragment extends Fragment {
 
     private void initView(View view) {
 
+        layout = view.findViewById(R.id.layout);
         etOTPVerify1 = view.findViewById(R.id.etOTPVerify1);
         etOTPVerify2 = view.findViewById(R.id.etOTPVerify2);
         etOTPVerify3 = view.findViewById(R.id.etOTPVerify3);
@@ -86,7 +89,7 @@ public class OTPVerifyFragment extends Fragment {
 
     }
 
-    private void apiCall(String OTP) {
+    private void apiCall(final String OTP) {
 
         APIServices apiServices = AppClient.getInstance().createService(APIServices.class);
         Call<ResponseAPI> call = apiServices.verifyOTP(OTP, "Token " + SessionManager.getUserToken());
@@ -95,23 +98,28 @@ public class OTPVerifyFragment extends Fragment {
             @Override
             public void onResponse(@NonNull Call<ResponseAPI> call, @NonNull Response<ResponseAPI> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Log.d("LOG OTP Verify ", response.body().getMessage());
+//                    Log.d("LOG OTP Verify ", response.body().getMessage());
                     if (response.body().getMessage().equals(AppConstants.OTP_VERIFY_SUCCESS)) {
                         SessionManager.setIsNumberVerified(true);
                         Intent intent = new Intent(getActivity(), MainActivity.class);
                         startActivity(intent);
                         Toasty.success(Objects.requireNonNull(getActivity()), "OTP Verification Successful", Toasty.LENGTH_SHORT).show();
                         getActivity().finish();
-                    }
-                    else {
-                        Toasty.error(Objects.requireNonNull(getActivity()), "OTP Verification Unsuccessful", Toasty.LENGTH_SHORT).show();
+                    } else {
+                        Toasty.error(Objects.requireNonNull(getActivity()), "OTP Not Verified! Try Again", Toasty.LENGTH_SHORT).show();
                     }
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<ResponseAPI> call, @NonNull Throwable t) {
-                Log.d("LOG OTP Verify Fail", t.toString());
+//                Log.d("LOG OTP Verify Fail", t.toString());
+                Snackbar.make(layout, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        apiCall(OTP);
+                    }
+                }).show();
             }
         });
 

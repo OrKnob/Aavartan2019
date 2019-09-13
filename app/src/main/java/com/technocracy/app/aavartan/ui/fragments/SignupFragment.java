@@ -5,15 +5,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.technocracy.app.aavartan.R;
 import com.technocracy.app.aavartan.api.APIServices;
@@ -39,6 +40,7 @@ public class SignupFragment extends Fragment {
 
     private Button buSignup;
     private TextInputEditText etFullName, etEmail, etMobileNumber, etPassword, etConfirmPassword, etCollege, etBranch, etCourse, etSemester, etCity;
+    private RelativeLayout layout;
 
     private boolean isValidFullName = false, isValidEmail = false, isValidMobileNumber = false, isValidPassword = false, passwordsMatch = false,
             isValidCollege = false, isValidBranch = false, isValidCourse = false, isValidSemester = false, isValidCity = false;
@@ -63,6 +65,7 @@ public class SignupFragment extends Fragment {
 
     private void initView(View view) {
 
+        layout = view.findViewById(R.id.layout);
         etFullName = view.findViewById(R.id.etFullName);
         etEmail = view.findViewById(R.id.etEmail);
         etMobileNumber = view.findViewById(R.id.etMobileNumber);
@@ -318,15 +321,22 @@ public class SignupFragment extends Fragment {
             @Override
             public void onResponse(@NonNull Call<SignupData> call, @NonNull Response<SignupData> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Log.d("LOG Signup ", response.body().toString());
+//                    Log.d("LOG Signup ", response.body().toString());
                     SessionManager.setUserName(mobileNumber);
+                } else {
+                    Toasty.error(Objects.requireNonNull(getActivity()), "User Already Exists", Toasty.LENGTH_LONG).show();
                 }
-
             }
 
             @Override
             public void onFailure(@NonNull Call<SignupData> call, @NonNull Throwable t) {
-                Log.d("LOG Signup Fail ", t.toString());
+//                Log.d("LOG Signup Fail ", t.toString());
+                Snackbar.make(layout, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        apiCall();
+                    }
+                }).show();
             }
         });
 
@@ -337,19 +347,28 @@ public class SignupFragment extends Fragment {
             public void onResponse(@NonNull Call<LoginData> call, @NonNull Response<LoginData> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     if (!response.body().getUserToken().equals("")) {
-                        Log.d("LOG Login Key", response.body().getUserToken());
+//                        Log.d("LOG Login Key", response.body().getUserToken());
                         SessionManager.setIsLoggedIn(true);
                         SessionManager.setUserToken(response.body().getUserToken());
                         Intent intent = new Intent(getActivity(), OTPVerifyActivity.class);
+                        Toasty.success(Objects.requireNonNull(getActivity()), "Signing Up", Toasty.LENGTH_LONG).show();
                         startActivity(intent);
-                        Objects.requireNonNull(getActivity()).finish();
+                        getActivity().finish();
+                    } else {
+                        Toasty.error(Objects.requireNonNull(getActivity()), "Enter Valid Credentials", Toasty.LENGTH_LONG).show();
                     }
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<LoginData> call, @NonNull Throwable t) {
-                Log.d("LOG Login Fail", t.toString());
+//                Log.d("LOG Login Fail", t.toString());
+                Snackbar.make(layout, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        apiCall();
+                    }
+                }).show();
             }
         });
 

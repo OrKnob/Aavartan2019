@@ -35,13 +35,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void initView(){
+    private void initView() {
 
         morphBottomNavigationView = findViewById(R.id.nav_view);
 
     }
 
-    private void setListeners(){
+    private void setListeners() {
 
         morphBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

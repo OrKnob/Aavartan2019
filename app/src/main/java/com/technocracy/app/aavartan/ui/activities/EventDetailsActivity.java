@@ -2,16 +2,17 @@ package com.technocracy.app.aavartan.ui.activities;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.snackbar.Snackbar;
 import com.technocracy.app.aavartan.R;
 import com.technocracy.app.aavartan.api.APIServices;
 import com.technocracy.app.aavartan.api.AppClient;
@@ -28,7 +29,8 @@ import retrofit2.Response;
 public class EventDetailsActivity extends AppCompatActivity {
 
     private Button buEventRegister;
-    ImageView ivPoster;
+    private ImageView ivPoster;
+    private RelativeLayout layout;
     private TextView tvTitle, tvDescription, tvVenue, tvRounds, tvRules, tvInstructions;
 
     private EventsData eventsData;
@@ -49,6 +51,7 @@ public class EventDetailsActivity extends AppCompatActivity {
 
     private void initView() {
 
+        layout = findViewById(R.id.layout);
         ivPoster = findViewById(R.id.ivPoster);
         tvTitle = findViewById(R.id.tvTitle);
         tvDescription = findViewById(R.id.tvDescription);
@@ -114,7 +117,8 @@ public class EventDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call<ResponseAPI> call, @NonNull Throwable t) {
-                Log.d("LOG Register Fail", t.toString());
+//                Log.d("LOG Register Fail", t.toString());
+                Snackbar.make(layout, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).show();
             }
         });
     }

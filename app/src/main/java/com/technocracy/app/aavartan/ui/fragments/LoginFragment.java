@@ -4,16 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.technocracy.app.aavartan.R;
 import com.technocracy.app.aavartan.api.APIServices;
@@ -40,6 +41,7 @@ public class LoginFragment extends Fragment {
     private Button buLogin;
     private TextInputEditText etUsername, etEmail, etPassword;
     private TextView tvForgotPassword;
+    private RelativeLayout layout;
 
     private boolean isValidUserName = false, isValidEmail = false, isValidPassword = false;
     private String email, password, username;
@@ -60,6 +62,7 @@ public class LoginFragment extends Fragment {
 
     private void initView(View view) {
 
+        layout = view.findViewById(R.id.layout);
         etUsername = view.findViewById(R.id.etUsername);
         etEmail = view.findViewById(R.id.etEmail);
         etPassword = view.findViewById(R.id.etPassword);
@@ -176,20 +179,29 @@ public class LoginFragment extends Fragment {
             public void onResponse(@NonNull Call<LoginData> call, @NonNull Response<LoginData> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     if (!response.body().getUserToken().equals("")) {
-                            Log.d("LOG Login Key", response.body().getUserToken());
+//                        Log.d("LOG Login Key", response.body().getUserToken());
                         SessionManager.setIsLoggedIn(true);
                         SessionManager.setUserToken(response.body().getUserToken());
                         SessionManager.setUserName(username);
                         Intent intent = new Intent(getActivity(), MainActivity.class);
+                        Toasty.success(Objects.requireNonNull(getActivity()), "Logging In", Toasty.LENGTH_LONG).show();
                         startActivity(intent);
                         Objects.requireNonNull(getActivity()).finish();
+                    } else {
+                        Toasty.error(Objects.requireNonNull(getActivity()), "Cannot Fetch Data", Toasty.LENGTH_LONG).show();
                     }
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<LoginData> call, @NonNull Throwable t) {
-                Log.d("LOG Login Fail", t.toString());
+//                Log.d("LOG Login Fail", t.toString());
+                Snackbar.make(layout, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        apiCall();
+                    }
+                }).show();
             }
         });
     }

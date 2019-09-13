@@ -139,7 +139,7 @@ public class SignupData implements Serializable {
         this.key = key;
     }
 
-    public String toJSONString(){
+    public String toJSONString() {
 
         return "{\"password\" : \"" + getPassword() + "\",\"name\" : \"" + getName()
                 + "\",\"email\" : \"" + getEmail() + "\",\"contact\" : \"" + getContact()

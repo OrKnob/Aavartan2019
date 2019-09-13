@@ -1,16 +1,17 @@
 package com.technocracy.app.aavartan.ui.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.technocracy.app.aavartan.R;
 import com.technocracy.app.aavartan.api.APIServices;
 import com.technocracy.app.aavartan.api.AppClient;
@@ -27,6 +28,7 @@ import retrofit2.Response;
 
 public class EventsFragment extends Fragment {
 
+    private RelativeLayout layout;
     private ViewPager viewPager;
     private List<EventsData> eventsDataList = new ArrayList<>();
 
@@ -45,6 +47,7 @@ public class EventsFragment extends Fragment {
 
     private void initView(View view) {
 
+        layout = view.findViewById(R.id.layout);
         viewPager = view.findViewById(R.id.viewPager);
 
     }
@@ -63,11 +66,11 @@ public class EventsFragment extends Fragment {
             @Override
             public void onResponse(@NonNull Call<List<EventsData>> call, @NonNull Response<List<EventsData>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Log.d("LOG Events",response.body().toString());
+//                    Log.d("LOG Events", response.body().toString());
                     response.body().remove(27);
                     eventsDataList = response.body();
-                    for (int i=0;i<response.body().size();i++){
-                        String category = response.body().get(i).getThumbnail_img().substring(35,response.body().get(i).getThumbnail_img().lastIndexOf('/'));
+                    for (int i = 0; i < response.body().size(); i++) {
+                        String category = response.body().get(i).getThumbnail_img().substring(35, response.body().get(i).getThumbnail_img().lastIndexOf('/'));
                         eventsDataList.get(i).setCategory(category);
                     }
                     setUpViewPager();
@@ -77,7 +80,13 @@ public class EventsFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<List<EventsData>> call, @NonNull Throwable t) {
-                Log.d("LOG Events Fail ",t.toString());
+//                Log.d("LOG Events Fail ", t.toString());
+                Snackbar.make(layout, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        apiCall();
+                    }
+                }).show();
             }
         });
     }

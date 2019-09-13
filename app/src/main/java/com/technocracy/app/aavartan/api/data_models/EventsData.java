@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 public class EventsData implements Serializable {
 
-    public EventsData(String title, String venue, String poster_img, String  thumbnail_img, Integer n_rounds, String description, String rules, String instructions) {
+    public EventsData(String title, String venue, String poster_img, String thumbnail_img, Integer n_rounds, String description, String rules, String instructions) {
         this.title = title;
         this.venue = venue;
         this.poster_img = poster_img;

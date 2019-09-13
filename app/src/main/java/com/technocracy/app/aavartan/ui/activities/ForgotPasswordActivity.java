@@ -3,7 +3,6 @@ package com.technocracy.app.aavartan.ui.activities;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -31,7 +30,7 @@ import retrofit2.Response;
 public class ForgotPasswordActivity extends AppCompatActivity {
 
     private Button buReset;
-    private LinearLayout forgotPasswordLayout;
+    private LinearLayout layout;
     private TextInputEditText etEmail;
     private TextView tvEmailSent;
 
@@ -56,7 +55,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
     private void initView() {
 
-        forgotPasswordLayout = findViewById(R.id.forgotPasswordLayout);
+        layout = findViewById(R.id.layout);
         etEmail = findViewById(R.id.etEmail);
         buReset = findViewById(R.id.buReset);
         tvEmailSent = findViewById(R.id.tvEmailSent);
@@ -113,7 +112,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call<ResponseAPI> call, @NonNull Response<ResponseAPI> response) {
                 if (response.isSuccessful() && response.body() != null) {
 //                    Log.d("LOG Forgot Password :", response.body().getDetail());
-                    Snackbar.make(forgotPasswordLayout, "Email sent!", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(layout, "Email sent!", Snackbar.LENGTH_INDEFINITE)
                             .setAction("RESEND", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
@@ -126,7 +125,13 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call<ResponseAPI> call, @NonNull Throwable t) {
                 Toasty.error(ForgotPasswordActivity.this, "E-mail not sent", Toasty.LENGTH_SHORT).show();
-                Log.d("LOG Forgot Fail :", t.toString());
+                Snackbar.make(layout, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        apiCall();
+                    }
+                }).show();
+//                Log.d("LOG Forgot Fail :", t.toString());
             }
         });
 
