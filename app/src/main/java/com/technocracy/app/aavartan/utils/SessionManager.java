@@ -72,13 +72,7 @@ public class SessionManager {
         SharedPreferencesManager.setIsNumberVerified(isNumberVerified);
     }
 
-    public static void logout(){
+    public static void logout() {
         SharedPreferencesManager.logout();
-        userName = null;
-        userToken = null;
-        userID = -1;
-        isLoggedIn = false;
-        isNumberVerified = false;
     }
-
 }

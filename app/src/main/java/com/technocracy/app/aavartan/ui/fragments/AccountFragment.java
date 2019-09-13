@@ -43,42 +43,22 @@ public class AccountFragment extends Fragment {
     private TextInputEditText etUsername, etFullName, etEmail, etCollege, etBranch, etCourse, etSemester, etCity;
     private TextView tvIsNumberVerified;
 
-    private boolean isLoggedIn = false, isNumberVerified = false;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
-        isLoggedIn = SessionManager.getIsLoggedIn();
-        Log.d("LOG isLoggedIn", String.valueOf(isLoggedIn));
-        apiCallIsNumberVerified();
-        isNumberVerified = SessionManager.getIsNumberVerified();
         initView(view);
-        if (isLoggedIn) {
+        apiCallIsNumberVerified();
+        setListeners();
+        if (SessionManager.getIsLoggedIn()) {
             setProgressDialog();
             apiCallUserID();
-            setVerified(isNumberVerified);
         } else {
             loggedIn.setVisibility(View.GONE);
             loggedOut.setVisibility(View.VISIBLE);
         }
-        setListeners();
-        return view;
-    }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        isLoggedIn = SessionManager.getIsLoggedIn();
-        Log.d("LOG isLoggedIn", String.valueOf(isLoggedIn));
-        apiCallIsNumberVerified();
-        isNumberVerified = SessionManager.getIsNumberVerified();
-        if (isLoggedIn) {
-            apiCallUserID();
-            setVerified(isNumberVerified);
-        } else {
-            loggedIn.setVisibility(View.GONE);
-            loggedOut.setVisibility(View.VISIBLE);
-        }
+
+        return view;
     }
 
     private void initView(View view) {
@@ -202,8 +182,12 @@ public class AccountFragment extends Fragment {
             @Override
             public void onResponse(@NonNull Call<ResponseAPI> call, @NonNull Response<ResponseAPI> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    SessionManager.setIsNumberVerified(response.body().getMessage().equals(AppConstants.EVENT_REGISTER_SUCCESS) ||
-                            response.body().getMessage().equals(AppConstants.EVENT_ALREADY_REGISTERED));
+                    if (response.body().getMessage().equals(AppConstants.EVENT_REGISTER_SUCCESS) ||
+                            response.body().getMessage().equals(AppConstants.EVENT_ALREADY_REGISTERED)){
+                        SessionManager.setIsNumberVerified(true);
+                        ivIsNumberVerified.setImageDrawable(getResources().getDrawable(R.drawable.acccount_number_verified));
+                        tvIsNumberVerified.setVisibility(View.GONE);
+                    }
                 }
             }
 
