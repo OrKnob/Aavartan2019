@@ -13,6 +13,9 @@ public class AppConstants {
     static final String OTP_VERIFIED = "otp_verified";
 
     public static final String OTP_VERIFY_SUCCESS = "User verified Successfully";
+    public static final String EVENT_REGISTER_SUCCESS = "You are sucessfully Registered";
+    public static final String EVENT_REGISTER_VERIFY = "Please Verify first";
+    public static final String EVENT_ALREADY_REGISTERED = "You are already registered";
 
     public static final String AUTH_INTENT_EXTRA = "auth";
     public static final String AUTH_INTENT_LOGIN = "login";

@@ -97,10 +97,14 @@ public class OTPVerifyFragment extends Fragment {
                 if (response.isSuccessful() && response.body() != null) {
                     Log.d("LOG OTP Verify ", response.body().getMessage());
                     if (response.body().getMessage().equals(AppConstants.OTP_VERIFY_SUCCESS)) {
+                        SessionManager.setIsNumberVerified(true);
                         Intent intent = new Intent(getActivity(), MainActivity.class);
                         startActivity(intent);
                         Toasty.success(Objects.requireNonNull(getActivity()), "OTP Verification Successful", Toasty.LENGTH_SHORT).show();
                         getActivity().finish();
+                    }
+                    else {
+                        Toasty.error(Objects.requireNonNull(getActivity()), "OTP Verification Unsuccessful", Toasty.LENGTH_SHORT).show();
                     }
                 }
             }

@@ -179,6 +179,7 @@ public class LoginFragment extends Fragment {
                             Log.d("LOG Login Key", response.body().getUserToken());
                         SessionManager.setIsLoggedIn(true);
                         SessionManager.setUserToken(response.body().getUserToken());
+                        SessionManager.setUserName(username);
                         Intent intent = new Intent(getActivity(), MainActivity.class);
                         startActivity(intent);
                         Objects.requireNonNull(getActivity()).finish();

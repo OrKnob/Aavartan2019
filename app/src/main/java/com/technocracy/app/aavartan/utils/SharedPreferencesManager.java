@@ -21,6 +21,7 @@ class SharedPreferencesManager {
         if (sharedPreferences == null)
             sharedPreferences = getInstance();
         editor = sharedPreferences.edit();
+        editor.remove(AppConstants.LOGGED_IN);
         editor.putBoolean(AppConstants.LOGGED_IN, isLoggedIn);
         editor.apply();
     }
@@ -35,6 +36,7 @@ class SharedPreferencesManager {
         if (sharedPreferences == null)
             sharedPreferences = getInstance();
         editor = sharedPreferences.edit();
+        editor.remove(AppConstants.USER_NAME);
         editor.putString(AppConstants.USER_NAME, userName);
         editor.apply();
     }
@@ -49,6 +51,7 @@ class SharedPreferencesManager {
         if (sharedPreferences == null)
             sharedPreferences = getInstance();
         editor = sharedPreferences.edit();
+        editor.remove(AppConstants.USER_TOKEN);
         editor.putString(AppConstants.USER_TOKEN, userToken);
         editor.apply();
     }
@@ -63,6 +66,7 @@ class SharedPreferencesManager {
         if (sharedPreferences == null)
             sharedPreferences = getInstance();
         editor = sharedPreferences.edit();
+        editor.remove(AppConstants.USER_ID);
         editor.putInt(AppConstants.USER_ID, userID);
         editor.apply();
     }
@@ -77,6 +81,7 @@ class SharedPreferencesManager {
         if (sharedPreferences == null)
             sharedPreferences = getInstance();
         editor = sharedPreferences.edit();
+        editor.remove(AppConstants.OTP_VERIFIED);
         editor.putBoolean(AppConstants.OTP_VERIFIED, isOTPVerified);
         editor.apply();
     }
@@ -87,9 +92,11 @@ class SharedPreferencesManager {
         return sharedPreferences.getBoolean(AppConstants.OTP_VERIFIED, false);
     }
 
-    static void logout(){
-        editor.clear();
-        editor.commit();
+    static void logout() {
+        if (editor != null) {
+            editor.clear();
+            editor.commit();
+        }
     }
 
 }

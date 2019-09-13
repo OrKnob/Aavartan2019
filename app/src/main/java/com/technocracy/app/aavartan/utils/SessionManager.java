@@ -74,6 +74,11 @@ public class SessionManager {
 
     public static void logout(){
         SharedPreferencesManager.logout();
+        userName = null;
+        userToken = null;
+        userID = -1;
+        isLoggedIn = false;
+        isNumberVerified = false;
     }
 
 }

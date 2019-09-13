@@ -31,7 +31,10 @@ public class EventsAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return eventsData.size();
+        if (eventsData.size() >= 27)
+            return 27;
+        else
+            return eventsData.size();
     }
 
     @Override
@@ -52,7 +55,7 @@ public class EventsAdapter extends PagerAdapter {
         tvTitle = view.findViewById(R.id.tvTitle);
         tvDescription = view.findViewById(R.id.tvDescription);
 
-        Glide.with(context).load(eventsData.get(position).getPoster_img()).into(ivPoster);
+        Glide.with(context).load(eventsData.get(position).getThumbnail_img()).into(ivPoster);
         tvTitle.setText(eventsData.get(position).getTitle());
         tvDescription.setText(eventsData.get(position).getDescription());
 
@@ -60,7 +63,7 @@ public class EventsAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, EventDetailsActivity.class);
-                intent.putExtra(AppConstants.EVENT_INTENT_EXTRA,eventsData.get(position));
+                intent.putExtra(AppConstants.EVENT_INTENT_EXTRA, eventsData.get(position));
                 context.startActivity(intent);
             }
         });

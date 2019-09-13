@@ -19,7 +19,7 @@ public class AuthActivity extends AppCompatActivity {
     private ToggleSwitch toggleSwitch;
 
     private boolean isLoginFragment = true;
-    private String intentExtra = AppConstants.AUTH_INTENT_LOGIN;
+    private String intentExtra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class AuthActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             intentExtra = bundle.getString(AppConstants.AUTH_INTENT_EXTRA);
-        }
+        } else intentExtra = AppConstants.AUTH_INTENT_LOGIN;
         initView();
         setListeners();
 

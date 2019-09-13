@@ -18,8 +18,10 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.technocracy.app.aavartan.R;
 import com.technocracy.app.aavartan.api.APIServices;
 import com.technocracy.app.aavartan.api.AppClient;
+import com.technocracy.app.aavartan.api.data_models.LoginData;
 import com.technocracy.app.aavartan.api.data_models.SignupData;
 import com.technocracy.app.aavartan.ui.activities.OTPVerifyActivity;
+import com.technocracy.app.aavartan.utils.SessionManager;
 import com.technocracy.app.aavartan.utils.ValidationManager;
 
 import java.util.Objects;
@@ -257,12 +259,11 @@ public class SignupFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 isValidSemester = false;
-                isValidPassword = false;
                 if (ValidationManager.isFieldEmpty(Objects.requireNonNull(etSemester.getText()).toString())) {
-                    etPassword.setError("Field Cannot be Empty");
+                    etSemester.setError("Field Cannot be Empty");
                 } else if (ValidationManager.isValidSemester(etSemester.getText().toString())) {
-                    etPassword.setError("Semester must be a number between 1 - 10");
-                } else isValidPassword = true;
+                    etSemester.setError("Semester must be a number between 1 - 10");
+                } else isValidSemester = true;
             }
         });
 
@@ -316,17 +317,9 @@ public class SignupFragment extends Fragment {
         callCreateUser.enqueue(new Callback<SignupData>() {
             @Override
             public void onResponse(@NonNull Call<SignupData> call, @NonNull Response<SignupData> response) {
-                if (response.isSuccessful()) {
-                    assert response.body() != null;
-                    if (!String.valueOf(response.body().getKey()).equals("")) {
-                        Log.d("LOG Signup ", response.body().toString());
-//                        Log.d("LOG Signup Key ", response.body().getKey());
-//                        SignupData signupData = new SignupData(password, name, email, mobileNumber, college, branch, course, semester, city);
-                        Intent intent = new Intent(getActivity(), OTPVerifyActivity.class);
-//                        intent.putExtra(AppConstants.OTP_INTENT_EXTRA, signupData);
-                        startActivity(intent);
-                        Objects.requireNonNull(getActivity()).finish();
-                    }
+                if (response.isSuccessful() && response.body() != null) {
+                    Log.d("LOG Signup ", response.body().toString());
+                    SessionManager.setUserName(mobileNumber);
                 }
 
             }
@@ -334,6 +327,29 @@ public class SignupFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Call<SignupData> call, @NonNull Throwable t) {
                 Log.d("LOG Signup Fail ", t.toString());
+            }
+        });
+
+        Call<LoginData> call = apiServices.getLoginToken(mobileNumber, email, password);
+
+        call.enqueue(new Callback<LoginData>() {
+            @Override
+            public void onResponse(@NonNull Call<LoginData> call, @NonNull Response<LoginData> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    if (!response.body().getUserToken().equals("")) {
+                        Log.d("LOG Login Key", response.body().getUserToken());
+                        SessionManager.setIsLoggedIn(true);
+                        SessionManager.setUserToken(response.body().getUserToken());
+                        Intent intent = new Intent(getActivity(), OTPVerifyActivity.class);
+                        startActivity(intent);
+                        Objects.requireNonNull(getActivity()).finish();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<LoginData> call, @NonNull Throwable t) {
+                Log.d("LOG Login Fail", t.toString());
             }
         });
 

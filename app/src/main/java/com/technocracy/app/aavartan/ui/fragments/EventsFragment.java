@@ -64,6 +64,7 @@ public class EventsFragment extends Fragment {
             public void onResponse(@NonNull Call<List<EventsData>> call, @NonNull Response<List<EventsData>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Log.d("LOG Events",response.body().toString());
+                    response.body().remove(27);
                     eventsDataList = response.body();
                     for (int i=0;i<response.body().size();i++){
                         String category = response.body().get(i).getThumbnail_img().substring(35,response.body().get(i).getThumbnail_img().lastIndexOf('/'));

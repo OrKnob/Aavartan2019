@@ -57,7 +57,7 @@ public interface APIServices {
 
     //    Checked
     @GET("user/register/")
-    Call<ResponseAPI> eventRegister(@Query("event_id") String eventID,
+    Call<ResponseAPI> eventRegister(@Query("event_id") int eventID,
                                     @Header("Authorization") String token);
 
     //    Checked

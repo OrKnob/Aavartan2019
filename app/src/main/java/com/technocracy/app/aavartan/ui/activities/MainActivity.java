@@ -16,10 +16,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.tbuonomo.morphbottomnavigation.MorphBottomNavigationView;
 import com.technocracy.app.aavartan.R;
 import com.technocracy.app.aavartan.ui.fragments.AccountFragment;
-import com.technocracy.app.aavartan.ui.fragments.AttractionsFragment;
 import com.technocracy.app.aavartan.ui.fragments.EventsFragment;
 import com.technocracy.app.aavartan.ui.fragments.HomeFragment;
-import com.technocracy.app.aavartan.ui.fragments.ScheduleFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -55,12 +53,12 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_events:
                         loadFragment(new EventsFragment());
                         break;
-                    case R.id.nav_attraction:
+                    /*case R.id.nav_attraction:
                         loadFragment(new AttractionsFragment());
                         break;
                     case R.id.nav_schedule:
                         loadFragment(new ScheduleFragment());
-                        break;
+                        break;*/
                     case R.id.nav_account:
                         loadFragment(new AccountFragment());
                         break;

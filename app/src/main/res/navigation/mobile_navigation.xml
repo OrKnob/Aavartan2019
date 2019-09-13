@@ -15,7 +15,7 @@
         android:name="com.technocracy.app.aavartan.ui.fragments.EventsFragment"
         android:label="@string/events"
         tools:layout="@layout/fragment_events" />
-    <fragment
+    <!--<fragment
         android:id="@+id/nav_attraction"
         android:name="com.technocracy.app.aavartan.ui.fragments.AttractionsFragment"
         android:label="@string/attraction"
@@ -26,7 +26,7 @@
         android:name="com.technocracy.app.aavartan.ui.fragments.ScheduleFragment"
         android:label="@string/schedule"
         tools:layout="@layout/fragment_schedule" />
-
+-->
     <fragment
         android:id="@+id/nav_account"
         android:name="com.technocracy.app.aavartan.ui.fragments.AccountFragment"

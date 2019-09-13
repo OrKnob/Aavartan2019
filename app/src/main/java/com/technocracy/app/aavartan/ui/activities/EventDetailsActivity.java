@@ -2,20 +2,28 @@ package com.technocracy.app.aavartan.ui.activities;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.technocracy.app.aavartan.R;
+import com.technocracy.app.aavartan.api.APIServices;
+import com.technocracy.app.aavartan.api.AppClient;
 import com.technocracy.app.aavartan.api.data_models.EventsData;
+import com.technocracy.app.aavartan.api.data_models.ResponseAPI;
 import com.technocracy.app.aavartan.utils.AppConstants;
 import com.technocracy.app.aavartan.utils.SessionManager;
 
 import es.dmoral.toasty.Toasty;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class EventDetailsActivity extends AppCompatActivity {
 
@@ -53,7 +61,7 @@ public class EventDetailsActivity extends AppCompatActivity {
 
     }
 
-    private void setData(){
+    private void setData() {
         Glide.with(EventDetailsActivity.this).load(eventsData.getPoster_img()).into(ivPoster);
         tvTitle.setText(eventsData.getTitle());
         tvDescription.setText(eventsData.getDescription());
@@ -63,19 +71,53 @@ public class EventDetailsActivity extends AppCompatActivity {
         tvInstructions.setText(eventsData.getInstructions());
     }
 
-    private void setListeners(){
+    private void setListeners() {
 
         buEventRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (SessionManager.getIsNumberVerified())
-                    Toasty.success(EventDetailsActivity.this,"Registered",Toasty.LENGTH_LONG).show();
+                    apiCall();
                 else {
-                    Toasty.error(EventDetailsActivity.this,"Verify Mobile Number First",Toasty.LENGTH_SHORT).show();
+                    Toasty.error(EventDetailsActivity.this, "Verify Mobile Number First", Toasty.LENGTH_SHORT).show();
                 }
             }
         });
 
     }
+
+    private void apiCall() {
+
+        APIServices apiServices = AppClient.getInstance().createService(APIServices.class);
+        Call<ResponseAPI> call = apiServices.eventRegister(eventsData.getId(), "Token " + SessionManager.getUserToken());
+
+        call.enqueue(new Callback<ResponseAPI>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseAPI> call, @NonNull Response<ResponseAPI> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    switch (response.body().getMessage()) {
+                        case AppConstants.EVENT_REGISTER_SUCCESS:
+                            Toasty.success(EventDetailsActivity.this, "Registered", Toasty.LENGTH_LONG).show();
+                            break;
+                        case AppConstants.EVENT_REGISTER_VERIFY:
+                            Toasty.warning(EventDetailsActivity.this, "Verify Mobile Number First", Toasty.LENGTH_LONG).show();
+                            break;
+                        case AppConstants.EVENT_ALREADY_REGISTERED:
+                            Toasty.success(EventDetailsActivity.this, "You are already registered", Toasty.LENGTH_LONG).show();
+                            break;
+                        default:
+                            Toasty.error(EventDetailsActivity.this, "Cannot Register", Toasty.LENGTH_LONG).show();
+                            break;
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseAPI> call, @NonNull Throwable t) {
+                Log.d("LOG Register Fail", t.toString());
+            }
+        });
+    }
+
 
 }
