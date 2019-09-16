@@ -24,4 +24,5 @@ public class AppConstants {
     public static final String AUTH_INTENT_LOGOUT = "logout";
     public static final String EVENT_INTENT_EXTRA = "event";
     public static final String FORGOT_PASSWORD_INTENT_EXTRA = "email";
+    public static final String WEBVIEW_EXTRA = "url";
 }

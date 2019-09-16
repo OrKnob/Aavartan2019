@@ -16,12 +16,10 @@ import com.nightonke.boommenu.BoomButtons.TextOutsideCircleButton;
 import com.nightonke.boommenu.BoomMenuButton;
 import com.technocracy.app.aavartan.R;
 import com.technocracy.app.aavartan.animation.TypeWriter;
-import com.technocracy.app.aavartan.ui.activities.AboutUsActivity;
 import com.technocracy.app.aavartan.ui.activities.AppTeamActivity;
 import com.technocracy.app.aavartan.ui.activities.ContactsActivity;
-import com.technocracy.app.aavartan.ui.activities.GalleryActivity;
-import com.technocracy.app.aavartan.ui.activities.SponsorsActivity;
-import com.technocracy.app.aavartan.ui.activities.VigyaanActivity;
+import com.technocracy.app.aavartan.ui.activities.WebViewActivity;
+import com.technocracy.app.aavartan.utils.AppConstants;
 
 import java.util.Objects;
 import java.util.Timer;
@@ -80,10 +78,12 @@ public class HomeFragment extends Fragment {
                         public void onBoomButtonClick(int index) {
                             Intent intent;
                             if (index == 0) {
-                                intent = new Intent(getContext(), GalleryActivity.class);
+                                intent = new Intent(getActivity(), WebViewActivity.class);
+                                intent.putExtra(AppConstants.WEBVIEW_EXTRA, "http://aavartan.nitrr.ac.in/gallery/");
                                 startActivity(intent);
                             } else if (index == 1) {
-                                intent = new Intent(getContext(), SponsorsActivity.class);
+                                intent = new Intent(getActivity(), WebViewActivity.class);
+                                intent.putExtra(AppConstants.WEBVIEW_EXTRA, "http://aavartan.nitrr.ac.in/spons/");
                                 startActivity(intent);
                             } else if (index == 2) {
                                 intent = new Intent(getContext(), ContactsActivity.class);
@@ -92,16 +92,19 @@ public class HomeFragment extends Fragment {
                                 intent = new Intent(getContext(), AppTeamActivity.class);
                                 startActivity(intent);
                             } else if (index == 4) {
-                                intent = new Intent(getContext(), AboutUsActivity.class);
+                                intent = new Intent(getActivity(), WebViewActivity.class);
+                                intent.putExtra(AppConstants.WEBVIEW_EXTRA, "http://aavartan.nitrr.ac.in/team/");
                                 startActivity(intent);
                             } else if (index == 5) {
-                                intent = new Intent(getContext(), VigyaanActivity.class);
+                                intent = new Intent(getActivity(), WebViewActivity.class);
+                                intent.putExtra(AppConstants.WEBVIEW_EXTRA, "http://technocracy.nitrr.ac.in/vigyaan/");
                                 startActivity(intent);
                             }
                         }
                     })
                     .normalImageRes(icons[i])
                     .normalText(title[i])
+                    .normalTextColor(R.color.aavartanText)
                     .rotateImage(true)
                     .imagePadding(new Rect(imagePadding, imagePadding, imagePadding, imagePadding))
                     .textGravity(Gravity.CENTER)

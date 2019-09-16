@@ -59,6 +59,10 @@ Set a new one!"</string>
     <string name="logging_in_please_wait">Logging In! Please Wait ……</string>
     <string name="verifying_otp_please_wait"> Verifying OTP! Please Wait ……</string>
     <string name="registering_please_wait">Registering! Please Wait ……</string>
+    <string name="contacts">Contacts</string>
+    <string name="feel_free_to_contact_here">Feel free to contact here</string>
+    <string name="profile">Profile</string>
+    <string name="app_team">App Team</string>
 
 
     <string-array name="boomMenuButtonOptions">
@@ -67,7 +71,7 @@ Set a new one!"</string>
         <item>Sponsors</item>
         <item>Contacts</item>
         <item>App Team</item>
-        <item>About Us</item>
+        <item>Head Team</item>
         <item>Vigyaan</item>
 
     </string-array>

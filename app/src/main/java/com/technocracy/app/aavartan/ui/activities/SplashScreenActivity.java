@@ -22,7 +22,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         videoView = findViewById(R.id.videoView);
-        Uri video = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.splash_screen_logo);
+        Uri video = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.splash_screen);
         videoView.setVideoURI(video);
 
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
