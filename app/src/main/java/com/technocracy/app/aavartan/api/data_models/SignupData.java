@@ -59,6 +59,10 @@ public class SignupData implements Serializable {
     @Expose
     private String key;
 
+    @SerializedName("detail")
+    @Expose
+    private String detail;
+
     public String getPassword() {
         return password;
     }
@@ -137,6 +141,14 @@ public class SignupData implements Serializable {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public String getDetail(){
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
     public String toJSONString() {

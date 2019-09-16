@@ -18,7 +18,7 @@
     <color name="grey">#9E9E9E</color>
 
     <!--  Heading Text Colors  -->
-    <color name="aavartanText">#C58441</color>
+    <color name="aavartanText">#0D93F7</color>
 
     <!--  Options Icon Color  -->
     <color name="optionsIcon">#C5C6D0</color>
@@ -71,8 +71,8 @@
 
     <!--  Account Fragment  -->
     <color name="accountColorControlNormal">#EEEEEE</color>
-    <color name="accountTextColorHint">#99000000</color>
-    <color name="accountTextColor">#CC000000</color>
+    <color name="accountTextColorHint">#99FFFFFF</color>
+    <color name="accountTextColor">#CCFFFFFF</color>
     <color name="accountColorControlActivated">#7E7E7E</color>
     <color name="accountError">#EB5757</color>
     <color name="accountSuccess">#59AF00</color>

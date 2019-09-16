@@ -54,6 +54,11 @@ Set a new one!"</string>
     <string name="logout">Logout</string>
     <string name="password_reset_sent_text">We\'ve emailed you instructions for setting your password, if an account exists with the email you entered. You should receive them shortly. If you don\'t receive an email, please make sure you\'ve entered the address you registered with, and check your spam folder.</string>
     <string name="loading_details_please_wait">Loading Details! Please Wait ……</string>
+    <string name="loading_events_please_wait">Loading Events! Please Wait ……</string>
+    <string name="signing_in_please_wait">Signing In! Please Wait ……</string>
+    <string name="logging_in_please_wait">Logging In! Please Wait ……</string>
+    <string name="verifying_otp_please_wait"> Verifying OTP! Please Wait ……</string>
+    <string name="registering_please_wait">Registering! Please Wait ……</string>
 
 
     <string-array name="boomMenuButtonOptions">

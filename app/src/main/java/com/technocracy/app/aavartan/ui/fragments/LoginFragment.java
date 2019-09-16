@@ -1,6 +1,9 @@
 package com.technocracy.app.aavartan.ui.fragments;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -8,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -40,6 +44,7 @@ public class LoginFragment extends Fragment {
 
     private Button buLogin;
     private TextInputEditText etUsername, etEmail, etPassword;
+    private Dialog progressDialog;
     private TextView tvForgotPassword;
     private RelativeLayout layout;
 
@@ -159,6 +164,7 @@ public class LoginFragment extends Fragment {
                     username = String.valueOf(etUsername.getText());
                     email = String.valueOf(etEmail.getText());
                     password = String.valueOf(etPassword.getText());
+                    setProgressDialog();
                     SessionManager.setIsLoggedIn(true);
                     apiCall();
                 } else {
@@ -185,6 +191,7 @@ public class LoginFragment extends Fragment {
                         SessionManager.setUserName(username);
                         Intent intent = new Intent(getActivity(), MainActivity.class);
                         Toasty.success(Objects.requireNonNull(getActivity()), "Logging In", Toasty.LENGTH_LONG).show();
+                        progressDialog.dismiss();
                         startActivity(intent);
                         Objects.requireNonNull(getActivity()).finish();
                     } else {
@@ -204,6 +211,16 @@ public class LoginFragment extends Fragment {
                 }).show();
             }
         });
+    }
+
+    private void setProgressDialog() {
+        progressDialog = new Dialog(Objects.requireNonNull(getContext()));
+        progressDialog.setContentView(R.layout.dialog_progress_bar);
+        ProgressBar progressBar = progressDialog.findViewById(R.id.progressBar);
+        progressBar.setProgressTintList(ColorStateList.valueOf(Color.RED));
+        TextView tvProgressMessage = progressDialog.findViewById(R.id.tvProgressMessage);
+        tvProgressMessage.setText(getString(R.string.logging_in_please_wait));
+        progressDialog.show();
     }
 
 }

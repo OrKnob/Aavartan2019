@@ -1,5 +1,6 @@
 package com.technocracy.app.aavartan.ui.activities;
 
+import android.app.Dialog;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,8 @@ import com.technocracy.app.aavartan.api.data_models.ResponseAPI;
 import com.technocracy.app.aavartan.utils.AppConstants;
 import com.technocracy.app.aavartan.utils.SessionManager;
 
+import java.util.Objects;
+
 import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,6 +34,7 @@ public class EventDetailsActivity extends AppCompatActivity {
     private Button buEventRegister;
     private ImageView ivPoster;
     private RelativeLayout layout;
+    private Dialog progressDialog;
     private TextView tvTitle, tvDescription, tvVenue, tvRounds, tvRules, tvInstructions;
 
     private EventsData eventsData;
@@ -79,8 +83,10 @@ public class EventDetailsActivity extends AppCompatActivity {
         buEventRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (SessionManager.getIsNumberVerified())
+                if (SessionManager.getIsNumberVerified()){
+                    setProgressDialog();
                     apiCall();
+                }
                 else {
                     Toasty.error(EventDetailsActivity.this, "Verify Mobile Number First", Toasty.LENGTH_SHORT).show();
                 }
@@ -112,16 +118,25 @@ public class EventDetailsActivity extends AppCompatActivity {
                             Toasty.error(EventDetailsActivity.this, "Cannot Register", Toasty.LENGTH_LONG).show();
                             break;
                     }
+                    progressDialog.dismiss();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<ResponseAPI> call, @NonNull Throwable t) {
 //                Log.d("LOG Register Fail", t.toString());
+                progressDialog.dismiss();
                 Snackbar.make(layout, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).show();
             }
         });
     }
 
+    private void setProgressDialog() {
+        progressDialog = new Dialog(Objects.requireNonNull(EventDetailsActivity.this));
+        progressDialog.setContentView(R.layout.dialog_progress_bar);
+        TextView tvProgressMessage = progressDialog.findViewById(R.id.tvProgressMessage);
+        tvProgressMessage.setText(getString(R.string.registering_please_wait));
+        progressDialog.show();
+    }
 
 }

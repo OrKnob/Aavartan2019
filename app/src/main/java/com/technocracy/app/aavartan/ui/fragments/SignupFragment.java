@@ -1,6 +1,7 @@
 package com.technocracy.app.aavartan.ui.fragments;
 
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -40,6 +42,7 @@ public class SignupFragment extends Fragment {
 
     private Button buSignup;
     private TextInputEditText etFullName, etEmail, etMobileNumber, etPassword, etConfirmPassword, etCollege, etBranch, etCourse, etSemester, etCity;
+    private Dialog progressDialog;
     private RelativeLayout layout;
 
     private boolean isValidFullName = false, isValidEmail = false, isValidMobileNumber = false, isValidPassword = false, passwordsMatch = false,
@@ -304,6 +307,7 @@ public class SignupFragment extends Fragment {
                     course = Objects.requireNonNull(etCourse.getText()).toString();
                     semester = Integer.valueOf(Objects.requireNonNull(etSemester.getText()).toString());
                     city = Objects.requireNonNull(etCity.getText()).toString();
+                    setProgressDialog();
                     apiCall();
                 } else {
                     Toasty.error(Objects.requireNonNull(getContext()), "One or More Fields are Incorrect", Toasty.LENGTH_SHORT).show();
@@ -352,6 +356,7 @@ public class SignupFragment extends Fragment {
                         SessionManager.setUserToken(response.body().getUserToken());
                         Intent intent = new Intent(getActivity(), OTPVerifyActivity.class);
                         Toasty.success(Objects.requireNonNull(getActivity()), "Signing Up", Toasty.LENGTH_LONG).show();
+                        progressDialog.dismiss();
                         startActivity(intent);
                         getActivity().finish();
                     } else {
@@ -372,6 +377,14 @@ public class SignupFragment extends Fragment {
             }
         });
 
+    }
+
+    private void setProgressDialog() {
+        progressDialog = new Dialog(Objects.requireNonNull(getContext()));
+        progressDialog.setContentView(R.layout.dialog_progress_bar);
+        TextView tvProgressMessage = progressDialog.findViewById(R.id.tvProgressMessage);
+        tvProgressMessage.setText(getString(R.string.signing_in_please_wait));
+        progressDialog.show();
     }
 
 }

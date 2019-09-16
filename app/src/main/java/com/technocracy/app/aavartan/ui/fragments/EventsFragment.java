@@ -1,10 +1,12 @@
 package com.technocracy.app.aavartan.ui.fragments;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +22,7 @@ import com.technocracy.app.aavartan.ui.adapters.EventsAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,6 +32,7 @@ import retrofit2.Response;
 public class EventsFragment extends Fragment {
 
     private RelativeLayout layout;
+    private Dialog progressDialog;
     private ViewPager viewPager;
     private List<EventsData> eventsDataList = new ArrayList<>();
 
@@ -41,6 +45,7 @@ public class EventsFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_events, container, false);
         initView(view);
+        setProgressDialog();
         apiCall();
         return view;
     }
@@ -56,7 +61,7 @@ public class EventsFragment extends Fragment {
 
         EventsAdapter eventsAdapter = new EventsAdapter(eventsDataList, this.getActivity());
         viewPager.setAdapter(eventsAdapter);
-
+        progressDialog.dismiss();
     }
 
     private void apiCall() {
@@ -89,6 +94,14 @@ public class EventsFragment extends Fragment {
                 }).show();
             }
         });
+    }
+
+    private void setProgressDialog() {
+        progressDialog = new Dialog(Objects.requireNonNull(getContext()));
+        progressDialog.setContentView(R.layout.dialog_progress_bar);
+        TextView tvProgressMessage = progressDialog.findViewById(R.id.tvProgressMessage);
+        tvProgressMessage.setText(getString(R.string.loading_events_please_wait));
+        progressDialog.show();
     }
 
 }

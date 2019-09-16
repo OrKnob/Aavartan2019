@@ -1,5 +1,6 @@
 package com.technocracy.app.aavartan.ui.fragments;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -36,6 +38,7 @@ public class OTPVerifyFragment extends Fragment {
 
     private Button buVerify;
     private EditText etOTPVerify1, etOTPVerify2, etOTPVerify3, etOTPVerify4, etOTPVerify5, etOTPVerify6;
+    private Dialog progressDialog;
     private RelativeLayout layout;
 
     public OTPVerifyFragment() {
@@ -77,6 +80,7 @@ public class OTPVerifyFragment extends Fragment {
         buVerify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                setProgressDialog();
                 String OTP = etOTPVerify1.getText().toString() +
                         etOTPVerify2.getText().toString() +
                         etOTPVerify3.getText().toString() +
@@ -102,6 +106,7 @@ public class OTPVerifyFragment extends Fragment {
                     if (response.body().getMessage().equals(AppConstants.OTP_VERIFY_SUCCESS)) {
                         SessionManager.setIsNumberVerified(true);
                         Intent intent = new Intent(getActivity(), MainActivity.class);
+                        progressDialog.dismiss();
                         startActivity(intent);
                         Toasty.success(Objects.requireNonNull(getActivity()), "OTP Verification Successful", Toasty.LENGTH_SHORT).show();
                         getActivity().finish();
@@ -123,6 +128,14 @@ public class OTPVerifyFragment extends Fragment {
             }
         });
 
+    }
+
+    private void setProgressDialog() {
+        progressDialog = new Dialog(Objects.requireNonNull(getContext()));
+        progressDialog.setContentView(R.layout.dialog_progress_bar);
+        TextView tvProgressMessage = progressDialog.findViewById(R.id.tvProgressMessage);
+        tvProgressMessage.setText(getString(R.string.logging_in_please_wait));
+        progressDialog.show();
     }
 
 }

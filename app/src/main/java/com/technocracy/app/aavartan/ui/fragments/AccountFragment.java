@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -129,14 +130,22 @@ public class AccountFragment extends Fragment {
 
         callUserID.enqueue(new Callback<GetUserData>() {
             @Override
-            public void onResponse(@NonNull Call<GetUserData> call, @NonNull Response<GetUserData> response) {
+                public void onResponse(@NonNull Call<GetUserData> call, @NonNull Response<GetUserData> response) {
                 if (response.isSuccessful() && response.body() != null) {
-//                    Log.d("LOG User ID", response.body().getUsername() + " " + response.body().getUserID());
                     GetUserData getUserData = new GetUserData(response.body().getUserID(), response.body().getUsername());
                     SessionManager.setUserID(getUserData.getUserID());
                     apiCallUserDetails();
                 } else {
-                    Toasty.error(Objects.requireNonNull(getActivity()), "Cannot Fetch Data", Toasty.LENGTH_LONG).show();
+                    progressDialog.dismiss();
+                    if (response.code() == 401){
+                        Toasty.warning(Objects.requireNonNull(getActivity()),"Login Again! Session Expired",Toasty.LENGTH_LONG).show();
+                        SessionManager.logout();
+                        Intent intent = new Intent(getActivity(), AuthActivity.class);
+                        startActivity(intent);
+                        getActivity().finish();
+                    } else {
+                        Toasty.error(Objects.requireNonNull(getActivity()), "Cannot Fetch Data", Toasty.LENGTH_LONG).show();
+                    }
                 }
             }
 
@@ -147,6 +156,7 @@ public class AccountFragment extends Fragment {
                 Snackbar.make(loggedIn, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        setProgressDialog();
                         apiCallUserID();
                     }
                 }).show();
@@ -180,6 +190,7 @@ public class AccountFragment extends Fragment {
                 Snackbar.make(loggedIn, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        setProgressDialog();
                         apiCallUserDetails();
                     }
                 }).show();
@@ -213,12 +224,19 @@ public class AccountFragment extends Fragment {
             public void onFailure(@NonNull Call<ResponseAPI> call, @NonNull Throwable t) {
 //                Log.d("LOG Register Fail", t.toString());
                 progressDialog.dismiss();
-                Snackbar.make(loggedIn, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
+
+                Snackbar snackbar = Snackbar.make(loggedIn, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        setProgressDialog();
                         apiCallIsNumberVerified();
                     }
-                }).show();
+                });
+                CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams)
+                        snackbar.getView().getLayoutParams();
+                params.setMargins(0, 0, 0, 80);
+                snackbar.getView().setLayoutParams(params);
+                snackbar.show();
             }
         });
 
@@ -240,6 +258,8 @@ public class AccountFragment extends Fragment {
     private void setProgressDialog() {
         progressDialog = new Dialog(Objects.requireNonNull(getContext()));
         progressDialog.setContentView(R.layout.dialog_progress_bar);
+        TextView tvProgressMessage = progressDialog.findViewById(R.id.tvProgressMessage);
+        tvProgressMessage.setText(getString(R.string.loading_details_please_wait));
         progressDialog.show();
     }
 

@@ -16,12 +16,12 @@ public class AppConstants {
     public static final String EVENT_REGISTER_SUCCESS = "You are sucessfully Registered";
     public static final String EVENT_REGISTER_VERIFY = "Please Verify first";
     public static final String EVENT_ALREADY_REGISTERED = "You are already registered";
+    public static final String INVALID_TOKEN = "Invalid token.";
 
     public static final String AUTH_INTENT_EXTRA = "auth";
     public static final String AUTH_INTENT_LOGIN = "login";
     public static final String AUTH_INTENT_SIGNUP = "signup";
     public static final String AUTH_INTENT_LOGOUT = "logout";
     public static final String EVENT_INTENT_EXTRA = "event";
-//    public static final String OTP_INTENT_EXTRA = "signupData";
     public static final String FORGOT_PASSWORD_INTENT_EXTRA = "email";
 }

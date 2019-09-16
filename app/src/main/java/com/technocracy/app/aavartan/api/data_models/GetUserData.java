@@ -12,6 +12,10 @@ public class GetUserData implements Serializable {
         this.username = username;
     }
 
+    @SerializedName("detail")
+    @Expose
+    private String detail;
+
     @SerializedName("id")
     @Expose
     private int userID;
@@ -35,4 +39,13 @@ public class GetUserData implements Serializable {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
 }

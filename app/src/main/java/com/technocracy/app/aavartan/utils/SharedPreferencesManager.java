@@ -93,8 +93,11 @@ class SharedPreferencesManager {
     }
 
     static void logout() {
+        if (sharedPreferences == null)
+            sharedPreferences = getInstance();
+        editor = sharedPreferences.edit();
         editor.clear();
-        editor.commit();
+        editor.apply();
     }
 
 }
