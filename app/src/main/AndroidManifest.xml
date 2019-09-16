@@ -28,9 +28,13 @@
         </activity>
         <activity android:name=".ui.activities.LocationActivity" />
         <activity android:name=".ui.activities.EventDetailsActivity" />
-        <activity android:name=".ui.activities.AppTeamActivity" />
-        <activity android:name=".ui.activities.ContactsActivity" />
         <activity android:name=".ui.activities.MainActivity" />
+        <activity
+            android:name=".ui.activities.AppTeamActivity"
+            android:theme="@style/AuthTheme" />
+        <activity
+            android:name=".ui.activities.ContactsActivity"
+            android:theme="@style/AuthTheme" />
         <activity
             android:name=".ui.activities.WebViewActivity"
             android:theme="@style/AuthTheme" />

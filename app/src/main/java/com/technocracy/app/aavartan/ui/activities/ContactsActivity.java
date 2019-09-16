@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.technocracy.app.aavartan.R;
@@ -31,11 +32,13 @@ public class ContactsActivity extends AppCompatActivity {
 
     private void initView() {
         rvContacts = findViewById(R.id.rvContacts);
+        contactsDataList.add(new ContactsData(getDrawable(R.drawable.img_aditya_swarnakar), "Aditya Swarnkar", "aditya.01swarnkar@gmail.com", "+91 73890 97623"));
+        contactsDataList.add(new ContactsData(getDrawable(R.drawable.img_ayush_mishra),"Ayush Mishra", "ayumishra26@gmail.com", "+91 72238 88440"));
     }
 
     private void setUpRecyclerView() {
         ContactsAdapter contactsAdapter = new ContactsAdapter(this);
-        rvContacts.setLayoutManager(new GridLayoutManager(this,2));
+        rvContacts.setLayoutManager(new LinearLayoutManager(this));
         rvContacts.setAdapter(contactsAdapter);
         contactsAdapter.setContactsDataList(contactsDataList);
         contactsAdapter.notifyDataSetChanged();

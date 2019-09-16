@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black"
+        android:backgroundTint="@color/skipBackground"
         app:cardElevation="8dp"
         app:cardCornerRadius="8dp"
         android:layout_margin="8dp">
@@ -47,7 +47,7 @@
                 android:fontFamily="@font/roboto"
                 android:text="Branch"
                 android:textAlignment="center"
-                android:textColor="@color/toggleActiveText"
+                android:textColor="@color/toggleInactiveText"
                 android:textSize="16sp" />
 
             <TextView
@@ -59,7 +59,7 @@
                 android:fontFamily="@font/roboto"
                 android:text="Semester"
                 android:textAlignment="center"
-                android:textColor="@color/toggleActiveText"
+                android:textColor="@color/toggleInactiveText"
                 android:textSize="16sp" />
 
         </LinearLayout>

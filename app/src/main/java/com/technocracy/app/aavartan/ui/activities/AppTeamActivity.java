@@ -26,27 +26,19 @@ public class AppTeamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_app_team);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         initView();
-        createDataList();
         setUpRecyclerView();
 
     }
 
     private void initView() {
-        rvAppTeam = findViewById(R.id.rvAppTeam);
-    }
 
-    private void createDataList(){
-        ContactsData appTeamData;
-        appTeamData = new ContactsData(getDrawable(R.drawable.img_nisheeth_agrawal), "Nisheeth Agrawal", "Computer Sc. and Engg.",5);
-        appTeamDataList.add(appTeamData);
-        appTeamData = new ContactsData(getDrawable(R.drawable.img_hritik_tambe), "Hritik Tambe", "Computer Sc. and Engg.",5);
-        appTeamDataList.add(appTeamData);
-        appTeamData = new ContactsData(getDrawable(R.drawable.img_utkarsh_choubey), "Utkarsh Choubey", "Computer Sc. and Engg.",5);
-        appTeamDataList.add(appTeamData);
-        appTeamData = new ContactsData(getDrawable(R.drawable.img_durgeshwari_naik), "Durgeshwari Naik", "Computer Sc. and Engg.",5);
-        appTeamDataList.add(appTeamData);
-        appTeamData = new ContactsData(getDrawable(R.drawable.img_arnav_jha), "Arnav Jha", "Mechanical Engg.",3);
-        appTeamDataList.add(appTeamData);
+        rvAppTeam = findViewById(R.id.rvAppTeam);
+        appTeamDataList.add(new ContactsData(getDrawable(R.drawable.img_nisheeth_agrawal), "Nisheeth Agrawal", "Computer Sc. and Engg.",5));
+        appTeamDataList.add(new ContactsData(getDrawable(R.drawable.img_hritik_tambe), "Hritik Tambe", "Computer Sc. and Engg.",5));
+        appTeamDataList.add(new ContactsData(getDrawable(R.drawable.img_utkarsh_choubey), "Utkarsh Choubey", "Computer Sc. and Engg.",5));
+        appTeamDataList.add(new ContactsData(getDrawable(R.drawable.img_durgeshwari_naik), "Durgeshwari Naik", "Computer Sc. and Engg.",5));
+        appTeamDataList.add(new ContactsData(getDrawable(R.drawable.img_arnav_jha), "Arnav Jha", "Mechanical Engg.",3));
+
     }
 
     private void setUpRecyclerView() {
