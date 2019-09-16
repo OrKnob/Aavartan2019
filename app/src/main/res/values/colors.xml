@@ -67,7 +67,7 @@
     <!--  Main Screens  -->
     <color name="accountEditTextHint">#8D98A6</color>
     <color name="accountEditTextBoxStroke">#FFFFFF</color>
-    <color name="mainText">#1F38CC</color>
+    <color name="mainText">#FFFFFF</color>
 
     <!--  Account Fragment  -->
     <color name="accountColorControlNormal">#EEEEEE</color>

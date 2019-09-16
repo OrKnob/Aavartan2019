@@ -308,7 +308,7 @@ public class SignupFragment extends Fragment {
                     semester = Integer.valueOf(Objects.requireNonNull(etSemester.getText()).toString());
                     city = Objects.requireNonNull(etCity.getText()).toString();
                     setProgressDialog();
-                    apiCall();
+                    apiCallSignup();
                 } else {
                     Toasty.error(Objects.requireNonNull(getContext()), "One or More Fields are Incorrect", Toasty.LENGTH_SHORT).show();
                 }
@@ -317,7 +317,7 @@ public class SignupFragment extends Fragment {
 
     }
 
-    private void apiCall() {
+    private void apiCallSignup() {
         APIServices apiServices = AppClient.getInstance().createService(APIServices.class);
         Call<SignupData> callCreateUser = apiServices.createUser(password, name, email, mobileNumber, college, branch, course, semester, city);
 
@@ -327,6 +327,7 @@ public class SignupFragment extends Fragment {
                 if (response.isSuccessful() && response.body() != null) {
 //                    Log.d("LOG Signup ", response.body().toString());
                     SessionManager.setUserName(mobileNumber);
+                    apiCallLogin();
                 } else {
                     Toasty.error(Objects.requireNonNull(getActivity()), "User Already Exists", Toasty.LENGTH_LONG).show();
                 }
@@ -338,12 +339,16 @@ public class SignupFragment extends Fragment {
                 Snackbar.make(layout, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        apiCall();
+                        apiCallSignup();
                     }
                 }).show();
             }
         });
 
+    }
+
+    private void apiCallLogin(){
+        APIServices apiServices = AppClient.getInstance().createService(APIServices.class);
         Call<LoginData> call = apiServices.getLoginToken(mobileNumber, email, password);
 
         call.enqueue(new Callback<LoginData>() {
@@ -371,7 +376,7 @@ public class SignupFragment extends Fragment {
                 Snackbar.make(layout, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        apiCall();
+                        apiCallSignup();
                     }
                 }).show();
             }

@@ -48,7 +48,7 @@
                 app:paintStrokeColor="@color/aavartanText"
                 app:pathStrokeColor="@color/aavartanText"
                 app:repeat="REVERSE"
-                app:text="AAVARTAN 2k19"
+                app:text="AAVARTAN 2K19"
                 app:textInCenter="true"
                 app:textSize="40sp" />
 

@@ -92,7 +92,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/authEditTextMarginStart"
                 android:hint="@string/full_name"
-                android:inputType="text"
+                android:inputType="textCapWords"
                 android:paddingEnd="@dimen/authEditTextPaddingEnd"
                 android:textColor="@color/authEditTextText"
                 tools:ignore="RtlSymmetry" />
@@ -275,7 +275,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/authEditTextMarginStart"
                 android:hint="@string/college"
-                android:inputType="text"
+                android:inputType="textCapWords"
                 android:paddingEnd="@dimen/authEditTextPaddingEnd"
                 android:textColor="@color/authEditTextText"
                 tools:ignore="RtlSymmetry" />
@@ -303,7 +303,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/authEditTextMarginStart"
                 android:hint="@string/city"
-                android:inputType="text"
+                android:inputType="textCapWords"
                 android:paddingEnd="@dimen/authEditTextPaddingEnd"
                 android:textColor="@color/authEditTextText"
                 tools:ignore="RtlSymmetry" />
@@ -331,7 +331,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/authEditTextMarginStart"
                 android:hint="@string/course"
-                android:inputType="text"
+                android:inputType="textCapWords"
                 android:paddingEnd="@dimen/authEditTextPaddingEnd"
                 android:textColor="@color/authEditTextText"
                 tools:ignore="RtlSymmetry" />
@@ -359,7 +359,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/authEditTextMarginStart"
                 android:hint="@string/branch"
-                android:inputType="text"
+                android:inputType="textCapWords"
                 android:paddingEnd="@dimen/authEditTextPaddingEnd"
                 android:textColor="@color/authEditTextText"
                 tools:ignore="RtlSymmetry" />
