@@ -365,6 +365,7 @@ public class SignupFragment extends Fragment {
                         startActivity(intent);
                         getActivity().finish();
                     } else {
+                        progressDialog.dismiss();
                         Toasty.error(Objects.requireNonNull(getActivity()), "Enter Valid Credentials", Toasty.LENGTH_LONG).show();
                     }
                 }
@@ -373,6 +374,7 @@ public class SignupFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Call<LoginData> call, @NonNull Throwable t) {
 //                Log.d("LOG Login Fail", t.toString());
+                progressDialog.dismiss();
                 Snackbar.make(layout, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

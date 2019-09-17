@@ -222,6 +222,7 @@ public class AccountFragment extends Fragment {
                         tvIsNumberVerified.setVisibility(View.GONE);
                         progressDialog.dismiss();
                     } else {
+                        progressDialog.dismiss();
                         Toasty.error(Objects.requireNonNull(getActivity()), "Cannot Fetch Data", Toasty.LENGTH_LONG).show();
                     }
                 }

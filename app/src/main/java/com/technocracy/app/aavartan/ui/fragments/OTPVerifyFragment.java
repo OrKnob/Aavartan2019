@@ -111,6 +111,7 @@ public class OTPVerifyFragment extends Fragment {
                         Toasty.success(Objects.requireNonNull(getActivity()), "OTP Verification Successful", Toasty.LENGTH_SHORT).show();
                         getActivity().finish();
                     } else {
+                        progressDialog.dismiss();
                         Toasty.error(Objects.requireNonNull(getActivity()), "OTP Not Verified! Try Again", Toasty.LENGTH_SHORT).show();
                     }
                 }
@@ -119,6 +120,7 @@ public class OTPVerifyFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Call<ResponseAPI> call, @NonNull Throwable t) {
 //                Log.d("LOG OTP Verify Fail", t.toString());
+                progressDialog.dismiss();
                 Snackbar.make(layout, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
