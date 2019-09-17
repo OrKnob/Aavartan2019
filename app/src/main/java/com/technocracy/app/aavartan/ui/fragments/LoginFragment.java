@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -198,11 +197,10 @@ public class LoginFragment extends Fragment {
                     } else {
                         Toasty.error(Objects.requireNonNull(getActivity()), "Cannot Fetch Data", Toasty.LENGTH_LONG).show();
                     }
-                }
-                else {
-                    if (response.code() == 400){
+                } else {
+                    if (response.code() == 400) {
                         progressDialog.dismiss();
-                        Toasty.error(Objects.requireNonNull(getActivity()),"Incorrect Credentials",Toasty.LENGTH_LONG).show();
+                        Toasty.error(Objects.requireNonNull(getActivity()), "Incorrect Credentials", Toasty.LENGTH_LONG).show();
                     }
                 }
             }
