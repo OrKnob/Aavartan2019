@@ -125,8 +125,10 @@ public class EventDetailsActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call<ResponseAPI> call, @NonNull Throwable t) {
 //                Log.d("LOG Register Fail", t.toString());
-                progressDialog.dismiss();
-                Snackbar.make(layout, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).show();
+                if (!call.isCanceled()){
+                    progressDialog.dismiss();
+                    Snackbar.make(layout, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).show();
+                }
             }
         });
     }

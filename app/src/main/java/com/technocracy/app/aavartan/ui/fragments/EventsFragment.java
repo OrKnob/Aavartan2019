@@ -36,6 +36,7 @@ public class EventsFragment extends Fragment {
     private ViewPager viewPager;
     private List<EventsData> eventsDataList = new ArrayList<>();
 
+    private Call<List<EventsData>> call;
 
     @Nullable
     @Override
@@ -66,7 +67,7 @@ public class EventsFragment extends Fragment {
 
     private void apiCall() {
         APIServices apiServices = AppClient.getInstance().createService(APIServices.class);
-        Call<List<EventsData>> call = apiServices.getEvents();
+        call = apiServices.getEvents();
         call.enqueue(new Callback<List<EventsData>>() {
             @Override
             public void onResponse(@NonNull Call<List<EventsData>> call, @NonNull Response<List<EventsData>> response) {
@@ -86,14 +87,17 @@ public class EventsFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Call<List<EventsData>> call, @NonNull Throwable t) {
 //                Log.d("LOG Events Fail ", t.toString());
-                Snackbar.make(layout, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        apiCall();
-                    }
-                }).show();
+                if (!call.isCanceled()){
+                    Snackbar.make(layout, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            apiCall();
+                        }
+                    }).show();
+                }
             }
         });
+
     }
 
     private void setProgressDialog() {
@@ -104,6 +108,11 @@ public class EventsFragment extends Fragment {
         progressDialog.show();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        call.cancel();
+    }
 }
 
 

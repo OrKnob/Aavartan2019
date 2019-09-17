@@ -44,6 +44,10 @@ public class AccountFragment extends Fragment {
     private TextInputEditText etUsername, etFullName, etEmail, etCollege, etBranch, etCourse, etSemester, etCity;
     private TextView tvIsNumberVerified;
 
+    private Call<ResponseAPI> callIsNumberVerified;
+    private Call<GetUserData> callUserID;
+    private Call<SignupData> callUserDetails;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
@@ -126,7 +130,7 @@ public class AccountFragment extends Fragment {
     private void apiCallUserID() {
 
         APIServices apiServices = AppClient.getInstance().createService(APIServices.class);
-        Call<GetUserData> callUserID = apiServices.getUserID("Token " + SessionManager.getUserToken());
+        callUserID = apiServices.getUserID("Token " + SessionManager.getUserToken());
 
         callUserID.enqueue(new Callback<GetUserData>() {
             @Override
@@ -152,14 +156,16 @@ public class AccountFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Call<GetUserData> call, @NonNull Throwable t) {
 //                Log.d("LOG User ID Fail", t.toString());
-                progressDialog.dismiss();
-                Snackbar.make(loggedIn, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        setProgressDialog();
-                        apiCallUserID();
-                    }
-                }).show();
+                if (!callUserID.isCanceled()){
+                    progressDialog.dismiss();
+                    Snackbar.make(loggedIn, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            setProgressDialog();
+                            apiCallUserID();
+                        }
+                    }).show();
+                }
             }
         });
 
@@ -169,7 +175,7 @@ public class AccountFragment extends Fragment {
 
         int userID = SessionManager.getUserID();
         APIServices apiServices = AppClient.getInstance().createService(APIServices.class);
-        Call<SignupData> callUserDetails = apiServices.getUserByID(userID);
+        callUserDetails = apiServices.getUserByID(userID);
 
         callUserDetails.enqueue(new Callback<SignupData>() {
             @Override
@@ -186,14 +192,16 @@ public class AccountFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Call<SignupData> call, @NonNull Throwable t) {
 //                Log.d("LOG User by ID Fail", t.toString());
-                progressDialog.dismiss();
-                Snackbar.make(loggedIn, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        setProgressDialog();
-                        apiCallUserDetails();
-                    }
-                }).show();
+                if (!callUserDetails.isCanceled()){
+                    progressDialog.dismiss();
+                    Snackbar.make(loggedIn, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            setProgressDialog();
+                            apiCallUserDetails();
+                        }
+                    }).show();
+                }
             }
         });
 
@@ -202,9 +210,9 @@ public class AccountFragment extends Fragment {
     private void apiCallIsNumberVerified() {
 
         APIServices apiServices = AppClient.getInstance().createService(APIServices.class);
-        Call<ResponseAPI> call = apiServices.eventRegister(32, "Token " + SessionManager.getUserToken());
+        callIsNumberVerified = apiServices.eventRegister(32, "Token " + SessionManager.getUserToken());
 
-        call.enqueue(new Callback<ResponseAPI>() {
+        callIsNumberVerified.enqueue(new Callback<ResponseAPI>() {
             @Override
             public void onResponse(@NonNull Call<ResponseAPI> call, @NonNull Response<ResponseAPI> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -222,21 +230,17 @@ public class AccountFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<ResponseAPI> call, @NonNull Throwable t) {
-//                Log.d("LOG Register Fail", t.toString());
-                progressDialog.dismiss();
-
-                Snackbar snackbar = Snackbar.make(loggedIn, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        setProgressDialog();
-                        apiCallIsNumberVerified();
-                    }
-                });
-                CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams)
-                        snackbar.getView().getLayoutParams();
-                params.setMargins(0, 0, 0, 80);
-                snackbar.getView().setLayoutParams(params);
-                snackbar.show();
+//                Log.d("LOG Verified Fail", t.toString());
+                if (!callIsNumberVerified.isCanceled()){
+                    progressDialog.dismiss();
+                    Snackbar.make(loggedIn, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            setProgressDialog();
+                            apiCallIsNumberVerified();
+                        }
+                    });
+                }
             }
         });
 
@@ -263,5 +267,23 @@ public class AccountFragment extends Fragment {
         progressDialog.show();
     }
 
-
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (callUserID != null) {
+            if (callUserID.isExecuted()) {
+                callUserID.cancel();
+            }
+        }
+        if (callUserDetails != null) {
+            if (callUserDetails.isExecuted()) {
+                callUserDetails.cancel();
+            }
+        }
+        if (callIsNumberVerified != null) {
+            if (callIsNumberVerified.isExecuted()) {
+                callIsNumberVerified.cancel();
+            }
+        }
+    }
 }
