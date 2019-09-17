@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -134,15 +133,15 @@ public class AccountFragment extends Fragment {
 
         callUserID.enqueue(new Callback<GetUserData>() {
             @Override
-                public void onResponse(@NonNull Call<GetUserData> call, @NonNull Response<GetUserData> response) {
+            public void onResponse(@NonNull Call<GetUserData> call, @NonNull Response<GetUserData> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     GetUserData getUserData = new GetUserData(response.body().getUserID(), response.body().getUsername());
                     SessionManager.setUserID(getUserData.getUserID());
                     apiCallUserDetails();
                 } else {
                     progressDialog.dismiss();
-                    if (response.code() == 401){
-                        Toasty.warning(Objects.requireNonNull(getActivity()),"Login Again! Session Expired",Toasty.LENGTH_LONG).show();
+                    if (response.code() == 401) {
+                        Toasty.warning(Objects.requireNonNull(getActivity()), "Login Again! Session Expired", Toasty.LENGTH_LONG).show();
                         SessionManager.logout();
                         Intent intent = new Intent(getActivity(), AuthActivity.class);
                         startActivity(intent);
@@ -156,7 +155,7 @@ public class AccountFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Call<GetUserData> call, @NonNull Throwable t) {
 //                Log.d("LOG User ID Fail", t.toString());
-                if (!callUserID.isCanceled()){
+                if (!callUserID.isCanceled()) {
                     progressDialog.dismiss();
                     Snackbar.make(loggedIn, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
                         @Override
@@ -192,7 +191,7 @@ public class AccountFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Call<SignupData> call, @NonNull Throwable t) {
 //                Log.d("LOG User by ID Fail", t.toString());
-                if (!callUserDetails.isCanceled()){
+                if (!callUserDetails.isCanceled()) {
                     progressDialog.dismiss();
                     Snackbar.make(loggedIn, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
                         @Override
@@ -231,7 +230,7 @@ public class AccountFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Call<ResponseAPI> call, @NonNull Throwable t) {
 //                Log.d("LOG Verified Fail", t.toString());
-                if (!callIsNumberVerified.isCanceled()){
+                if (!callIsNumberVerified.isCanceled()) {
                     progressDialog.dismiss();
                     Snackbar.make(loggedIn, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
                         @Override

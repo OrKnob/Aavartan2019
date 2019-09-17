@@ -347,7 +347,7 @@ public class SignupFragment extends Fragment {
 
     }
 
-    private void apiCallLogin(){
+    private void apiCallLogin() {
         APIServices apiServices = AppClient.getInstance().createService(APIServices.class);
         Call<LoginData> call = apiServices.getLoginToken(mobileNumber, email, password);
 

@@ -83,11 +83,10 @@ public class EventDetailsActivity extends AppCompatActivity {
         buEventRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (SessionManager.getIsNumberVerified()){
+                if (SessionManager.getIsNumberVerified()) {
                     setProgressDialog();
                     apiCall();
-                }
-                else {
+                } else {
                     Toasty.error(EventDetailsActivity.this, "Verify Mobile Number First", Toasty.LENGTH_SHORT).show();
                 }
             }
@@ -125,7 +124,7 @@ public class EventDetailsActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call<ResponseAPI> call, @NonNull Throwable t) {
 //                Log.d("LOG Register Fail", t.toString());
-                if (!call.isCanceled()){
+                if (!call.isCanceled()) {
                     progressDialog.dismiss();
                     Snackbar.make(layout, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).show();
                 }

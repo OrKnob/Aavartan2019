@@ -87,7 +87,7 @@ public class EventsFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Call<List<EventsData>> call, @NonNull Throwable t) {
 //                Log.d("LOG Events Fail ", t.toString());
-                if (!call.isCanceled()){
+                if (!call.isCanceled()) {
                     Snackbar.make(layout, "No Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Try Again", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -111,7 +111,11 @@ public class EventsFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        call.cancel();
+        if (call != null) {
+            if (call.isExecuted()) {
+                call.cancel();
+            }
+        }
     }
 }
 
